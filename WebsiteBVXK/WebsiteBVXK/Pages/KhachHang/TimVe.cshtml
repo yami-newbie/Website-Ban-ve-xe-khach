@@ -1,0 +1,42 @@
+﻿@page
+@model WebsiteBVXK.Pages.TimVeModel
+@{ 
+    Layout = "_Layout";
+    ViewData["Tittle"] = "Tìm Vé Xe Khách";
+}
+
+<div class="banner">
+    <div class="noi-dung">
+        <div class="form">
+            <h2><b>Tìm Kiếm Vé Xe</b></h2>
+            <form action="">
+                <div class="input-form">
+                    <span>Chọn Điểm Đi</span>
+                    <select name="thanhthi" id="thanhthi">
+                        <option value="hanoi">Hà Nội</option>
+                        <option value="danang">Đà Nẵng</option>
+                        <option value="hue">Thừa Thiên Huế</option>
+                    </select>
+                </div>
+                <div class="input-form">
+                    <span>Chọn Điểm Đến</span>
+                    <select name="thanhthi" id="thanhthi">
+                        <option value="danang">Đà Nẵng</option>
+                        <option value="hue">Thừa Thiên Huế</option>
+                        <option value="hanoi">Hà Nội</option>
+                    </select>
+                </div>
+                <div class="input-form">
+                    <span>Thời Gian Đi</span>
+                    <input type="date" />
+                </div>
+                <div class="input-form">
+                    <span>Số Lượng Khách</span>
+                    <input type="number" />
+            </form>
+        </div>
+    </div>
+    <div class="content">
+        <button type="button"><a asp-page="/KhachHang/ThongTinVe"><span></span>TÌM KIẾM</a></button>
+    </div>
+</div>

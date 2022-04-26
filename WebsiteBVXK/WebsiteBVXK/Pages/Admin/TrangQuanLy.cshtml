@@ -1,0 +1,60 @@
+﻿@page
+@{
+    Layout = "_Layout";
+    ViewData["Tittle"] = "Trang Quản Lý";
+}
+
+<div class="head-title">
+    <div class="left">
+        <h1>Trang Quản lý</h1>
+    </div>
+</div>
+
+<ul class="box-info">
+    <a asp-page="/Admin/QuanLyLichTrinh">
+    <li>
+        <i class='bx bxs-calendar'></i>
+        <span class="text">
+            <p>Quản lý lịch trình</p>
+        </span>
+    </li>
+    </a>
+
+    <a asp-page="/Admin/QuanLyVe">
+    <li>
+        <i class='bx bx-note'></i>
+        <span class="text">
+            <p>Quản lý vé</p>
+        </span>
+    </li>
+    </a>
+
+    <a asp-page="/Admin/QuanLyXe">
+    <li>
+        <i class='bx bx-bus'></i>
+        <span class="text">
+            <p>Quản lý xe</p>
+        </span>
+    </li>
+    </a>
+</ul>
+
+<ul class="box-info">
+    <a asp-page="/Admin/QuanLyDonHang">
+    <li>
+        <i class='bx bx-cart-alt'></i>
+        <span class="text">
+            <p>Quản lý đơn hàng</p>
+        </span>
+    </li>
+    </a>
+
+    <a asp-page="/Admin/ThongKeDoanhThu">
+    <li>
+        <i class='bx bx-bar-chart-alt-2'></i>
+        <span class="text">
+            <p>Thống kê doanh thu</p>
+        </span>
+    </li>
+    </a>
+</ul>

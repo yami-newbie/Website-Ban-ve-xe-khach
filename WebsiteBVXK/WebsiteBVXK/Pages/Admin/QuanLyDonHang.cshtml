@@ -1,0 +1,244 @@
+﻿@page
+@model WebsiteBVXK.Pages.Admin.QuanLyDonHangModel
+@{
+    Layout = "_Layout";
+    ViewData["Tittle"] = "Quản Lý Đơn hàng";
+}
+
+<div class="head-title">
+    <div class="left">
+        <h1>Trang Quản lý</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#">Trang Quản lý</a>
+            </li>
+            <li><i class='bx bx-chevron-right'></i></li>
+            <li>
+                <a class="active" href="#">@ViewData["Tittle"]</a>
+            </li>
+        </ul>
+    </div>
+    <a href="#" class="btn-download">
+        <i class='bx bxs-cloud-download'></i>
+        <span class="text">Download PDF</span>
+    </a>
+</div>
+
+<div class="table-data">
+
+    <div class="todo">
+        <div class="head">
+            <h3>Thông tin đơn hàng</h3>
+
+        </div>
+
+        <ul class="input-list">
+            <table class="inputable">
+                <tr>
+                    <td> Mã đơn hàng:</td>
+                    <td>
+                        <input type="text">
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>Mã vé:  </td>
+                    <td>
+                        <input type="text">
+                    </td>
+                </tr>
+                <td>Mã xe:  </td>
+                <td>
+                    <input type="text">
+                </td>
+                </tr>
+                </tr>
+                <td>Mã lịch trình:  </td>
+                <td>
+                    <input type="text">
+                </td>
+                </tr>
+
+
+            </table>
+        </ul>
+        <div class="head">
+            <h3 style="margin-top: 15px;">Thông tin khách hàng</h3>
+
+        </div>
+
+
+        <ul class="input-list">
+            <table class="inputable">
+                <tr>
+                    <td> Tên khách hàng:</td>
+                    <td>
+                        <input type="text">
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>Số điện thoại: </td>
+                    <td>
+                        <input type="tel" name="sodienthoai">
+                    </td>
+                </tr>
+                <tr>
+                    <td> Thời gian đón: </td>
+                    <td>
+                        <input type="time" name="thoigiandon">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td> Điểm đón </td>
+                    <td>
+                        <select name="diemdon" id="">
+                            <option>Đà Nẵng</option>
+                            <option>Hà Tĩnh</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Điểm trả </td>
+                    <td>
+                        <select name="diemtra" id="">
+                            <option>Đà Nẵng</option>
+                            <option>Hà Tĩnh</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Tổng tiền: </td>
+                    <td>
+                        <input type="text" name="tongtien">
+                    </td>
+                </tr>
+                <tr>
+                    <td> Tình trạng: </td>
+                    <td>
+                        <select name="tinhtrang" id="">
+                            <option>Đã thanh toán</option>
+                            <option>Chưa thành toán</option>
+                        </select>
+                    </td>
+                </tr>
+
+            </table>
+        </ul>
+        <table class="table-buttoncn">
+            <tr>
+                <td>
+
+                    <button class="buttontcn">Cập nhật</button>
+
+                </td>
+
+            </tr>
+        </table>
+
+    </div>
+
+    <div class="order">
+        <div class="head">
+            <h3>Danh sách đơn hàng</h3>
+        </div>
+        <table>
+            <thead>
+                <tr>
+
+                    <th>Mã đơn hàng</th>
+                    <th>Mã vé</th>
+                    <th>Mã lịch trình</th>
+                    <th>Mã xe</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="status pending"> DH0001</span></td>
+                    <td>V0001</td>
+                    <td>LT0001</td>
+                    <td>X00001</td>
+
+
+
+                </tr>
+                <tr>
+                    <td><span class="status pending"> DH0002</span></td>
+                    <td>V0002</td>
+                    <td>LT0002</td>
+                    <td>X00001</td>
+
+
+                </tr>
+                <tr>
+                    <td><span class="status pending"> DH0003</span></td>
+                    <td>V0003</td>
+                    <td>LT0003</td>
+                    <td>X00001</td>
+
+
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="head">
+            <h3>Danh sách thông tin khách hàng</h3>
+        </div>
+        <table>
+            <thead>
+                <tr>
+
+                    <th>Mã đơn hàng</th>
+                    <th>Tên khách hàng</th>
+                    <th>Số điện thoại</th>
+                    <th>Thời gian đón</th>
+                    <th>Điểm đón</th>
+                    <th>Điểm trả</th>
+                    <th>Tổng tiền</th>
+                    <th>Tình trạng</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="status pending"> DH0001</span></td>
+                    <td>Nguyễn Thị Mai Linh</td>
+                    <td>0708030580</td>
+                    <td>13:00</td>
+                    <td> Đà Nẵng</td>
+                    <td>Hà Tĩnh</td>
+                    <td>300000</td>
+                    <td>Đã thanh toán</td>
+
+
+                </tr>
+                <tr>
+                    <td><span class="status pending"> DH0002</span></td>
+                    <td>Trần Khánh Quỳnh</td>
+                    <td>0366442978</td>
+                    <td>13:00</td>
+                    <td>Đà Nẵng</td>
+                    <td>Hà Tĩnh</td>
+                    <td>300000</td>
+                    <td>Đã thanh toán</td>
+
+                </tr>
+                <tr>
+                    <td><span class="status pending"> DH0003</span></td>
+                    <td>Trần Võ Thị Thùy Tiên</td>
+                    <td>0366442978</td>
+                    <td>13:00</td>
+                    <td>Đà Nẵng</td>
+                    <td>Hà Tĩnh</td>
+                    <td>300000</td>
+                    <td>Đã thanh toán</td>
+
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

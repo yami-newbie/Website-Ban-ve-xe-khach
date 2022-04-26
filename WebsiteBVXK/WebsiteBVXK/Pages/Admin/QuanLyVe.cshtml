@@ -1,0 +1,129 @@
+﻿@page
+@model WebsiteBVXK.Pages.Admin.QuanLyVeModel
+@{
+    Layout = "_Layout";
+    ViewData["Tittle"] = "Quản Lý Vé";
+}
+
+<div class="head-title">
+    <div class="left">
+        <h1>Trang Quản lý</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#">Trang Quản lý</a>
+            </li>
+            <li><i class='bx bx-chevron-right'></i></li>
+            <li>
+                <a class="active" href="#">@ViewData["Tittle"]</a>
+            </li>
+        </ul>
+    </div>
+    <a href="#" class="btn-download">
+        <i class='bx bxs-cloud-download'></i>
+        <span class="text">Download PDF</span>
+    </a>
+</div>
+
+
+
+<div class="table-data">
+
+    <div class="todo">
+        <div class="head">
+            <h3>Thông tin vé</h3>
+
+        </div>
+
+        <ul class="input-list">
+            <table class="inputable">
+                <tr>
+                    <td> Mã vé:</td>
+                    <td>
+                        <input type="text">
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>Mã xe:  </td>
+                    <td>
+                        <input type="text">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td> Mã lịch trình:  </td>
+                    <td>
+                        <input type="text">
+                    </td>
+                    </td>
+                </tr>
+                <td> Giá vé: </td>
+                <td>
+                    <input type="text" name="giave">
+                </td>
+                </tr>
+                <tr>
+                <tr>
+                    <td> Tình trạng vé:</td>
+                    <td>
+                        <input type="text" name="tinhtrangve">
+                    </td>
+                </tr>
+
+
+            </table>
+        </ul>
+        <table class="table-buttonve">
+            <tr>
+                <td>
+                    <button class="buttontsx">Thêm</button>
+                    <button class="buttontsx">Xóa</button>
+                    <button class="buttontsx">Sửa</button>
+                    <button class="buttontsx">Thống kê</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="order">
+        <div class="head">
+            <h3>Danh sách lịch trình</h3>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Mã vé</th>
+                    <th>Mã xe</th>
+                    <th>Mã lịch trình</th>
+                    <th>Giá vé</th>
+                    <th>Tình trạng vé</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="status pending"> V0001</span></td>
+                    <td>X0001</td>
+                    <td>LT001</td>
+                    <td>200000</td>
+                    <td>Đã đặt</td>
+                </tr>
+                <tr>
+                    <td><span class="status pending"> V0002</span></td>
+                    <td>X0002</td>
+                    <td>LT002</td>
+                    <td>200000</td>
+                    <td>Đã đặt</td>
+                </tr>
+                <tr>
+                    <td><span class="status pending"> V0003</span></td>
+                    <td>X0003</td>
+                    <td>LT003</td>
+                    <td>200000</td>
+                    <td>Đã đặt</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>

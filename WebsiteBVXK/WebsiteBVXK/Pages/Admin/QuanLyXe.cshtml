@@ -1,0 +1,147 @@
+﻿@page
+@model WebsiteBVXK.Pages.Admin.QuanLyXeModel
+@{
+    Layout = "_Layout";
+    ViewData["Tittle"] = "Quản Lý Xe";
+}
+
+<div class="head-title">
+    <div class="left">
+        <h1>Trang Quản lý</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#">Trang Quản lý</a>
+            </li>
+            <li><i class='bx bx-chevron-right'></i></li>
+            <li>
+                <a class="active" href="#">@ViewData["Tittle"]</a>
+            </li>
+        </ul>
+    </div>
+    <a href="#" class="btn-download">
+        <i class='bx bxs-cloud-download'></i>
+        <span class="text">Download PDF</span>
+    </a>
+</div>
+
+<div class="table-data">
+
+    <div class="todo">
+        <div class="head">
+            <h3>Thông tin xe</h3>
+
+        </div>
+
+        <ul class="input-list">
+            <table class="inputable">
+                <tr>
+                    <td> Mã xe:</td>
+                    <td>
+                        <input type="text">
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>Tên tài xế:  </td>
+                    <td>
+                        <input type="text">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td> Loại xe:  </td>
+                    <td>
+                        <select name="loaixe" id="">
+                            <option>Ngồi</option>
+                            <option>Nằm </option>
+                        </select>
+                    </td>
+                </tr>
+                <td> Số điện thoại: </td>
+                <td>
+                    <input type="tel" name="sodienthoai">
+                </td>
+                </tr>
+                <tr>
+                <tr>
+                    <td> Số lượng ghế </td>
+                    <td>
+                        <select name="noiden" id="">
+                            <option>4 chỗ</option>
+                            <option>7 chỗ</option>
+                            <option>16 chỗ</option>
+                            <option>20 chô</option>
+                            <option>32 chỗ</option>
+                        </select>
+                    </td>
+                </tr>
+                <td> Biển số: </td>
+                <td>
+                    <input type="text" name="bienso">
+                </td>
+                </tr>
+
+            </table>
+        </ul>
+        <table class="table-button">
+            <tr>
+                <td>
+                    <button class="buttontsx">Thêm</button>
+                    <button class="buttontsx">Xóa</button>
+                    <button class="buttontsx">Sửa</button>
+                </td>
+
+            </tr>
+        </table>
+
+    </div>
+
+    <div class="order">
+        <div class="head">
+            <h3>Danh sách xe</h3>
+        </div>
+        <table>
+            <thead>
+                <tr>
+
+                    <th>Mã xe</th>
+                    <th>Tên tài xế</th>
+                    <th>Loại xe</th>
+                    <th>Số điện thoại</th>
+                    <th>Số chỗ</th>
+                    <th>Biển số</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="status pending"> X0001</span></td>
+                    <td>Nguyễn Thị Mai Linh</td>
+                    <td>Ngồi</td>
+                    <td>0708030580</td>
+                    <td>4 chỗ</td>
+                    <td>75A-945837</td>
+
+                </tr>
+                <tr>
+                    <td><span class="status pending"> X0002</span></td>
+                    <td>Trần Khánh Quỳnh</td>
+                    <td>Ngồi</td>
+                    <td>0366442978</td>
+                    <td>4 chỗ</td>
+                    <td>78A-94385</td>
+
+                </tr>
+                <tr>
+                    <td><span class="status pending"> X0003</span></td>
+                    <td>Trần Võ Thị Thùy Tiên</td>
+                    <td>Ngồi</td>
+                    <td>0937483532</td>
+                    <td>4 chỗ</td>
+                    <td>43A-48563</td>
+
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

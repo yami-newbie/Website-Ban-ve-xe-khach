@@ -1,0 +1,93 @@
+﻿@page
+@model WebsiteBVXK.Pages.Admin.ThongKeDoanhThuModel
+@{
+    Layout = "_Layout";
+    ViewData["Tittle"] = "Thống kê doanh thu";
+}
+
+<div class="head-title">
+    <div class="left">
+        <h1>Trang Quản lý</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#">Trang Quản lý</a>
+            </li>
+            <li><i class='bx bx-chevron-right'></i></li>
+            <li>
+                <a class="active" href="#">@ViewData["Tittle"]</a>
+            </li>
+        </ul>
+    </div>
+    <a href="#" class="btn-download">
+        <i class='bx bxs-cloud-download'></i>
+        <span class="text">Download PDF</span>
+    </a>
+</div>
+
+<div class="table-data">
+    <div class="todo">
+        <div class="head">
+            <h3>Thống kê doanh thu</h3>
+        </div>
+
+        <ul class="input-list">
+            <table class="inputable">
+                <tr>
+                    <td> Từ ngày:</td>
+                    <td>
+                        <input type="date">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Đến ngày:  </td>
+                    <td>
+                        <input type="date">
+                    </td>
+                </tr>
+            </table>
+        </ul>
+        <table class="table-buttoncn">
+            <tr>
+                <td>
+                    <button class="buttontcn">Thống kê</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="order">
+        <div class="head">
+            <h3>Danh sách thống kê</h3>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Mã vé</th>
+                    <th>Ngày đặt vé</th>
+                    <th>Loại vé</th>
+                    <th>Giá vé</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="status pending"> V0001</span></td>
+                    <td>20/3/2022</td>
+                    <td>Ngồi</td>
+                    <td>300000</td>
+                </tr>
+                <tr>
+                    <td><span class="status pending"> V0002</span></td>
+                    <td>20/3/2022</td>
+                    <td>Ngồi</td>
+                    <td>300000</td>
+                </tr>
+                <tr>
+                    <td><span class="status pending"> V0003</span></td>
+                    <td>20/3/2022</td>
+                    <td>Ngồi</td>
+                    <td>300000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

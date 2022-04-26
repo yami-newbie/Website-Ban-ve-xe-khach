@@ -1,0 +1,146 @@
+﻿@page
+@model WebsiteBVXK.Pages.QuanLyLichTrinhModel
+@{
+    Layout = "_Layout";
+    ViewData["Tittle"] = "Quản Lý Lịch Trình";
+}
+
+<div class="head-title">
+    <div class="left">
+        <h1>Trang Quản lý</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#">Trang Quản lý</a>
+            </li>
+            <li><i class='bx bx-chevron-right'></i></li>
+            <li>
+                <a class="active" href="#">@ViewData["Tittle"]</a>
+            </li>
+        </ul>
+    </div>
+    <a href="#" class="btn-download">
+        <i class='bx bxs-cloud-download'></i>
+        <span class="text">Download PDF</span>
+    </a>
+</div>
+
+
+
+<div class="table-data">
+
+    <div class="todo">
+        <div class="head">
+            <h3>Thông tin lịch trình</h3>
+        </div>
+
+        <ul class="input-list">
+            <table class="inputable">
+                <tr>
+                    <td> Mã lịch trình:</td>
+                    <td>
+                        <input type="text">
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>	Mã xe:  </td>
+                    <td>
+                        <input type="text">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td> Nơi xuất phát:  </td>
+                    <td>
+                        <select name="noixuatphat" id="">
+                            <option>Đà Nẵng</option>
+                            <option>Hà Tĩnh</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Nơi đến: </td>
+                    <td>
+                        <select name="noiden" id="">
+                            <option>Đà Nẵng</option>
+                            <option>Hà Tĩnh</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Ngày đi: </td>
+                    <td> <input type="date" name="ngaydi" /> 	</td>
+                </tr>
+                <tr>
+                    <td> Thời gian đi: </td>
+                    <td> <input type="time" name="thoigiandi" /> </td>
+                </tr>
+                <tr>
+                    <td>Thời gian đến: </td>
+                    <td><input type="time" name="thoigianden" />
+                    <td>
+
+                </tr>
+            </table>
+        </ul>
+        <table class="table-button">
+            <tr>
+                <td>
+                    <button class="buttontsx">Thêm</button>
+                    <button class="buttontsx">Xóa</button>
+                    <button class="buttontsx">Sửa</button>
+                </td>
+
+            </tr>
+        </table>
+
+    </div>
+
+    <div class="order">
+        <div class="head">
+            <h3>Danh sách lịch trình</h3>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Mã lịch trình</th>
+                    <th>Mã xe</th>
+                    <th>Nơi xuất phát</th>
+                    <th>Nơi đến</th>
+                    <th>Ngày đi</th>
+                    <th>Thời gian đi</th>
+                    <th>Thời gian đến</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="status pending"> LT0001</span></td>
+                    <td>X00001</td>
+                    <td>Hà Tĩnh</td>
+                    <td>Đà Nẵng</td>
+                    <td>22/08/2021</td>
+                    <td>13:00</td>
+                    <td>22:00</td>
+                </tr>
+                <tr>
+                    <td><span class="status pending"> LT0002</span></td>
+                    <td>X00002</td>
+                    <td>Hà Tĩnh</td>
+                    <td>Đà Nẵng</td>
+                    <td>22/08/2021</td>
+                    <td>13:00</td>
+                    <td>22:00</td>
+                </tr>
+                <tr>
+                    <td><span class="status pending"> LT0003</span></td>
+                    <td>X00003</td>
+                    <td>Hà Tĩnh</td>
+                    <td>Đà Nẵng</td>
+                    <td>22/08/2021</td>
+                    <td>13:00</td>
+                    <td>22:00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

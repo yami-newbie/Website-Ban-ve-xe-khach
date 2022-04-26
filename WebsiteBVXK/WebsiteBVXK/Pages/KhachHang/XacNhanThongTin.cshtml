@@ -1,0 +1,57 @@
+﻿@page
+@model WebsiteBVXK.Pages.KhachHang.XacNhanThongTinModel
+@{
+    Layout = "_Layout";
+    ViewData["Tittle"] = "Xác Nhận Thông Tin";
+}
+
+<div class="wrapper">
+    <div class="title">
+        Xác nhận thông tin đặt vé
+    </div>
+    <div class="form">
+        <div class="input-field">
+            <label>Hành khách</label>
+            <input type="text" class="input">
+        </div>
+        <div class="input-field">
+            <label>Số điện thoại</label>
+            <input type="text" class="input">
+        </div>
+        <div class="input-field">
+            <label>Email</label>
+            <input type="text" class="input">
+        </div>
+        <div class="input-field">
+            <label>CMND/CCCD</label>
+            <input type="text" class="input">
+        </div>
+        <div class="input-field">
+            <label>Chuyến</label>
+            <input type="text" class="input">
+        </div>
+        <div class="input-field">
+            <label>Ngày khởi hành</label>
+            <input type="text" class="input">
+        </div>
+        <div class="input-field">
+            <label>Loại xe</label>
+            <input type="text" class="input">
+        </div>
+        <div class="input-field">
+            <label>Số ghế</label>
+            <input type="text" class="input">
+        </div>
+        <div class="input-field">
+            <label>Số lượng</label>
+            <input type="text" class="input">
+        </div>
+        <div class="input-field">
+            <label>Tổng tiền</label>
+            <input type="text" class="input">
+        </div>
+        <div class="input-field">
+            <a asp-page="/KhachHang/ThongTinChuyenKhoan"><input type="submit" value="Xác nhận" class="btn"></a>
+        </div>
+    </div>
+</div>
