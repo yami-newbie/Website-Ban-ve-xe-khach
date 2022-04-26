@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+WebsiteBVXK/WebsiteBVXK/obj/project.assets.json
+WebsiteBVXK/WebsiteBVXK/obj/project.nuget.cache
+WebsiteBVXK/WebsiteBVXK/obj/WebsiteBVXK.csproj.nuget.dgspec.json
+WebsiteBVXK/WebsiteBVXK/obj/WebsiteBVXK.csproj.nuget.g.props

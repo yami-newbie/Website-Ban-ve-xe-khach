@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Github\\Website-Ban-ve-xe-khach\\WebsiteBVXK\\WebsiteBVXK\\WebsiteBVXK.csproj": {}
+    "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\Website-Ban-ve-xe-khach\\WebsiteBVXK\\WebsiteBVXK\\WebsiteBVXK.csproj": {}
   },
   "projects": {
-    "D:\\Github\\Website-Ban-ve-xe-khach\\WebsiteBVXK\\WebsiteBVXK\\WebsiteBVXK.csproj": {
+    "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\Website-Ban-ve-xe-khach\\WebsiteBVXK\\WebsiteBVXK\\WebsiteBVXK.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Github\\Website-Ban-ve-xe-khach\\WebsiteBVXK\\WebsiteBVXK\\WebsiteBVXK.csproj",
+        "projectUniqueName": "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\Website-Ban-ve-xe-khach\\WebsiteBVXK\\WebsiteBVXK\\WebsiteBVXK.csproj",
         "projectName": "WebsiteBVXK",
-        "projectPath": "D:\\Github\\Website-Ban-ve-xe-khach\\WebsiteBVXK\\WebsiteBVXK\\WebsiteBVXK.csproj",
-        "packagesPath": "C:\\Users\\hoang\\.nuget\\packages\\",
-        "outputPath": "D:\\Github\\Website-Ban-ve-xe-khach\\WebsiteBVXK\\WebsiteBVXK\\obj\\",
+        "projectPath": "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\Website-Ban-ve-xe-khach\\WebsiteBVXK\\WebsiteBVXK\\WebsiteBVXK.csproj",
+        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ADMIN\\OneDrive\\Documents\\GitHub\\Website-Ban-ve-xe-khach\\WebsiteBVXK\\WebsiteBVXK\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\hoang\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -85,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }
