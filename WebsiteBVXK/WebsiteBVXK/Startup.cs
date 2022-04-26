@@ -1,3 +1,4 @@
+using BVXK.Domain.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -27,6 +28,10 @@ namespace WebsiteBVXK
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            services.AddDbContext<BVXKContext>(options => options.UseSqlServer(Configuration.GetConnectionString("WebsiteBVXKContext")));
+
+            services.AddApplicationServices();
         }
 
         // This method gets called by the runtime.

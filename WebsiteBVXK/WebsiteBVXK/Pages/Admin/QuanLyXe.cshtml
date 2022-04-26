@@ -32,7 +32,7 @@
 
         </div>
 
-        <ul class="input-list">
+        <div class="input-list">
             <table class="inputable">
                 <tr>
                     <td> Mã xe:</td>
@@ -80,9 +80,8 @@
                     <input type="text" name="bienso">
                 </td>
                 </tr>
-
             </table>
-        </ul>
+        </div>
         <table class="table-button">
             <tr>
                 <td>
@@ -113,14 +112,26 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+				@{
+					foreach (var xe in Model.Xes)
+					{
+						<tr>
+							<td><span class="status pending"> @xe.idXe </span></td>
+							<td>@xe.tenTaiXe</td>
+							<td>@xe.loaiXe</td>
+							<td>@xe.soDienThoai</td>
+							<td>@xe.soLuongGhe</td>
+							<td>@xe.bienSo</td>
+						</tr>
+					}
+				}
+				<tr>
                     <td><span class="status pending"> X0001</span></td>
                     <td>Nguyễn Thị Mai Linh</td>
                     <td>Ngồi</td>
                     <td>0708030580</td>
                     <td>4 chỗ</td>
                     <td>75A-945837</td>
-
                 </tr>
                 <tr>
                     <td><span class="status pending"> X0002</span></td>

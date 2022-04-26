@@ -37,7 +37,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[DonHang](
-	[idDonHang] [int] NOT NULL,
+	[idDonHang] [int] IDENTITY(1,1) NOT NULL,
 	[idVeXe] [int] NOT NULL,
 	[idXe] [int] NOT NULL,
 	[idLichTrinh] [int] NOT NULL,
@@ -123,6 +123,7 @@ CREATE TABLE [dbo].[VeXe](
 	[idLichTrinh] [int] NOT NULL,
 	[GiaVe] [money] NULL,
 	[tinhTrang] [int] NULL,
+	[loaiVe] [int] NULL,
  CONSTRAINT [PK_VeXe] PRIMARY KEY CLUSTERED 
 (
 	[idVe] ASC
@@ -148,7 +149,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Xe](
-	[idXe] [int] NOT NULL,
+	[idXe] [int] IDENTITY(1,1) NOT NULL,
 	[tenTaiXe] [nvarchar](50) NULL,
 	[loaiXe] [int] NULL,
 	[soDienThoai] [nchar](10) NULL,
