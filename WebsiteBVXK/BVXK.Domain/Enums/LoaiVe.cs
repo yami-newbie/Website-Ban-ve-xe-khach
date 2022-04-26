@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BVXK.Database
+namespace BVXK.Domain.Enums
 {
-    public class Class1
+    public enum LoaiVe
     {
+        Thuong,
+        Vip
     }
 }

@@ -1,0 +1,414 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BVXKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="uid" />
+          </Key>
+          <Property Name="uid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role" Type="int" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="displayName" Type="nvarchar" MaxLength="50" />
+          <Property Name="address" Type="text" />
+          <Property Name="phoneNumber" Type="nchar" MaxLength="10" />
+          <Property Name="avatar" Type="image" />
+        </EntityType>
+        <EntityType Name="DonHang">
+          <Key>
+            <PropertyRef Name="idDonHang" />
+          </Key>
+          <Property Name="idDonHang" Type="int" Nullable="false" />
+          <Property Name="idVeXe" Type="int" Nullable="false" />
+          <Property Name="idXe" Type="int" Nullable="false" />
+          <Property Name="idLichTrinh" Type="int" Nullable="false" />
+          <Property Name="tenKhachHang" Type="nvarchar" MaxLength="50" />
+          <Property Name="soDienThoai" Type="nchar" MaxLength="10" />
+          <Property Name="thoiGianDon" Type="smalldatetime" />
+          <Property Name="diemDon" Type="nvarchar" MaxLength="50" />
+          <Property Name="diemTra" Type="nvarchar" MaxLength="50" />
+          <Property Name="tongTien" Type="money" />
+          <Property Name="tinhTrang" Type="int" />
+        </EntityType>
+        <EntityType Name="LichTrinh">
+          <Key>
+            <PropertyRef Name="idLichTrinh" />
+          </Key>
+          <Property Name="idLichTrinh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idXe" Type="int" Nullable="false" />
+          <Property Name="noiXuatPhat" Type="nvarchar" MaxLength="50" />
+          <Property Name="noiDen" Type="nvarchar" MaxLength="50" />
+          <Property Name="ngayDi" Type="smalldatetime" />
+          <Property Name="ngayDen" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="VeXe">
+          <Key>
+            <PropertyRef Name="idVe" />
+          </Key>
+          <Property Name="idVe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idXe" Type="int" Nullable="false" />
+          <Property Name="idLichTrinh" Type="int" Nullable="false" />
+          <Property Name="GiaVe" Type="money" />
+          <Property Name="tinhTrang" Type="int" />
+        </EntityType>
+        <EntityType Name="Xe">
+          <Key>
+            <PropertyRef Name="idXe" />
+          </Key>
+          <Property Name="idXe" Type="int" Nullable="false" />
+          <Property Name="tenTaiXe" Type="nvarchar" MaxLength="50" />
+          <Property Name="loaiXe" Type="int" />
+          <Property Name="soDienThoai" Type="nchar" MaxLength="10" />
+          <Property Name="soLuongGhe" Type="int" />
+          <Property Name="bienSo" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_DonHang_LichTrinh">
+          <End Role="LichTrinh" Type="Self.LichTrinh" Multiplicity="1" />
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LichTrinh">
+              <PropertyRef Name="idLichTrinh" />
+            </Principal>
+            <Dependent Role="DonHang">
+              <PropertyRef Name="idLichTrinh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DonHang_VeXe">
+          <End Role="VeXe" Type="Self.VeXe" Multiplicity="1" />
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VeXe">
+              <PropertyRef Name="idVe" />
+            </Principal>
+            <Dependent Role="DonHang">
+              <PropertyRef Name="idVeXe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DonHang_Xe">
+          <End Role="Xe" Type="Self.Xe" Multiplicity="1" />
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Xe">
+              <PropertyRef Name="idXe" />
+            </Principal>
+            <Dependent Role="DonHang">
+              <PropertyRef Name="idXe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LichTrinh_Xe">
+          <End Role="Xe" Type="Self.Xe" Multiplicity="1" />
+          <End Role="LichTrinh" Type="Self.LichTrinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Xe">
+              <PropertyRef Name="idXe" />
+            </Principal>
+            <Dependent Role="LichTrinh">
+              <PropertyRef Name="idXe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VeXe_Xe">
+          <End Role="Xe" Type="Self.Xe" Multiplicity="1" />
+          <End Role="VeXe" Type="Self.VeXe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Xe">
+              <PropertyRef Name="idXe" />
+            </Principal>
+            <Dependent Role="VeXe">
+              <PropertyRef Name="idXe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BVXKModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DonHang" EntityType="Self.DonHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LichTrinh" EntityType="Self.LichTrinh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VeXe" EntityType="Self.VeXe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Xe" EntityType="Self.Xe" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DonHang_LichTrinh" Association="Self.FK_DonHang_LichTrinh">
+            <End Role="LichTrinh" EntitySet="LichTrinh" />
+            <End Role="DonHang" EntitySet="DonHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DonHang_VeXe" Association="Self.FK_DonHang_VeXe">
+            <End Role="VeXe" EntitySet="VeXe" />
+            <End Role="DonHang" EntitySet="DonHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DonHang_Xe" Association="Self.FK_DonHang_Xe">
+            <End Role="Xe" EntitySet="Xe" />
+            <End Role="DonHang" EntitySet="DonHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LichTrinh_Xe" Association="Self.FK_LichTrinh_Xe">
+            <End Role="Xe" EntitySet="Xe" />
+            <End Role="LichTrinh" EntitySet="LichTrinh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VeXe_Xe" Association="Self.FK_VeXe_Xe">
+            <End Role="Xe" EntitySet="Xe" />
+            <End Role="VeXe" EntitySet="VeXe" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BVXKModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="uid" />
+          </Key>
+          <Property Name="uid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role" Type="Int32" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="displayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="phoneNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="DonHang">
+          <Key>
+            <PropertyRef Name="idDonHang" />
+          </Key>
+          <Property Name="idDonHang" Type="Int32" Nullable="false" />
+          <Property Name="idVeXe" Type="Int32" Nullable="false" />
+          <Property Name="idXe" Type="Int32" Nullable="false" />
+          <Property Name="idLichTrinh" Type="Int32" Nullable="false" />
+          <Property Name="tenKhachHang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="soDienThoai" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="thoiGianDon" Type="DateTime" Precision="0" />
+          <Property Name="diemDon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="diemTra" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tongTien" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="tinhTrang" Type="Int32" />
+          <NavigationProperty Name="LichTrinh" Relationship="Self.FK_DonHang_LichTrinh" FromRole="DonHang" ToRole="LichTrinh" />
+          <NavigationProperty Name="VeXe" Relationship="Self.FK_DonHang_VeXe" FromRole="DonHang" ToRole="VeXe" />
+          <NavigationProperty Name="Xe" Relationship="Self.FK_DonHang_Xe" FromRole="DonHang" ToRole="Xe" />
+        </EntityType>
+        <EntityType Name="LichTrinh">
+          <Key>
+            <PropertyRef Name="idLichTrinh" />
+          </Key>
+          <Property Name="idLichTrinh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idXe" Type="Int32" Nullable="false" />
+          <Property Name="noiXuatPhat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="noiDen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ngayDi" Type="DateTime" Precision="0" />
+          <Property Name="ngayDen" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="DonHang" Relationship="Self.FK_DonHang_LichTrinh" FromRole="LichTrinh" ToRole="DonHang" />
+          <NavigationProperty Name="Xe" Relationship="Self.FK_LichTrinh_Xe" FromRole="LichTrinh" ToRole="Xe" />
+        </EntityType>
+        <EntityType Name="VeXe">
+          <Key>
+            <PropertyRef Name="idVe" />
+          </Key>
+          <Property Name="idVe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idXe" Type="Int32" Nullable="false" />
+          <Property Name="idLichTrinh" Type="Int32" Nullable="false" />
+          <Property Name="GiaVe" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="tinhTrang" Type="Int32" />
+          <NavigationProperty Name="DonHang" Relationship="Self.FK_DonHang_VeXe" FromRole="VeXe" ToRole="DonHang" />
+          <NavigationProperty Name="Xe" Relationship="Self.FK_VeXe_Xe" FromRole="VeXe" ToRole="Xe" />
+        </EntityType>
+        <EntityType Name="Xe">
+          <Key>
+            <PropertyRef Name="idXe" />
+          </Key>
+          <Property Name="idXe" Type="Int32" Nullable="false" />
+          <Property Name="tenTaiXe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="loaiXe" Type="Int32" />
+          <Property Name="soDienThoai" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="soLuongGhe" Type="Int32" />
+          <Property Name="bienSo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="DonHang" Relationship="Self.FK_DonHang_Xe" FromRole="Xe" ToRole="DonHang" />
+          <NavigationProperty Name="LichTrinh" Relationship="Self.FK_LichTrinh_Xe" FromRole="Xe" ToRole="LichTrinh" />
+          <NavigationProperty Name="VeXe" Relationship="Self.FK_VeXe_Xe" FromRole="Xe" ToRole="VeXe" />
+        </EntityType>
+        <Association Name="FK_DonHang_LichTrinh">
+          <End Role="LichTrinh" Type="Self.LichTrinh" Multiplicity="1" />
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LichTrinh">
+              <PropertyRef Name="idLichTrinh" />
+            </Principal>
+            <Dependent Role="DonHang">
+              <PropertyRef Name="idLichTrinh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DonHang_VeXe">
+          <End Role="VeXe" Type="Self.VeXe" Multiplicity="1" />
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VeXe">
+              <PropertyRef Name="idVe" />
+            </Principal>
+            <Dependent Role="DonHang">
+              <PropertyRef Name="idVeXe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DonHang_Xe">
+          <End Role="Xe" Type="Self.Xe" Multiplicity="1" />
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Xe">
+              <PropertyRef Name="idXe" />
+            </Principal>
+            <Dependent Role="DonHang">
+              <PropertyRef Name="idXe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LichTrinh_Xe">
+          <End Role="Xe" Type="Self.Xe" Multiplicity="1" />
+          <End Role="LichTrinh" Type="Self.LichTrinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Xe">
+              <PropertyRef Name="idXe" />
+            </Principal>
+            <Dependent Role="LichTrinh">
+              <PropertyRef Name="idXe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VeXe_Xe">
+          <End Role="Xe" Type="Self.Xe" Multiplicity="1" />
+          <End Role="VeXe" Type="Self.VeXe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Xe">
+              <PropertyRef Name="idXe" />
+            </Principal>
+            <Dependent Role="VeXe">
+              <PropertyRef Name="idXe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BVXKEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Account" EntityType="Self.Account" />
+          <EntitySet Name="DonHang" EntityType="Self.DonHang" />
+          <EntitySet Name="LichTrinh" EntityType="Self.LichTrinh" />
+          <EntitySet Name="VeXe" EntityType="Self.VeXe" />
+          <EntitySet Name="Xe" EntityType="Self.Xe" />
+          <AssociationSet Name="FK_DonHang_LichTrinh" Association="Self.FK_DonHang_LichTrinh">
+            <End Role="LichTrinh" EntitySet="LichTrinh" />
+            <End Role="DonHang" EntitySet="DonHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DonHang_VeXe" Association="Self.FK_DonHang_VeXe">
+            <End Role="VeXe" EntitySet="VeXe" />
+            <End Role="DonHang" EntitySet="DonHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DonHang_Xe" Association="Self.FK_DonHang_Xe">
+            <End Role="Xe" EntitySet="Xe" />
+            <End Role="DonHang" EntitySet="DonHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LichTrinh_Xe" Association="Self.FK_LichTrinh_Xe">
+            <End Role="Xe" EntitySet="Xe" />
+            <End Role="LichTrinh" EntitySet="LichTrinh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VeXe_Xe" Association="Self.FK_VeXe_Xe">
+            <End Role="Xe" EntitySet="Xe" />
+            <End Role="VeXe" EntitySet="VeXe" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BVXKModelStoreContainer" CdmEntityContainer="BVXKEntities">
+          <EntitySetMapping Name="Account">
+            <EntityTypeMapping TypeName="BVXKModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="uid" ColumnName="uid" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="displayName" ColumnName="displayName" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DonHang">
+            <EntityTypeMapping TypeName="BVXKModel.DonHang">
+              <MappingFragment StoreEntitySet="DonHang">
+                <ScalarProperty Name="idDonHang" ColumnName="idDonHang" />
+                <ScalarProperty Name="idVeXe" ColumnName="idVeXe" />
+                <ScalarProperty Name="idXe" ColumnName="idXe" />
+                <ScalarProperty Name="idLichTrinh" ColumnName="idLichTrinh" />
+                <ScalarProperty Name="tenKhachHang" ColumnName="tenKhachHang" />
+                <ScalarProperty Name="soDienThoai" ColumnName="soDienThoai" />
+                <ScalarProperty Name="thoiGianDon" ColumnName="thoiGianDon" />
+                <ScalarProperty Name="diemDon" ColumnName="diemDon" />
+                <ScalarProperty Name="diemTra" ColumnName="diemTra" />
+                <ScalarProperty Name="tongTien" ColumnName="tongTien" />
+                <ScalarProperty Name="tinhTrang" ColumnName="tinhTrang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LichTrinh">
+            <EntityTypeMapping TypeName="BVXKModel.LichTrinh">
+              <MappingFragment StoreEntitySet="LichTrinh">
+                <ScalarProperty Name="idLichTrinh" ColumnName="idLichTrinh" />
+                <ScalarProperty Name="idXe" ColumnName="idXe" />
+                <ScalarProperty Name="noiXuatPhat" ColumnName="noiXuatPhat" />
+                <ScalarProperty Name="noiDen" ColumnName="noiDen" />
+                <ScalarProperty Name="ngayDi" ColumnName="ngayDi" />
+                <ScalarProperty Name="ngayDen" ColumnName="ngayDen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VeXe">
+            <EntityTypeMapping TypeName="BVXKModel.VeXe">
+              <MappingFragment StoreEntitySet="VeXe">
+                <ScalarProperty Name="idVe" ColumnName="idVe" />
+                <ScalarProperty Name="idXe" ColumnName="idXe" />
+                <ScalarProperty Name="idLichTrinh" ColumnName="idLichTrinh" />
+                <ScalarProperty Name="GiaVe" ColumnName="GiaVe" />
+                <ScalarProperty Name="tinhTrang" ColumnName="tinhTrang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Xe">
+            <EntityTypeMapping TypeName="BVXKModel.Xe">
+              <MappingFragment StoreEntitySet="Xe">
+                <ScalarProperty Name="idXe" ColumnName="idXe" />
+                <ScalarProperty Name="tenTaiXe" ColumnName="tenTaiXe" />
+                <ScalarProperty Name="loaiXe" ColumnName="loaiXe" />
+                <ScalarProperty Name="soDienThoai" ColumnName="soDienThoai" />
+                <ScalarProperty Name="soLuongGhe" ColumnName="soLuongGhe" />
+                <ScalarProperty Name="bienSo" ColumnName="bienSo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
