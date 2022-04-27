@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BVXK.Application
+namespace BVXK.Domain.Enums
 {
-    public class Class1
+    public enum SoLuongGhe
     {
+        C4,
+        C7,
+        C16,
+        C20,
+        C32
     }
 }
