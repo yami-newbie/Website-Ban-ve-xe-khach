@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
 
 namespace BVXK.Domain.Models
 {
@@ -20,22 +19,18 @@ namespace BVXK.Domain.Models
         public virtual DbSet<Account> Accounts { get; set; } = null!;
         public virtual DbSet<DonHang> DonHangs { get; set; } = null!;
         public virtual DbSet<LichTrinh> LichTrinhs { get; set; } = null!;
+        public virtual DbSet<ThongKe> ThongKes { get; set; } = null!;
         public virtual DbSet<VeXe> VeXes { get; set; } = null!;
         public virtual DbSet<Xe> Xes { get; set; } = null!;
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    if (!optionsBuilder.IsConfigured)
-        //    {
-        //        IConfigurationRoot configuration = new ConfigurationBuilder()
-        //        .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-        //        .AddJsonFile("appsettings.json")
-        //        .Build();
-
-        //        optionsBuilder.UseSqlServer(configuration.GetConnectionString("WebsiteBVXKContext"));
-
-        //    }
-        //}
+        // Scaffold-DbContext "Data Source=DESKTOP-R3JFTAQ;Initial Catalog=BVXK;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -Force -OutputDir Models
+        //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //        {
+        //            if (!optionsBuilder.IsConfigured)
+        //            {
+        //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+        //                optionsBuilder.UseSqlServer("Data Source=DESKTOP-R3JFTAQ;Initial Catalog=BVXK;Integrated Security=True");
+        //            }
+        //        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -167,6 +162,27 @@ namespace BVXK.Domain.Models
                     .HasForeignKey(d => d.IdXe)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LichTrinh_Xe");
+            });
+
+            modelBuilder.Entity<ThongKe>(entity =>
+            {
+                entity.HasKey(e => e.IdThongKe);
+
+                entity.ToTable("ThongKe");
+
+                entity.Property(e => e.IdThongKe).HasColumnName("idThongKe");
+
+                entity.Property(e => e.GiaVe)
+                    .HasColumnType("money")
+                    .HasColumnName("giaVe");
+
+                entity.Property(e => e.IdVe).HasColumnName("idVe");
+
+                entity.Property(e => e.LoaiVe).HasColumnName("loaiVe");
+
+                entity.Property(e => e.NgayDat)
+                    .HasColumnType("smalldatetime")
+                    .HasColumnName("ngayDat");
             });
 
             modelBuilder.Entity<VeXe>(entity =>

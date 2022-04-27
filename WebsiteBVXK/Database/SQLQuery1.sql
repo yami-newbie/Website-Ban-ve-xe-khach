@@ -162,3 +162,26 @@ CREATE TABLE [dbo].[Xe](
 ) ON [PRIMARY]
 GO
 
+USE [BVXK]
+GO
+
+/****** Object:  Table [dbo].[ThongKe]    Script Date: 27/04/2022 8:35:15 CH ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[ThongKe](
+	[idThongKe] [int] IDENTITY(1,1) NOT NULL,
+	[idVe] [int] NULL,
+	[ngayDat] [smalldatetime] NULL,
+	[loaiVe] [int] NULL,
+	[giaVe] [money] NULL,
+ CONSTRAINT [PK_ThongKe] PRIMARY KEY CLUSTERED 
+(
+	[idThongKe] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
