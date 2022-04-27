@@ -12,9 +12,9 @@ namespace BVXK.Application.CreateXe
     [Service]
     public class CreateXe
     {
-        private IXesManager _xesManager;
+        private IXeManager _xesManager;
 
-        public CreateXe(IXesManager xesManager)
+        public CreateXe(IXeManager xesManager)
         {
             _xesManager = xesManager;
         }
@@ -35,14 +35,44 @@ namespace BVXK.Application.CreateXe
                 throw new Exception("Failed to create product");
             }
 
+            string resLoaiXe = "", resSoGhe = "";
+
+            switch (xe.LoaiXe)
+            {
+                case (int?)LoaiXe.Nam:
+                    resLoaiXe = "Nằm";
+                    break;
+                case (int?)LoaiXe.Ngoi:
+                    resLoaiXe = "Ngồi";
+                    break;
+            }
+            switch (xe.SoLuongGhe)
+            {
+                case (int?)SoLuongGhe.C4:
+                    resSoGhe = "4 chỗ";
+                    break;
+                case (int?)SoLuongGhe.C7:
+                    resSoGhe = "7 chỗ";
+                    break;
+                case (int?)SoLuongGhe.C16:
+                    resSoGhe = "16 chỗ";
+                    break;
+                case (int?)SoLuongGhe.C20:
+                    resSoGhe = "20 chỗ";
+                    break;
+                case (int?)SoLuongGhe.C32:
+                    resSoGhe = "32 chỗ";
+                    break;
+            }
+
             return new Response
             {
                 idXe = xe.IdXe,
                 tenTaiXe = request.tenTaiXe,
-                loaiXe = request.loaiXe,
+                loaiXe = resLoaiXe,
                 soDienThoai = request.soDienThoai,
                 bienSo = request.bienSo,
-                soLuongGhe = request.soLuongGhe,
+                soLuongGhe = resSoGhe,
             };
         }
 
@@ -59,9 +89,9 @@ namespace BVXK.Application.CreateXe
         {
             public int idXe { get; set; }
             public string tenTaiXe { get; set; }
-            public int loaiXe { get; set; }
+            public string loaiXe { get; set; }
             public string soDienThoai { get; set; }
-            public int soLuongGhe { get; set; }
+            public string soLuongGhe { get; set; }
             public string bienSo { get; set; }
         }
     }

@@ -11,9 +11,9 @@ namespace BVXK.Application.UpdateXe
     [Service]
     public class UpdateXe
     {
-        private IXesManager _xesManager;
+        private IXeManager _xesManager;
 
-        public UpdateXe(IXesManager xesManager)
+        public UpdateXe(IXeManager xesManager)
         {
             _xesManager = xesManager;
         }

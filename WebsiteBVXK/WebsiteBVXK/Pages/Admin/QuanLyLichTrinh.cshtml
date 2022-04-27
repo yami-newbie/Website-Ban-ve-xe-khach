@@ -26,63 +26,78 @@
 
 
 
-<div class="table-data">
+<div id="quan-ly-lich-trinh" class="table-data">
 
     <div class="todo">
         <div class="head">
             <h3>Thông tin lịch trình</h3>
         </div>
 
-        <ul class="input-list">
+        <div class="input-list">
             <table class="inputable">
-                <tr>
-                    <td> Mã lịch trình:</td>
-                    <td>
-                        <input type="text">
-                    </td>
-                </tr>
-                <tr>
+                <tbody>
+                    <tr>
+                        <td> Mã lịch trình:</td>
+                        <td>
+                            <input type="text" v-model="lichtrinhModel.IdLichTrinh">
+                        </td>
+                    </tr>
+                    <tr>
 
-                    <td>	Mã xe:  </td>
-                    <td>
-                        <input type="text">
-                    </td>
-                </tr>
-
-                <tr>
-                    <td> Nơi xuất phát:  </td>
-                    <td>
-                        <select name="noixuatphat" id="">
-                            <option>Đà Nẵng</option>
-                            <option>Hà Tĩnh</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td> Nơi đến: </td>
-                    <td>
-                        <select name="noiden" id="">
-                            <option>Đà Nẵng</option>
-                            <option>Hà Tĩnh</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td> Ngày đi: </td>
-                    <td> <input type="date" name="ngaydi" /> 	</td>
-                </tr>
-                <tr>
-                    <td> Thời gian đi: </td>
-                    <td> <input type="time" name="thoigiandi" /> </td>
-                </tr>
-                <tr>
-                    <td>Thời gian đến: </td>
-                    <td><input type="time" name="thoigianden" />
-                    <td>
-
-                </tr>
+                        <td>	Mã xe:  </td>
+                        <td>
+                            <input type="text" v-model="lichtrinhModel.IdXe">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Nơi xuất phát:  </td>
+                        <td>
+                            <select name="noixuatphat" id="" v-model="lichtrinhModel.NoiXuatPhat">
+                                @{
+                                    for(int tinh = 0; tinh < Model.tinhtp.Count; tinh++)
+                                    {
+                                        <option value=@tinh>@Model.tinhtp[tinh]</option>
+                                    }
+                                }
+                            </select>
+                        
+                            @*
+                                <option>Đà Nẵng</option>
+                                <option>Hà Tĩnh</option>
+                            </select>*@
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Nơi đến: </td>
+                        <td>
+                            <select name="noixuatphat" id="" v-model="lichtrinhModel.NoiDen">
+                                @{
+                                    for(int tinh = 0; tinh < Model.tinhtp.Count; tinh++)
+                                    {
+                                        <option value=@tinh>@Model.tinhtp[tinh]</option>
+                                    }
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Ngày đi: </td>
+                        <td> 
+                            <input type="date" name="ngaydi" v-model="lichtrinhModel.NgayDi" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Thời gian đi: </td>
+                        <td> <input type="time" name="thoigiandi" /> </td>
+                    </tr>
+                    <tr>
+                        <td>Thời gian đến: </td>
+                        <td><input type="time" name="thoigianden" />
+                        <td>
+                    </tr>
+                </tbody>
             </table>
-        </ul>
+        </div>
         <table class="table-button">
             <tr>
                 <td>
@@ -144,3 +159,7 @@
         </table>
     </div>
 </div>
+
+@section scripts{
+    <script src="~/js/lichtrinhs.js"></script>
+}

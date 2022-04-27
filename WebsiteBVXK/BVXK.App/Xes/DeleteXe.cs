@@ -10,9 +10,9 @@ namespace BVXK.Application.DeleteXe
     [Service]
     public class DeleteXe
     {
-        private IXesManager _xesManager;
+        private IXeManager _xesManager;
 
-        public DeleteXe(IXesManager xesManager)
+        public DeleteXe(IXeManager xesManager)
         {
             _xesManager = xesManager;
         }

@@ -11,9 +11,9 @@ namespace BVXK.Application.GetXe
     [Service]
     public class GetXe
     {
-        private IXesManager _xesManager;
+        private IXeManager _xesManager;
 
-        public GetXe(IXesManager xesManager)
+        public GetXe(IXeManager xesManager)
         {
             _xesManager = xesManager;
         }

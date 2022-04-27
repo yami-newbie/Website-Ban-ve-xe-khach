@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace BVXK.Database
 {
-    public class XesManager : IXesManager
+    public class XeManager : IXeManager
     {
         private BVXKContext _ctx;
 
-        public XesManager(BVXKContext ctx)
+        public XeManager(BVXKContext ctx)
         {
             _ctx = ctx;
         }
