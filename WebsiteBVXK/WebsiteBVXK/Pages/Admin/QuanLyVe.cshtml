@@ -26,7 +26,7 @@
 
 
 
-<div class="table-data">
+<div id = "quan-ly-ve" class="table-data">
 
     <div class="todo">
         <div class="head">
@@ -39,7 +39,14 @@
                 <tr>
                     <td> Mã vé:</td>
                     <td>
-                        <input type="text">
+                        <select type="text" v-model="veViewModel.IdXe">
+                            @{
+                                foreach(var xe in Model.Xes)
+                                {
+                                    <option value=@xe.idXe>@xe.idXe</option>
+                                }
+                            }
+                        </select>
                     </td>
                 </tr>
                 <tr>
@@ -53,32 +60,51 @@
                 <tr>
                     <td> Mã lịch trình:  </td>
                     <td>
-                        <input type="text">
+                        <select type="text" v-model="veViewModel.maLichTrinh">
+                            @{
+                                foreach (var lichTrinh in Model.LichTrinhs)
+                                {
+                                    <option value=@lichTrinh.IdLichTrinh>@lichTrinh.IdLichTrinh</option>
+                                }
+                            }
+                        </select>
                     </td>
                     </td>
-                </tr>
-                <td> Giá vé: </td>
-                <td>
-                    <input type="text" name="giave">
-                </td>
                 </tr>
                 <tr>
+                    <td> Giá vé: </td>
+                    <td>
+                        <input type="text" name="giave">
+                    </td>
+                </tr>
+                
                 <tr>
                     <td> Tình trạng vé:</td>
                     <td>
-                        <input type="text" name="tinhtrangve">
+                        <select name="tinhtrangve" id="" v-model="veViewModel.tinhTrangVe">
+                            <option :value=0>Đã bán</option>
+                            <option :value=1>Giữ chỗ</option>
+                            <option :value=2>Chưa bán</option>
+                        </select>
                     </td>
                 </tr>
-
-
+                <tr>
+                    <td> Loại vé:</td>
+                    <td>
+                        <select name="loaive" id="" v-model="veViewModel.loaiVe">
+                            <option :value=0>Thường</option>
+                            <option :value=1>Vip</option>
+                        </select>
+                    </td>
+                </tr>
             </table>
         </ul>
         <table class="table-buttonve">
             <tr>
                 <td>
-                    <button class="buttontsx">Thêm</button>
-                    <button class="buttontsx">Xóa</button>
-                    <button class="buttontsx">Sửa</button>
+                    <button class="buttontsx" @@click="createTicket()">Thêm</button>
+                    <button class="buttontsx" @@click="deleteTicket()">Xóa</button>
+                    <button class="buttontsx" @@click="updateTicket()">Sửa</button>
                     <button class="buttontsx">Thống kê</button>
                 </td>
             </tr>
@@ -100,24 +126,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><span class="status pending"> V0001</span></td>
+                <tr v-for="(ticket, index) in tickets" @@click="editProduct(ticket.idTicket, index)">
+                    <td><span class="status pending"> {{ticket.}}</span></td>
                     <td>X0001</td>
                     <td>LT001</td>
-                    <td>200000</td>
-                    <td>Đã đặt</td>
-                </tr>
-                <tr>
-                    <td><span class="status pending"> V0002</span></td>
-                    <td>X0002</td>
-                    <td>LT002</td>
-                    <td>200000</td>
-                    <td>Đã đặt</td>
-                </tr>
-                <tr>
-                    <td><span class="status pending"> V0003</span></td>
-                    <td>X0003</td>
-                    <td>LT003</td>
                     <td>200000</td>
                     <td>Đã đặt</td>
                 </tr>
@@ -127,3 +139,7 @@
     </div>
 
 </div>
+
+@section scripts{
+    <script src="~/js/tickets.js"></script>
+}
