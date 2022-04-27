@@ -27,7 +27,13 @@ namespace WebsiteBVXK
         // Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+            services.AddHttpContextAccessor();
+
+            services.AddMvc(otps =>
+            {
+                otps.EnableEndpointRouting = false;
+            });
+            //services.AddRazorPages();
 
             services.AddDbContext<BVXKContext>(options => options.UseSqlServer(Configuration.GetConnectionString("WebsiteBVXKContext")));
 
@@ -48,15 +54,15 @@ namespace WebsiteBVXK
             }
 
             app.UseStaticFiles();
-
+            app.UseHttpsRedirection();
             app.UseRouting();
-
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-            });
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapRazorPages();
+            //});
+            app.UseMvcWithDefaultRoute();
         }
     }
 }

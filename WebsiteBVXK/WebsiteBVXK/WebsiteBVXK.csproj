@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\js\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\BVXK.App\BVXK.Application.csproj" />
     <ProjectReference Include="..\BVXK.Data\BVXK.Database.csproj" />
     <ProjectReference Include="..\BVXK.Doma\BVXK.Domain.csproj" />

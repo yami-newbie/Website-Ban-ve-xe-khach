@@ -13,7 +13,7 @@ namespace WebsiteBVXK.Pages.Admin
         public IEnumerable<GetXes.XeViewModel> Xes { get; set; }
         public void OnGet([FromServices] GetXes getXes)
         {
-        //    Xes = getXes.Do();
+            Xes = getXes.Do();
         }
     }
 }
