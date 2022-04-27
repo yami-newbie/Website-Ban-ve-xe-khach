@@ -25,8 +25,10 @@ namespace BVXK.Application.GetLichTrinhs
 					IdXe = x.IdXe,
 					NoiXuatPhat = x.NoiXuatPhat,
 					NoiDen = x.NoiDen,
-					NgayDi = x.NgayDi,
-					NgayDen = x.NgayDen,
+					NgayDen = x.NgayDen.GetValueOrDefault().ToString("yyyy-MM-dd"),
+					GioDen = x.NgayDen.GetValueOrDefault().ToString("hh:mm"),
+					NgayDi = x.NgayDi.GetValueOrDefault().ToString("yyyy-MM-dd"),
+					GioDi = x.NgayDi.GetValueOrDefault().ToString("hh:mm"),
 				});
 
 		public class LichTrinhViewModel
@@ -35,8 +37,10 @@ namespace BVXK.Application.GetLichTrinhs
 			public int IdXe { get; set; }
 			public string? NoiXuatPhat { get; set; }
 			public string? NoiDen { get; set; }
-			public DateTime? NgayDi { get; set; }
-			public DateTime? NgayDen { get; set; }
+			public string NgayDi { get; set; }
+			public string GioDi { get; set; }
+			public string NgayDen { get; set; }
+			public string GioDen { get; set; }
 		}
 	}
 }

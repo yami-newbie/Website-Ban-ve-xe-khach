@@ -32,7 +32,6 @@
         <div class="head">
             <h3>Thông tin lịch trình</h3>
         </div>
-
         <div class="input-list">
             <table class="inputable">
                 <tbody>
@@ -44,9 +43,16 @@
                     </tr>
                     <tr>
 
-                        <td>	Mã xe:  </td>
+                        <td>Mã xe:</td>
                         <td>
-                            <input type="text" v-model="lichtrinhModel.IdXe">
+                            <select type="text" v-model="lichtrinhModel.IdXe">
+                                @{
+                                    foreach(var xe in Model.Xes)
+                                    {
+                                        <option value=@xe.idXe>@xe.idXe</option>
+                                    }
+                                }
+                            </select>
                         </td>
                     </tr>
                     <tr>
@@ -56,15 +62,10 @@
                                 @{
                                     for(int tinh = 0; tinh < Model.tinhtp.Count; tinh++)
                                     {
-                                        <option value=@tinh>@Model.tinhtp[tinh]</option>
+                                        <option value=@Model.tinhtp[tinh]>@Model.tinhtp[tinh]</option>
                                     }
                                 }
                             </select>
-                        
-                            @*
-                                <option>Đà Nẵng</option>
-                                <option>Hà Tĩnh</option>
-                            </select>*@
                         </td>
                     </tr>
                     <tr>
@@ -74,7 +75,7 @@
                                 @{
                                     for(int tinh = 0; tinh < Model.tinhtp.Count; tinh++)
                                     {
-                                        <option value=@tinh>@Model.tinhtp[tinh]</option>
+                                        <option value=@Model.tinhtp[tinh]> @Model.tinhtp[tinh]</option>
                                     }
                                 }
                             </select>
@@ -88,12 +89,19 @@
                     </tr>
                     <tr>
                         <td> Thời gian đi: </td>
-                        <td> <input type="time" name="thoigiandi" /> </td>
+                        <td> <input type="time" name="thoigiandi" v-model="lichtrinhModel.GioDi"/> </td>
+                    </tr>
+                    <tr>
+                        <td> Ngày đến: </td>
+                        <td> 
+                            <input type="date" name="ngayden" v-model="lichtrinhModel.NgayDen" />
+                        </td>
                     </tr>
                     <tr>
                         <td>Thời gian đến: </td>
-                        <td><input type="time" name="thoigianden" />
                         <td>
+                            <input type="time" name="thoigianden" v-model="lichtrinhModel.GioDen"/>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -101,14 +109,13 @@
         <table class="table-button">
             <tr>
                 <td>
-                    <button class="buttontsx">Thêm</button>
-                    <button class="buttontsx">Xóa</button>
-                    <button class="buttontsx">Sửa</button>
+                    <button class="buttontsx" @@click="createLichTrinh()">Thêm</button>
+                    <button class="buttontsx" @@click="deleteLichTrinh()">Xóa</button>
+                    <button class="buttontsx" @@click="updateLichTrinh()">Sửa</button>
                 </td>
 
             </tr>
         </table>
-
     </div>
 
     <div class="order">
@@ -124,36 +131,20 @@
                     <th>Nơi đến</th>
                     <th>Ngày đi</th>
                     <th>Thời gian đi</th>
+                    <th>Ngày đến</th>
                     <th>Thời gian đến</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><span class="status pending"> LT0001</span></td>
-                    <td>X00001</td>
-                    <td>Hà Tĩnh</td>
-                    <td>Đà Nẵng</td>
-                    <td>22/08/2021</td>
-                    <td>13:00</td>
-                    <td>22:00</td>
-                </tr>
-                <tr>
-                    <td><span class="status pending"> LT0002</span></td>
-                    <td>X00002</td>
-                    <td>Hà Tĩnh</td>
-                    <td>Đà Nẵng</td>
-                    <td>22/08/2021</td>
-                    <td>13:00</td>
-                    <td>22:00</td>
-                </tr>
-                <tr>
-                    <td><span class="status pending"> LT0003</span></td>
-                    <td>X00003</td>
-                    <td>Hà Tĩnh</td>
-                    <td>Đà Nẵng</td>
-                    <td>22/08/2021</td>
-                    <td>13:00</td>
-                    <td>22:00</td>
+                <tr v-for="(lichtrinh, index) in lichtrinhs" @@click="editLichTrinh(lichtrinh.idLichTrinh, index)">
+                    <td><span class="status pending"> {{lichtrinh.idLichTrinh}}</span></td>
+                    <td>{{lichtrinh.idXe}}</td>
+                    <td>{{lichtrinh.noiXuatPhat}}</td>
+                    <td>{{lichtrinh.noiDen}}</td>
+                    <td>{{lichtrinh.ngayDi}}</td>
+                    <td>{{lichtrinh.gioDi}}</td>
+                    <td>{{lichtrinh.ngayDen}}</td>
+                    <td>{{lichtrinh.gioDen}}</td>
                 </tr>
             </tbody>
         </table>
