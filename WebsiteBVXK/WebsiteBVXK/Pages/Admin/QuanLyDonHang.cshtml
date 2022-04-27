@@ -24,119 +24,144 @@
     </a>
 </div>
 
-<div class="table-data">
+<div id="quan-ly-don-hang" class="table-data">
 
     <div class="todo">
         <div class="head">
             <h3>Thông tin đơn hàng</h3>
-
         </div>
 
-        <ul class="input-list">
+        <div class="input-list">
             <table class="inputable">
-                <tr>
-                    <td> Mã đơn hàng:</td>
-                    <td>
-                        <input type="text">
-                    </td>
-                </tr>
-                <tr>
-
-                    <td>Mã vé:  </td>
-                    <td>
-                        <input type="text">
-                    </td>
-                </tr>
-                <td>Mã xe:  </td>
-                <td>
-                    <input type="text">
-                </td>
-                </tr>
-                </tr>
-                <td>Mã lịch trình:  </td>
-                <td>
-                    <input type="text">
-                </td>
-                </tr>
-
-
+                <tbody>
+                    <tr>
+                        <td>Mã đơn hàng:</td>
+                        <td>
+                            <input type="text" v-model="donhangModel.idDonHang" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mã vé:</td>
+                        <td>
+                            <input type="text" v-model="donhangModel.idVeXe" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mã xe:  </td>
+                        <td>
+                            <select type="text" v-model="donhangModel.idXe">
+                                @{
+                                    foreach(var xe in Model.Xes)
+                                    {
+                                        <option value=@xe.idXe>@xe.idXe</option>
+                                    }
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mã lịch trình:</td>
+                        <td>
+                            <select type="text" v-model="donhangModel.idLichTrinh">
+                                @{
+                                    foreach(var lichtrinh in Model.LichTrinhs)
+                                    {
+                                        <option value=@lichtrinh.IdLichTrinh>@lichtrinh.IdLichTrinh</option>
+                                    }
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
-        </ul>
+        </div>
         <div class="head">
             <h3 style="margin-top: 15px;">Thông tin khách hàng</h3>
-
         </div>
 
 
-        <ul class="input-list">
+        <div class="input-list">
             <table class="inputable">
-                <tr>
-                    <td> Tên khách hàng:</td>
-                    <td>
-                        <input type="text">
-                    </td>
-                </tr>
-                <tr>
+                <tbody>
+                    <tr>
+                        <td> Tên khách hàng:</td>
+                        <td>
+                            <input type="text" v-model="donhangModel.tenKhachHang"/>
+                        </td>
+                    </tr>
+                    <tr>
 
-                    <td>Số điện thoại: </td>
-                    <td>
-                        <input type="tel" name="sodienthoai">
-                    </td>
-                </tr>
-                <tr>
-                    <td> Thời gian đón: </td>
-                    <td>
-                        <input type="time" name="thoigiandon">
-                    </td>
-                </tr>
+                        <td>Số điện thoại: </td>
+                        <td>
+                            <input type="tel" name="sodienthoai" v-model="donhangModel.soDienThoai"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Ngày đón: </td>
+                        <td> 
+                            <input type="date" name="ngaydi" v-model="donhangModel.ngayDon" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Giờ đón: </td>
+                        <td>
+                            <input type="time" name="thoigiandon" v-model="donhangModel.gioDon" />
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td> Điểm đón </td>
-                    <td>
-                        <select name="diemdon" id="">
-                            <option>Đà Nẵng</option>
-                            <option>Hà Tĩnh</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td> Điểm trả </td>
-                    <td>
-                        <select name="diemtra" id="">
-                            <option>Đà Nẵng</option>
-                            <option>Hà Tĩnh</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td> Tổng tiền: </td>
-                    <td>
-                        <input type="text" name="tongtien">
-                    </td>
-                </tr>
-                <tr>
-                    <td> Tình trạng: </td>
-                    <td>
-                        <select name="tinhtrang" id="">
-                            <option>Đã thanh toán</option>
-                            <option>Chưa thành toán</option>
-                        </select>
-                    </td>
-                </tr>
-
+                    <tr>
+                        <td> Điểm đón: </td>
+                        <td>
+                            <select name="diemdon" id="" v-model="donhangModel.diemDon">
+                                @{
+                                    for(int tinh = 0; tinh < Model.tinhtp.Count; tinh++)
+                                    {
+                                        <option value=@Model.tinhtp[tinh]>@Model.tinhtp[tinh]</option>
+                                    }
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Điểm trả: </td>
+                        <td>
+                            <select name="diemtra" id="" v-model="donhangModel.diemTra">
+                                @{
+                                    for(int tinh = 0; tinh < Model.tinhtp.Count; tinh++)
+                                    {
+                                        <option value=@Model.tinhtp[tinh]>@Model.tinhtp[tinh]</option>
+                                    }
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Tổng tiền: </td>
+                        <td>
+                            <input type="text" name="tongtien" v-model="donhangModel.tongTien" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Tình trạng: </td>
+                        <td>
+                            <select name="tinhtrang" id="" v-model="donhangModel.tinhTrang">
+                                <option value="Đã thanh toán">Đã thanh toán</option>
+                                <option value="Chưa thanh toán">Chưa thanh toán</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
-        </ul>
+        </div>
         <table class="table-buttoncn">
-            <tr>
-                <td>
-
-                    <button class="buttontcn">Cập nhật</button>
-
-                </td>
-
-            </tr>
+            <tbody>
+                <tr>
+                    <td>
+                        <button class="buttontcn" @@click="updateDonHang()">Cập nhật</button>
+                    </td>
+                </tr>
+            </tbody>
         </table>
-
     </div>
 
     <div class="order">
@@ -146,76 +171,63 @@
         <table>
             <thead>
                 <tr>
-
                     <th>Mã đơn hàng</th>
                     <th>Mã vé</th>
                     <th>Mã lịch trình</th>
                     <th>Mã xe</th>
-
-
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><span class="status pending"> DH0001</span></td>
-                    <td>V0001</td>
-                    <td>LT0001</td>
-                    <td>X00001</td>
-
-
-
+                <tr v-for="(donhang, index) in donhangs" @@click="editDonHang(donhang.idDonHang, index)">
+                    <td><span class="status pending">{{donhang.idDonHang}}</span></td>
+                    <td>{{donhang.idVeXe}}</td>
+                    <td>{{donhang.idLichTrinh}}</td>
+                    <td>{{donhang.idXe}}</td>
                 </tr>
-                <tr>
+                @*<tr>
                     <td><span class="status pending"> DH0002</span></td>
                     <td>V0002</td>
                     <td>LT0002</td>
                     <td>X00001</td>
-
-
                 </tr>
                 <tr>
                     <td><span class="status pending"> DH0003</span></td>
                     <td>V0003</td>
                     <td>LT0003</td>
                     <td>X00001</td>
-
-
-                </tr>
+                </tr>*@
             </tbody>
         </table>
-
         <div class="head">
             <h3>Danh sách thông tin khách hàng</h3>
         </div>
         <table>
             <thead>
                 <tr>
-
                     <th>Mã đơn hàng</th>
                     <th>Tên khách hàng</th>
                     <th>Số điện thoại</th>
-                    <th>Thời gian đón</th>
+                    <th>Ngày đón</th>
+                    <th>Giờ đón</th>
                     <th>Điểm đón</th>
                     <th>Điểm trả</th>
                     <th>Tổng tiền</th>
                     <th>Tình trạng</th>
-
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><span class="status pending"> DH0001</span></td>
-                    <td>Nguyễn Thị Mai Linh</td>
-                    <td>0708030580</td>
-                    <td>13:00</td>
-                    <td> Đà Nẵng</td>
-                    <td>Hà Tĩnh</td>
-                    <td>300000</td>
-                    <td>Đã thanh toán</td>
-
-
+                <tr v-for="(donhang, index) in donhangs" @@click="editDonHang(donhang.idDonHang, index)">
+                    <td><span class="status pending">{{donhang.idDonHang}}</span></td>
+                    <td>{{donhang.tenKhachHang}}</td>
+                    <td>{{donhang.soDienThoai}}</td>
+                    <td>{{donhang.ngayDon}}</td>
+                    <td>{{donhang.gioDon}}</td>
+                    <td>{{donhang.diemDon}}</td>
+                    <td>{{donhang.diemTra}}</td>
+                    <td>{{donhang.tongTien}}</td>
+                    <td>{{donhang.tinhTrang}}</td>
                 </tr>
-                <tr>
+                @*<tr>
                     <td><span class="status pending"> DH0002</span></td>
                     <td>Trần Khánh Quỳnh</td>
                     <td>0366442978</td>
@@ -224,7 +236,6 @@
                     <td>Hà Tĩnh</td>
                     <td>300000</td>
                     <td>Đã thanh toán</td>
-
                 </tr>
                 <tr>
                     <td><span class="status pending"> DH0003</span></td>
@@ -235,10 +246,12 @@
                     <td>Hà Tĩnh</td>
                     <td>300000</td>
                     <td>Đã thanh toán</td>
-
-                </tr>
+                </tr>*@
             </tbody>
         </table>
-
     </div>
 </div>
+
+@section scripts{
+    <script src="~/js/donhangs.js"></script>
+}

@@ -22,10 +22,10 @@ var app = new Vue({
     data: {
         //date: "yyyy-mm-dd"
         objectIndex: 0,
-        from: 25,
-        to: 12,
         editing: false,
         loading: false,
+        from: 25,
+        to: 12,
         date: null,
         lichtrinhModel: {
             IdLichTrinh: 0,

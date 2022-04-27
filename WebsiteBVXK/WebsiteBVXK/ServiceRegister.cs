@@ -25,6 +25,7 @@ namespace WebsiteBVXK
             @this.AddTransient<IXeManager, XeManager>();
             @this.AddTransient<ILichTrinhManager, LichTrinhManager>();
             @this.AddTransient<IThongKeManager, ThongKeManager>();
+            @this.AddTransient<IDonHangManager, DonHangManager>();
 
             return @this;
         }
