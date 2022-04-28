@@ -1,11 +1,37 @@
 ﻿
 var app = new Vue({
 	el: "#send-mail",
-	mounted() {
-	},
+	data: {
+		mailModel: {
+			name: "test name",
+			price: 123,
+			time: "test time",
+			date: "test date",
+			phoneNumber: "test phonenumber",
+			trip: "test trip",
+			timePickUp: "test timepickup",
+			datePickUp: "test datepickup",
+			placePickUp: "test placepickup",
+			destination: "test destination",
+			seats: "test seats",
+        }
+    },
     methods: {
 		send() {
-			sendEmail(body);
+			var content = this.mailModel;
+			sendEmail(
+				body(
+					content.name,
+					content.price,
+					content.time,
+					content.date,
+					content.phoneNumber,
+					content.trip,
+					content.timePickUp,
+					content.datePickUp,
+					content.placePickUp,
+					content.destination,
+					content.seats));
         }
     }
 })
@@ -26,13 +52,17 @@ function sendEmail(_body) {
 }
 
 
-const body = `<!DOCTYPE html>
+const body = (name, price, time, date, phoneNumber, trip, timePickUp, datePickUp, placePickUp, destination, seats) => `<!DOCTYPE html>
 
 <html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml"><head>
 <title></title>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css"/>
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css"/>
+<link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet" type="text/css"/>
+<link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet" type="text/css"/>
 <style>
 		* {
 			box-sizing: border-box;
@@ -105,7 +135,7 @@ const body = `<!DOCTYPE html>
 <table border="0" cellpadding="0" cellspacing="0" class="image_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 <tr>
 <td style="width:100%;padding-right:0px;padding-left:0px;">
-<div align="center" style="line-height:10px"><img class="big" src="https://drive.google.com/file/d/1WioTKtgaLOpM8asPx8E3aHAwNAtOton9/view?usp=sharing" style="display: block; height: auto; border: 0; width: 680px; max-width: 100%;" width="680"/></div>
+<div align="center" style="line-height:10px"><img class="big" src="https://firebasestorage.googleapis.com/v0/b/websitebvxk.appspot.com/o/logo.jpg?alt=media&token=aea0e284-2fa5-43ed-b022-14af8bed5e2b" style="display: block; height: auto; border: 0; width: 680px; max-width: 100%;" width="680"/></div>
 </td>
 </tr>
 </table>
@@ -128,7 +158,7 @@ const body = `<!DOCTYPE html>
 <table border="0" cellpadding="0" cellspacing="0" class="image_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 <tr>
 <td style="width:100%;padding-right:0px;padding-left:0px;">
-<div align="center" style="line-height:10px"><img alt="Check Icon" src="images/check-icon.png" style="display: block; height: auto; border: 0; width: 93px; max-width: 100%;" title="Check Icon" width="93"/></div>
+<div align="center" style="line-height:10px"><img alt="Check Icon" src="https://firebasestorage.googleapis.com/v0/b/websitebvxk.appspot.com/o/check-icon.png?alt=media&token=ff4ca3ff-4d89-47f0-94df-411664128330" style="display: block; height: auto; border: 0; width: 93px; max-width: 100%;" title="Check Icon" width="93"/></div>
 </td>
 </tr>
 </table>
@@ -148,9 +178,9 @@ const body = `<!DOCTYPE html>
 <td style="padding-bottom:10px;padding-left:30px;padding-right:30px;padding-top:10px;">
 <div style="font-family: sans-serif">
 <div class="txtTinyMce-wrapper" style="font-size: 14px; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 21px; color: #2f2f2f; line-height: 1.5;">
-<p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 24px;"><span style="font-size:16px;">Xin chào <strong>Thùy Dương</strong>,</span></p>
+<p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 24px;"><span style="font-size:16px;">Xin chào <strong>${name}</strong>,</span></p>
 <p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 21px;"> </p>
-<p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 24px;"><span style="font-size:16px;">Cảm ơn vì đã thanh toán số tiền <strong><span style="">250.000 đồng</span></strong> lúc 18h35 ngày 21/04/2022 </span></p>
+<p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 24px;"><span style="font-size:16px;">Cảm ơn vì đã thanh toán số tiền <strong><span style="">${price} đồng</span></strong> lúc ${time} ngày ${date} </span></p>
 <p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 24px;"><span style="font-size:16px;"><span style="background-color:transparent;">bởi <strong>STK</strong></span><strong style="font-family:inherit;font-family:inherit;background-color:transparent;"><span style=""> ****7316</span></strong></span></p>
 <p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 24px;"><span style="font-size:16px;">Quý khách đã mua vé thành thành công trên hệ thống của nhà xe Khánh Truyền</span></p>
 <p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 24px;"><span style="font-size:16px;">Dưới đây là thông tin chuyến xe của quý khách</span></p>
@@ -207,12 +237,12 @@ const body = `<!DOCTYPE html>
 <td style="padding-bottom:10px;padding-left:5px;padding-right:5px;padding-top:10px;">
 <div style="font-family: sans-serif">
 <div class="txtTinyMce-wrapper" style="font-size: 12px; mso-line-height-alt: 24px; color: #393d47; line-height: 2; font-family: Arial, Helvetica Neue, Helvetica, sans-serif;">
-<p style="margin: 0; font-size: 13px; text-align: left; mso-line-height-alt: 26px; letter-spacing: normal;"><span style="font-size:13px;">Số điện thoại:</span></p>
-<p style="margin: 0; font-size: 13px; text-align: left; mso-line-height-alt: 26px; letter-spacing: normal;"><span style="font-size:13px;">Chuyến xe:</span></p>
-<p style="margin: 0; font-size: 13px; text-align: left; mso-line-height-alt: 26px; letter-spacing: normal;"><span style="font-size:13px;">Thời gian:</span></p>
-<p style="margin: 0; font-size: 13px; text-align: left; mso-line-height-alt: 26px; letter-spacing: normal;"><span style="font-size:13px;">Điểm đón:</span></p>
-<p style="margin: 0; font-size: 13px; text-align: left; mso-line-height-alt: 26px; letter-spacing: normal;"><span style="font-size:13px;">Điểm trả:</span></p>
-<p style="margin: 0; font-size: 13px; text-align: left; mso-line-height-alt: 26px; letter-spacing: normal;"><span style="font-size:13px;">Số ghế:</span></p>
+<p style="margin: 0; font-size: 13px; text-align: right; mso-line-height-alt: 26px; letter-spacing: normal;"><span style="font-size:13px;">Số điện thoại:</span></p>
+<p style="margin: 0; font-size: 13px; text-align: right; mso-line-height-alt: 26px; letter-spacing: normal;"><span style="font-size:13px;">Chuyến xe:</span></p>
+<p style="margin: 0; font-size: 13px; text-align: right; mso-line-height-alt: 26px; letter-spacing: normal;"><span style="font-size:13px;">Thời gian:</span></p>
+<p style="margin: 0; font-size: 13px; text-align: right; mso-line-height-alt: 26px; letter-spacing: normal;"><span style="font-size:13px;">Điểm đón:</span></p>
+<p style="margin: 0; font-size: 13px; text-align: right; mso-line-height-alt: 26px; letter-spacing: normal;"><span style="font-size:13px;">Điểm trả:</span></p>
+<p style="margin: 0; font-size: 13px; text-align: right; mso-line-height-alt: 26px; letter-spacing: normal;"><span style="font-size:13px;">Số ghế:</span></p>
 </div>
 </div>
 </td>
@@ -225,12 +255,12 @@ const body = `<!DOCTYPE html>
 <td style="padding-bottom:10px;padding-left:20px;padding-right:10px;padding-top:10px;">
 <div style="font-family: sans-serif">
 <div class="txtTinyMce-wrapper" style="font-size: 14px; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 28px; color: #2f2f2f; line-height: 2;">
-<p style="margin: 0; font-size: 13px; text-align: left; mso-line-height-alt: 26px;"><span style="font-size:13px;">0888304216</span></p>
-<p style="margin: 0; font-size: 13px; text-align: left; mso-line-height-alt: 26px;"><span style="font-size:13px;">Thành phố Hà Tĩnh - Đà Nẵng</span></p>
-<p style="margin: 0; font-size: 13px; text-align: left;">30/04/2022, 20h00</p>
-<p style="margin: 0; font-size: 13px; text-align: left;">110 Mai Thúc Loan, Thành phố Hà Tĩnh</p>
-<p style="margin: 0; font-size: 13px; text-align: left;">Bến xe Đà Nẵng</p>
-<p style="margin: 0; font-size: 13px; text-align: left;">A3</p>
+<p style="margin: 0; font-size: 13px; text-align: left; mso-line-height-alt: 26px;"><span style="font-size:13px;">${phoneNumber}</span></p>
+<p style="margin: 0; font-size: 13px; text-align: left; mso-line-height-alt: 26px;"><span style="font-size:13px;">${trip}</span></p>
+<p style="margin: 0; font-size: 13px; text-align: left;">${datePickUp}, ${timePickUp}</p>
+<p style="margin: 0; font-size: 13px; text-align: left;">${placePickUp}</p>
+<p style="margin: 0; font-size: 13px; text-align: left;">${destination}</p>
+<p style="margin: 0; font-size: 13px; text-align: left;">${seats}</p>
 </div>
 </div>
 </td>
@@ -264,9 +294,9 @@ const body = `<!DOCTYPE html>
 <td>
 <table align="center" border="0" cellpadding="0" cellspacing="0" class="social-table" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="108px">
 <tr>
-<td style="padding:0 2px 0 2px;"><a href="https://www.facebook.com/" target="_blank"><img alt="Facebook" height="32" src="images/facebook2x.png" style="display: block; height: auto; border: 0;" title="Facebook" width="32"/></a></td>
-<td style="padding:0 2px 0 2px;"><a href="https://twitter.com/" target="_blank"><img alt="Twitter" height="32" src="images/twitter2x.png" style="display: block; height: auto; border: 0;" title="Twitter" width="32"/></a></td>
-<td style="padding:0 2px 0 2px;"><a href="https://instagram.com/" target="_blank"><img alt="Instagram" height="32" src="images/instagram2x.png" style="display: block; height: auto; border: 0;" title="Instagram" width="32"/></a></td>
+<td style="padding:0 2px 0 2px;"><a href="https://www.facebook.com/" target="_blank"><img alt="Facebook" height="32" src="https://firebasestorage.googleapis.com/v0/b/websitebvxk.appspot.com/o/facebook2x.png?alt=media&token=5c47e935-b398-4550-8d16-46a9157f3d87" style="display: block; height: auto; border: 0;" title="Facebook" width="32"/></a></td>
+<td style="padding:0 2px 0 2px;"><a href="https://twitter.com/" target="_blank"><img alt="Twitter" height="32" src="https://firebasestorage.googleapis.com/v0/b/websitebvxk.appspot.com/o/twitter2x.png?alt=media&token=76aae40c-55bf-41b4-872c-ebdaa483762a" style="display: block; height: auto; border: 0;" title="Twitter" width="32"/></a></td>
+<td style="padding:0 2px 0 2px;"><a href="https://instagram.com/" target="_blank"><img alt="Instagram" height="32" src="https://firebasestorage.googleapis.com/v0/b/websitebvxk.appspot.com/o/instagram2x.png?alt=media&token=3504e836-a299-44ca-8002-8dead186fa02" style="display: block; height: auto; border: 0;" title="Instagram" width="32"/></a></td>
 </tr>
 </table>
 </td>
@@ -341,7 +371,7 @@ const body = `<!DOCTYPE html>
 <table cellpadding="0" cellspacing="0" class="icons-inner" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block; margin-right: -4px; padding-left: 0px; padding-right: 0px;">
 <!--<![endif]-->
 <tr>
-<td style="vertical-align: middle; text-align: center; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 6px;"><a href="https://www.designedwithbee.com/" style="text-decoration: none;" target="_blank"><img align="center" alt="Designed with BEE" class="icon" height="32" src="images/bee.png" style="display: block; height: auto; margin: 0 auto; border: 0;" width="34"/></a></td>
+<td style="vertical-align: middle; text-align: center; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 6px;"><a href="https://www.designedwithbee.com/" style="text-decoration: none;" target="_blank"><img align="center" alt="Designed with BEE" class="icon" height="32" src="https://firebasestorage.googleapis.com/v0/b/websitebvxk.appspot.com/o/bee.png?alt=media&token=8907148d-ad0c-4ad2-ad3d-9de02a125627" style="display: block; height: auto; margin: 0 auto; border: 0;" width="34"/></a></td>
 <td style="font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 15px; color: #9d9d9d; vertical-align: middle; letter-spacing: undefined; text-align: center;"><a href="https://www.designedwithbee.com/" style="color: #9d9d9d; text-decoration: none;" target="_blank">Designed with BEE</a></td>
 </tr>
 </table>
