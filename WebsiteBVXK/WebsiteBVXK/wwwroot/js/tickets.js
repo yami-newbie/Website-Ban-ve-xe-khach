@@ -5,12 +5,12 @@
         loading: false,
         objectIndex: 0,
         veViewModel: {
-            idVe: 0,
-            idXe: 0,
-            idLichTrinh: 0,
-            giaVe: 0,
-            tinhTrang: 0,
-            loaiVe: 0
+            idVe: null,
+            idXe: null,
+            idLichTrinh: null,
+            giaVe: null,
+            tinhTrang: null,
+            loaiVe: null
         },
         tickets: []
     },
@@ -108,5 +108,16 @@
             this.getTicket(id);
             this.editing = true;
         },
+        onchangeLichTrinh() {
+            if (this.veViewModel.idLichTrinh != null)
+                axios.get("/QuanLyLichTrinh/" + this.veViewModel.idLichTrinh)
+                    .then(res => {
+                        var lichtrinh = res.data;
+                        this.veViewModel.idXe = lichtrinh.idXe;
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+        }
     }
 })

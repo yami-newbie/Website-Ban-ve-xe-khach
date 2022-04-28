@@ -53,7 +53,7 @@ namespace BVXK.Application.Tickets
                     break;
             }
 
-            var lichtrinh = _lichTrinhManager.GetLichTrinhById(veXe.IdLichTrinh, y => y);
+            var lichtrinh = _lichTrinhManager.GetLichTrinhById(request.idLichTrinh, y => y);
 
             return new Response
             {

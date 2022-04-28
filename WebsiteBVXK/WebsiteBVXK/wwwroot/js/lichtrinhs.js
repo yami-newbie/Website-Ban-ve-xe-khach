@@ -30,12 +30,12 @@ var app = new Vue({
         lichtrinhModel: {
             IdLichTrinh: 0,
             IdXe: 0,
-            NoiXuatPhat: "Đà Nẵng",
-            NoiDen: "Hà Nội",
+            NoiXuatPhat: "",
+            NoiDen: "",
             NgayDi: "",//"2022-10-22",
-            GioDi: "13:00",
-            NgayDen: "2022-12-12",
-            GioDen: "15:00",
+            GioDi: "",
+            NgayDen: "",
+            GioDen: "",
         },
         lichtrinhs: []
     },

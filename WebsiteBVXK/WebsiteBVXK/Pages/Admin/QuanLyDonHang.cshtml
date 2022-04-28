@@ -43,24 +43,11 @@
                     <tr>
                         <td>Mã vé:</td>
                         <td>
-                            <select type="text" v-model="donhangModel.idVeXe">
+                            <select type="text" v-model="donhangModel.idVeXe" @@change="onMaVeChange()">
                                 @{
                                     foreach(var ticket in Model.Tickets)
                                     {
-                                        <option value=@ticket.idXe>@ticket.idXe</option>
-                                    }
-                                }
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Mã xe:  </td>
-                        <td>
-                            <select type="text" v-model="donhangModel.idXe">
-                                @{
-                                    foreach(var xe in Model.Xes)
-                                    {
-                                        <option value=@xe.idXe>@xe.idXe</option>
+                                        <option value=@ticket.idVe>@ticket.idVe</option>
                                     }
                                 }
                             </select>
@@ -69,14 +56,30 @@
                     <tr>
                         <td>Mã lịch trình:</td>
                         <td>
-                            <select type="text" v-model="donhangModel.idLichTrinh">
+                            <input type="text" readonly v-model="donhangModel.idLichTrinh" />
+
+                            @*<select type="text" v-model="donhangModel.idLichTrinh">
                                 @{
                                     foreach(var lichtrinh in Model.LichTrinhs)
                                     {
                                         <option value=@lichtrinh.IdLichTrinh>@lichtrinh.IdLichTrinh</option>
                                     }
                                 }
-                            </select>
+                            </select>*@
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mã xe:  </td>
+                        <td>
+                            <input type="text" readonly v-model="donhangModel.idXe" />
+                            @*<select type="text" v-model="donhangModel.idXe">
+                                @{
+                                    foreach(var xe in Model.Xes)
+                                    {
+                                        <option value=@xe.idXe>@xe.idXe</option>
+                                    }
+                                }
+                            </select>*@
                         </td>
                     </tr>
                 </tbody>

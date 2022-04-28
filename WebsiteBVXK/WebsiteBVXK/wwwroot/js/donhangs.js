@@ -1,29 +1,29 @@
 ﻿var app = new Vue({
     el: "#quan-ly-don-hang",
     data: {
-        from: "",
-        to: "",
         objectIndex: 0,
         editing: false,
         loading: false,
         donhangs: [],
+        tickets: [],
         donhangModel: {
-            idDonHang: 0,
-            idVeXe: 0,
-            idXe: 0,
-            idLichTrinh: 0,
-            tenKhachHang: "",
-            soDienThoai: "",
-            gioDon: "",
-            ngayDon: "",
-            diemDon: "",
-            diemTra: "",
-            tongTien: 0,
-            tinhTrang: ""
+            idDonHang: null,
+            idVeXe: null,
+            idXe: null,
+            idLichTrinh: null,
+            tenKhachHang: null,
+            soDienThoai: null,
+            gioDon: null,
+            ngayDon: null,
+            diemDon: null,
+            diemTra: null,
+            tongTien: null,
+            tinhTrang: null
         }
     },
     mounted() {
         this.getDonHangs();
+        this.getTickets();
     },
     methods: {
         createLichTrinh() {
@@ -114,6 +114,31 @@
             this.objectIndex = index;
             this.getDonHang(id);
             this.editing = true;
-        }
+        },
+        onMaVeChange() {
+            axios.get("/QuanLyVe/tickets/" + this.donhangModel.idVeXe)
+                .then(res => {
+                    var ticket = res.data;
+                    this.donhangModel.idXe = ticket.idXe;
+                    this.donhangModel.idLichTrinh = ticket.idLichTrinh;
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        },
+        getTickets() {
+            this.loading = true;
+            axios.get("/QuanLyVe/tickets")
+                .then(res => {
+                    console.log(res);
+                    this.tickets = res.data;
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+                .then(() => {
+                    this.loading = false;
+                });
+        },
     },
 })

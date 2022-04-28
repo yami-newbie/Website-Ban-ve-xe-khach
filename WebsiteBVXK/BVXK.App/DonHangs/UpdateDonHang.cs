@@ -36,7 +36,7 @@ namespace BVXK.Application.UpdateDonHang
 
             await _donHangManager.UpdateDonHang(donHang);
 
-            var ticket = _ticketManager.GetTicketById(donHang.IdVeXe, x => x);
+            var ticket = _ticketManager.GetTicketById(request.IdVeXe, x => x);
 
             var lichtrinh = _lichTrinhManager.GetLichTrinhById(ticket.IdLichTrinh, y => y);
 
