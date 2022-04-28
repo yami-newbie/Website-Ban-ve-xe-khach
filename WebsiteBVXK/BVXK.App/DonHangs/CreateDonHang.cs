@@ -13,24 +13,22 @@ namespace BVXK.Application.CreateDonHang
     public class CreateDonHang
     {
         private IDonHangManager _donHangManager;
-
-        public CreateDonHang(IDonHangManager donHangManager)
+        private ILichTrinhManager _lichTrinhManager;
+        private ITicketManager _ticketManager;
+        public CreateDonHang(IDonHangManager donHangManager, ILichTrinhManager lichTrinhManager, ITicketManager ticketManager)
         {
             _donHangManager = donHangManager;
+            _lichTrinhManager = lichTrinhManager;
+            _ticketManager = ticketManager;
         }
 
         public async Task<Response> Do(Request request)
         {
             var donHang = new DonHang
             {
-                IdLichTrinh = request.IdLichTrinh,
                 IdVeXe = request.IdVeXe,
-                IdXe = request.IdXe,
                 TenKhachHang = request.TenKhachHang,
                 SoDienThoai = request.SoDienThoai,
-                DiemDon = request.DiemDon,
-                DiemTra = request.DiemTra,
-                TongTien = request.TongTien,
                 TinhTrang = request.TinhTrang == "Chưa thanh toán" ? 0 : 1,
                 ThoiGianDon = DateTime.Parse(request.NgayDon + " " + request.GioDon ),
             };
@@ -40,18 +38,21 @@ namespace BVXK.Application.CreateDonHang
                 throw new Exception("Failed to create donHang");
             }
 
+            var ticket = _ticketManager.GetTicketById(donHang.IdVeXe, x => x);
+
+            var lichtrinh = _lichTrinhManager.GetLichTrinhById(ticket.IdLichTrinh, y => y);
 
             return new Response
             {
                 IdDonHang = donHang.IdDonHang,
-                IdLichTrinh = request.IdLichTrinh,
+                IdLichTrinh = ticket.IdLichTrinh,
                 IdVeXe = request.IdVeXe,
-                IdXe = request.IdXe,
+                IdXe = lichtrinh.IdXe,
                 TenKhachHang = request.TenKhachHang,
                 SoDienThoai = request.SoDienThoai,
-                DiemDon = request.DiemDon,
-                DiemTra = request.DiemTra,
-                TongTien = request.TongTien,
+                DiemDon = lichtrinh.NoiXuatPhat,
+                DiemTra = lichtrinh.NoiDen,
+                TongTien = ticket.GiaVe,
                 TinhTrang = request.TinhTrang,
                 NgayDon = request.NgayDon,
                 GioDon = request.GioDon,
@@ -61,15 +62,10 @@ namespace BVXK.Application.CreateDonHang
         public class Request
         {
             public int IdVeXe { get; set; }
-            public int IdXe { get; set; }
-            public int IdLichTrinh { get; set; }
             public string? TenKhachHang { get; set; }
             public string? SoDienThoai { get; set; }
             public string? NgayDon { get; set; }
             public string? GioDon { get; set; }
-            public string? DiemDon { get; set; }
-            public string? DiemTra { get; set; }
-            public decimal? TongTien { get; set; }
             public string? TinhTrang { get; set; }
         }
 

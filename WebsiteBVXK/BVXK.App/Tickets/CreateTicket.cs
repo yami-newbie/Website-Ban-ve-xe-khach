@@ -13,15 +13,16 @@ namespace BVXK.Application.Tickets
     public class CreateTicket
     {
         private ITicketManager _ticketManager;
-        public CreateTicket(ITicketManager ticketManager)
+        private ILichTrinhManager _lichTrinhManager;
+        public CreateTicket(ITicketManager ticketManager, ILichTrinhManager lichTrinhManager)
         {
             _ticketManager = ticketManager;
+            _lichTrinhManager = lichTrinhManager;
         }
         public async Task<Response> Do(Request request)
         {
             var veXe = new VeXe
             {
-                IdXe = request.idXe,
                 IdLichTrinh = request.idLichTrinh,
                 GiaVe = request.giaVe,
                 TinhTrang = request.tinhTrang,
@@ -54,10 +55,14 @@ namespace BVXK.Application.Tickets
                     resTinhTrang = "Chưa bán";
                     break;
             }
+
+            var lichtrinh = _lichTrinhManager.GetLichTrinhById(veXe.IdLichTrinh, y => y);
+
+
             return new Response
             {
                 idVe = veXe.IdVe,
-                idXe = veXe.IdXe,
+                idXe = lichtrinh.IdXe,
                 idLichTrinh = veXe.IdLichTrinh,
                 giaVe = veXe.GiaVe,
                 tinhTrang = resTinhTrang,
@@ -66,7 +71,6 @@ namespace BVXK.Application.Tickets
         }
         public class Request
         {
-            public int idXe { get; set; }
             public int idLichTrinh { get; set; }
             public decimal? giaVe { get; set; }
             public int? tinhTrang { get; set; }

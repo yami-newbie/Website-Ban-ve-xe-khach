@@ -31,6 +31,7 @@ namespace WebsiteBVXK.Pages
 
         public void OnPost()
         {
+
             //string username = _config.GetValue<string>("mailTrapUser:Username");
             //string password = _config.GetValue<string>("mailTrapUser:Password");
 

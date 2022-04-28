@@ -17,6 +17,11 @@ namespace BVXK.Database
             _ctx = ctx;
         }
 
+        public TResult GetAccountByUsername<TResult>(string username, Func<Account, TResult> selector)
+        {
+            return _ctx.Accounts.Where(x=>x.Username == username).Select(selector).FirstOrDefault();
+        }
+
         public bool SignIn(string username, string password)
         {
             var res = _ctx.Accounts

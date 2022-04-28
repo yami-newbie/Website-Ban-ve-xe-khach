@@ -1,5 +1,6 @@
 ﻿using BVXK.Domain.Enums;
 using BVXK.Domain.Infrastructure;
+using BVXK.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,31 +13,42 @@ namespace BVXK.Application.GetDonHangs
     public class GetDonHangs
     {
         private IDonHangManager _donHangManager;
-
-        public GetDonHangs(IDonHangManager donHangManager)
+        private ILichTrinhManager _lichTrinhManager;
+        private ITicketManager _ticketManager;
+        public GetDonHangs(IDonHangManager donHangManager, ILichTrinhManager lichTrinhManager, ITicketManager ticketManager)
         {
             _donHangManager = donHangManager;
+            _lichTrinhManager = lichTrinhManager;
+            _ticketManager = ticketManager;
         }
 
-        public IEnumerable<DonHangViewModel> Do() =>
-            _donHangManager.GetDonHangs(x => {
-                return new DonHangViewModel
-                {
-                    IdDonHang = x.IdDonHang,
-                    IdVeXe = x.IdVeXe,
-                    IdLichTrinh = x.IdLichTrinh,
-                    IdXe = x.IdXe,
-                    TenKhachHang = x.TenKhachHang,
-                    SoDienThoai = x.SoDienThoai,
-                    GioDon = x.ThoiGianDon.GetValueOrDefault().ToString("hh:mm"),
-                    NgayDon = x.ThoiGianDon.GetValueOrDefault().ToString("yyyy-MM-dd"),
-                    DiemDon = x.DiemDon,
-                    DiemTra = x.DiemTra,
-                    TongTien = x.TongTien,
-                    TinhTrang = x.TinhTrang == 0 ? "Chưa thanh toán" : "Đã thanh toán"
-                };
-            });
+        public IEnumerable<DonHangViewModel> Do()
+        {
+            var res = _donHangManager.GetDonHangs(x => x);
+            return res.Select(x => getData(x));
+        }
+        private DonHangViewModel getData(DonHang x)
+        {
+            var ticket = x.IdVeXeNavigation; //_ticketManager.GetTicketById(x.IdVeXe, x => x);
 
+            var lichtrinh = ticket.IdLichTrinhNavigation; //_lichTrinhManager.GetLichTrinhById(ticket.IdLichTrinh, y => y);
+
+            return new DonHangViewModel
+            {
+                IdDonHang = x.IdDonHang,
+                IdVeXe = x.IdVeXe,
+                IdLichTrinh = ticket.IdLichTrinh,
+                IdXe = lichtrinh.IdXe,
+                TenKhachHang = x.TenKhachHang,
+                SoDienThoai = x.SoDienThoai,
+                GioDon = x.ThoiGianDon.GetValueOrDefault().ToString("hh:mm"),
+                NgayDon = x.ThoiGianDon.GetValueOrDefault().ToString("yyyy-MM-dd"),
+                DiemDon = lichtrinh.NoiXuatPhat,
+                DiemTra = lichtrinh.NoiDen,
+                TongTien = ticket.GiaVe,
+                TinhTrang = x.TinhTrang == 0 ? "Chưa thanh toán" : "Đã thanh toán"
+            };
+        }
         public class DonHangViewModel
         {
             public int IdDonHang { get; set; }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using System.Net;
 using System.Net.Mail;
 
@@ -26,7 +27,7 @@ namespace WebsiteBVXK
 
             mailMessage.Body = body;
 
-            client.Send(mailMessage);
+            //client.Send(mailMessage);
         }
     }
 }

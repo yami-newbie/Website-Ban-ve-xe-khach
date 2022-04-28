@@ -12,15 +12,16 @@ namespace BVXK.Application.Tickets
     public class UpdateTicket
     {
         private ITicketManager _ticketManager;
-        public UpdateTicket(ITicketManager ticketManager)
+        private ILichTrinhManager _lichTrinhManager;
+        public UpdateTicket(ITicketManager ticketManager, ILichTrinhManager lichTrinhManager)
         {
             _ticketManager = ticketManager;
+            _lichTrinhManager = lichTrinhManager;
         }
         public async Task<Response> Do(Request request)
         {
             var veXe = _ticketManager.GetTicketById(request.idVe, x => x);
 
-            veXe.IdXe = request.idXe;
             veXe.IdLichTrinh = request.idLichTrinh;
             veXe.GiaVe = request.giaVe;
             veXe.TinhTrang = request.tinhTrang;
@@ -29,6 +30,7 @@ namespace BVXK.Application.Tickets
             await _ticketManager.UpdateTicket(veXe);
 
             string resLoaiVe = "", resTinhTrang = "";
+
             switch (veXe.LoaiVe)
             {
                 case (int?)LoaiVe.Thuong:
@@ -50,10 +52,13 @@ namespace BVXK.Application.Tickets
                     resTinhTrang = "Chưa bán";
                     break;
             }
+
+            var lichtrinh = _lichTrinhManager.GetLichTrinhById(veXe.IdLichTrinh, y => y);
+
             return new Response
             {
                 idVe = veXe.IdVe,
-                idXe = veXe.IdXe,
+                idXe = lichtrinh.IdXe,
                 idLichTrinh = veXe.IdLichTrinh,
                 giaVe = veXe.GiaVe,
                 tinhTrang = resTinhTrang,
@@ -63,7 +68,6 @@ namespace BVXK.Application.Tickets
         public class Request
         {
             public int idVe { get; set; }
-            public int idXe { get; set; }
             public int idLichTrinh { get; set; }
             public decimal? giaVe { get; set; }
             public int? tinhTrang { get; set; }

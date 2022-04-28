@@ -43,7 +43,14 @@
                     <tr>
                         <td>Mã vé:</td>
                         <td>
-                            <input type="text" v-model="donhangModel.idVeXe" />
+                            <select type="text" v-model="donhangModel.idVeXe">
+                                @{
+                                    foreach(var ticket in Model.Tickets)
+                                    {
+                                        <option value=@ticket.idXe>@ticket.idXe</option>
+                                    }
+                                }
+                            </select>
                         </td>
                     </tr>
                     <tr>

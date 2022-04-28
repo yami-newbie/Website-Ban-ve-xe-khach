@@ -40,8 +40,8 @@ namespace WebsiteBVXK.Pages
                 {
                     await signUp.Do(new SignUp.Request
                     {
-                        Username = Input.Username,
-                        Password = Input.Password
+                        Username = "admin",
+                        Password = "admin"
                     });
                 }
             }

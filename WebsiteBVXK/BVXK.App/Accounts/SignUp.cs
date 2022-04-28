@@ -20,6 +20,12 @@ namespace BVXK.Application.SignUp
 
         public async Task<Response> Do(Request request)
         {
+            var acc = _accountManager.GetAccountByUsername(request.Username, x => x);
+            if(acc != null)
+            {
+                return null;
+            }
+
             var account = new Account();
 
             string encryptPass = Encrypt.Encrypt.Do(request.Password);

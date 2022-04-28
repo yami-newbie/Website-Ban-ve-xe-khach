@@ -7,9 +7,7 @@ namespace BVXK.Domain.Models
     {
         public Xe()
         {
-            DonHangs = new HashSet<DonHang>();
             LichTrinhs = new HashSet<LichTrinh>();
-            VeXes = new HashSet<VeXe>();
         }
 
         public int IdXe { get; set; }
@@ -19,8 +17,6 @@ namespace BVXK.Domain.Models
         public int? SoLuongGhe { get; set; }
         public string? BienSo { get; set; }
 
-        public virtual ICollection<DonHang> DonHangs { get; set; }
         public virtual ICollection<LichTrinh> LichTrinhs { get; set; }
-        public virtual ICollection<VeXe> VeXes { get; set; }
     }
 }
