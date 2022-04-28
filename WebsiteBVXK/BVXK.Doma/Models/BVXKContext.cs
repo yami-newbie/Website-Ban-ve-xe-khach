@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
 
 namespace BVXK.Domain.Models
 {
@@ -20,22 +19,18 @@ namespace BVXK.Domain.Models
         public virtual DbSet<Account> Accounts { get; set; } = null!;
         public virtual DbSet<DonHang> DonHangs { get; set; } = null!;
         public virtual DbSet<LichTrinh> LichTrinhs { get; set; } = null!;
+        public virtual DbSet<ThongKe> ThongKes { get; set; } = null!;
         public virtual DbSet<VeXe> VeXes { get; set; } = null!;
         public virtual DbSet<Xe> Xes { get; set; } = null!;
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    if (!optionsBuilder.IsConfigured)
-        //    {
-        //        IConfigurationRoot configuration = new ConfigurationBuilder()
-        //        .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-        //        .AddJsonFile("appsettings.json")
-        //        .Build();
-
-        //        optionsBuilder.UseSqlServer(configuration.GetConnectionString("WebsiteBVXKContext"));
-
-        //    }
-        //}
+//      Scaffold-DbContext "Data Source=DESKTOP-R3JFTAQ;Initial Catalog=BVXK;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -f -OutputDir Models
+//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//        {
+//            if (!optionsBuilder.IsConfigured)
+//            {
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+//                optionsBuilder.UseSqlServer("Data Source=DESKTOP-R3JFTAQ;Initial Catalog=BVXK;Integrated Security=True");
+//            }
+//        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -84,22 +79,23 @@ namespace BVXK.Domain.Models
                 entity.Property(e => e.IdDonHang).HasColumnName("idDonHang");
 
                 entity.Property(e => e.DiemDon)
-                    .HasMaxLength(50)
+                    .HasColumnType("text")
                     .HasColumnName("diemDon");
 
                 entity.Property(e => e.DiemTra)
-                    .HasMaxLength(50)
+                    .HasColumnType("text")
                     .HasColumnName("diemTra");
 
-                entity.Property(e => e.IdLichTrinh).HasColumnName("idLichTrinh");
-
                 entity.Property(e => e.IdVeXe).HasColumnName("idVeXe");
-
-                entity.Property(e => e.IdXe).HasColumnName("idXe");
 
                 entity.Property(e => e.SoDienThoai)
                     .HasMaxLength(10)
                     .HasColumnName("soDienThoai")
+                    .IsFixedLength();
+
+                entity.Property(e => e.SoGhe)
+                    .HasMaxLength(10)
+                    .HasColumnName("soGhe")
                     .IsFixedLength();
 
                 entity.Property(e => e.TenKhachHang)
@@ -112,27 +108,11 @@ namespace BVXK.Domain.Models
 
                 entity.Property(e => e.TinhTrang).HasColumnName("tinhTrang");
 
-                entity.Property(e => e.TongTien)
-                    .HasColumnType("money")
-                    .HasColumnName("tongTien");
-
-                entity.HasOne(d => d.IdLichTrinhNavigation)
-                    .WithMany(p => p.DonHangs)
-                    .HasForeignKey(d => d.IdLichTrinh)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_DonHang_LichTrinh");
-
                 entity.HasOne(d => d.IdVeXeNavigation)
                     .WithMany(p => p.DonHangs)
                     .HasForeignKey(d => d.IdVeXe)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DonHang_VeXe");
-
-                entity.HasOne(d => d.IdXeNavigation)
-                    .WithMany(p => p.DonHangs)
-                    .HasForeignKey(d => d.IdXe)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_DonHang_Xe");
             });
 
             modelBuilder.Entity<LichTrinh>(entity =>
@@ -143,6 +123,14 @@ namespace BVXK.Domain.Models
                 entity.ToTable("LichTrinh");
 
                 entity.Property(e => e.IdLichTrinh).HasColumnName("idLichTrinh");
+
+                entity.Property(e => e.Hinh1)
+                    .HasColumnType("image")
+                    .HasColumnName("hinh1");
+
+                entity.Property(e => e.Hinh2)
+                    .HasColumnType("image")
+                    .HasColumnName("hinh2");
 
                 entity.Property(e => e.IdXe).HasColumnName("idXe");
 
@@ -169,6 +157,27 @@ namespace BVXK.Domain.Models
                     .HasConstraintName("FK_LichTrinh_Xe");
             });
 
+            modelBuilder.Entity<ThongKe>(entity =>
+            {
+                entity.HasKey(e => e.IdThongKe);
+
+                entity.ToTable("ThongKe");
+
+                entity.Property(e => e.IdThongKe).HasColumnName("idThongKe");
+
+                entity.Property(e => e.GiaVe)
+                    .HasColumnType("money")
+                    .HasColumnName("giaVe");
+
+                entity.Property(e => e.IdVe).HasColumnName("idVe");
+
+                entity.Property(e => e.LoaiVe).HasColumnName("loaiVe");
+
+                entity.Property(e => e.NgayDat)
+                    .HasColumnType("smalldatetime")
+                    .HasColumnName("ngayDat");
+            });
+
             modelBuilder.Entity<VeXe>(entity =>
             {
                 entity.HasKey(e => e.IdVe);
@@ -181,17 +190,15 @@ namespace BVXK.Domain.Models
 
                 entity.Property(e => e.IdLichTrinh).HasColumnName("idLichTrinh");
 
-                entity.Property(e => e.IdXe).HasColumnName("idXe");
-
                 entity.Property(e => e.LoaiVe).HasColumnName("loaiVe");
 
                 entity.Property(e => e.TinhTrang).HasColumnName("tinhTrang");
 
-                entity.HasOne(d => d.IdXeNavigation)
+                entity.HasOne(d => d.IdLichTrinhNavigation)
                     .WithMany(p => p.VeXes)
-                    .HasForeignKey(d => d.IdXe)
+                    .HasForeignKey(d => d.IdLichTrinh)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_VeXe_Xe");
+                    .HasConstraintName("FK_VeXe_LichTrinh");
             });
 
             modelBuilder.Entity<Xe>(entity =>

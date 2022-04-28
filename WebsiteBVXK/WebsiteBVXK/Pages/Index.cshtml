@@ -6,7 +6,7 @@
 }
 
 
-<div class="content">
+<div id="send-mail" class="content">
     <h1>Nhà Xe Khánh Truyền</h1>
     <P><marquee direction="left">Hân hạnh mang đến những dịch vụ tốt nhất cho quý khách hàng.</marquee></P>
     <div>
@@ -15,6 +15,13 @@
                 <span>TÌM KIẾM VÉ XE</span>
             </a>
         </button>
+        <button @@click="send()">
+            Send Mail
+        </button>
     </div>
 </div>
+
+@section scripts{
+    <script src="~/js/sendEmail.js"></script>
+}
 

@@ -11,23 +11,28 @@ namespace BVXK.Application.Tickets
     public class GetTicket
     {
         private ITicketManager _ticketManager;
-        public GetTicket(ITicketManager ticketManager)
+        private ILichTrinhManager _lichTrinhManager;
+        public GetTicket(ITicketManager ticketManager, ILichTrinhManager lichTrinhManager)
         {
             _ticketManager = ticketManager;
+            _lichTrinhManager = lichTrinhManager;
         }
-        public TicketViewModel Do(int id) =>
-            _ticketManager.GetTicketById(id, x =>
+        public TicketViewModel Do(int id)
+        {
+            var x = _ticketManager.GetTicketById(id, _x => _x);
+
+            var lichtrinh = _lichTrinhManager.GetLichTrinhById(x.IdLichTrinh, y => y);
+
+            return new TicketViewModel
             {
-                return new TicketViewModel
-                {
-                    idXe = x.IdXe,
-                    idVe = x.IdVe,
-                    idLichTrinh = x.IdLichTrinh,
-                    giaVe = x.GiaVe,
-                    tinhTrang = x.TinhTrang,
-                    loaiVe = x.LoaiVe,
-                };
-            });
+                idXe = lichtrinh.IdXe,
+                idVe = x.IdVe,
+                idLichTrinh = x.IdLichTrinh,
+                giaVe = x.GiaVe,
+                tinhTrang = x.TinhTrang,
+                loaiVe = x.LoaiVe,
+            };
+        }
         public class TicketViewModel
         {
             public int idXe { get; set; }

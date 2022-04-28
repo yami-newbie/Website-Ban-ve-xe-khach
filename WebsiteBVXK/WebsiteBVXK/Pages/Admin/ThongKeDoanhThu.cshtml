@@ -24,7 +24,7 @@
     </a>
 </div>
 
-<div class="table-data">
+<div id="thong-ke-doanh-thu" class="table-data">
     <div class="todo">
         <div class="head">
             <h3>Thống kê doanh thu</h3>
@@ -35,13 +35,13 @@
                 <tr>
                     <td> Từ ngày:</td>
                     <td>
-                        <input type="date">
+                        <input type="date" v-model="from"/>
                     </td>
                 </tr>
                 <tr>
                     <td>Đến ngày:  </td>
                     <td>
-                        <input type="date">
+                        <input type="date" v-model="to"/>
                     </td>
                 </tr>
             </table>
@@ -49,7 +49,7 @@
         <table class="table-buttoncn">
             <tr>
                 <td>
-                    <button class="buttontcn">Thống kê</button>
+                    <button class="buttontcn" @@click="getThongKesBetween()">Thống kê</button>
                 </td>
             </tr>
         </table>
@@ -69,25 +69,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><span class="status pending"> V0001</span></td>
-                    <td>20/3/2022</td>
-                    <td>Ngồi</td>
-                    <td>300000</td>
-                </tr>
-                <tr>
-                    <td><span class="status pending"> V0002</span></td>
-                    <td>20/3/2022</td>
-                    <td>Ngồi</td>
-                    <td>300000</td>
-                </tr>
-                <tr>
-                    <td><span class="status pending"> V0003</span></td>
-                    <td>20/3/2022</td>
-                    <td>Ngồi</td>
-                    <td>300000</td>
+                <tr v-for="(thongke, index) in thongkes">
+                    <td><span class="status pending">{{thongke.idVe}}</span></td>
+                    <td>{{thongke.ngayDat}}</td>
+                    <td>{{thongke.loaiVe}}</td>
+                    <td>{{thongke.giaVe}}</td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
+
+@section scripts{
+    <script src="~/js/thongkes.js"></script>
+}

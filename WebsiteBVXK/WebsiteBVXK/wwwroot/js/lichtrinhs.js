@@ -22,20 +22,20 @@ var app = new Vue({
     data: {
         //date: "yyyy-mm-dd"
         objectIndex: 0,
-        from: 25,
-        to: 12,
         editing: false,
         loading: false,
+        from: 25,
+        to: 12,
         date: null,
         lichtrinhModel: {
             IdLichTrinh: 0,
             IdXe: 0,
-            NoiXuatPhat: "Đà Nẵng",
-            NoiDen: "Hà Nội",
+            NoiXuatPhat: "",
+            NoiDen: "",
             NgayDi: "",//"2022-10-22",
-            GioDi: "13:00",
-            NgayDen: "2022-12-12",
-            GioDen: "15:00",
+            GioDi: "",
+            NgayDen: "",
+            GioDen: "",
         },
         lichtrinhs: []
     },

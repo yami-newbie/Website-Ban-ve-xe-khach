@@ -12,10 +12,11 @@ namespace BVXK.Database
 	{
 
 		private BVXKContext _ctx;
-
-		public LichTrinhManager(BVXKContext ctx)
+		private ITicketManager _ticketManager;
+		public LichTrinhManager(BVXKContext ctx, ITicketManager ticketManager)
 		{
 			_ctx = ctx;
+			_ticketManager = ticketManager;
 		}
 
 		public Task<int> CreateLichTrinh(LichTrinh lichTrinh)
@@ -25,9 +26,17 @@ namespace BVXK.Database
 			return _ctx.SaveChangesAsync();
 		}
 
-		public Task<int> DeleteLichTrinh(int id)
+        public Task<int> DeleteLichTrinh(int id)
 		{
+			var res = _ticketManager.GetTicketByIdLichTrinh(id, x => x.IdVe);
+
+			res.ToList().ForEach(x =>
+			{
+				_ticketManager.DeleteTicket(x).Wait();
+			});
+
 			var lichTrinh = _ctx.LichTrinhs.FirstOrDefault(x => x.IdLichTrinh == id);
+
 			_ctx.LichTrinhs.Remove(lichTrinh);
 
 			return _ctx.SaveChangesAsync();
@@ -53,5 +62,10 @@ namespace BVXK.Database
 
 			return _ctx.SaveChangesAsync();
 		}
-	}
+
+        public IEnumerable<TResult> GetLichTringByIdXe<TResult>(int id, Func<LichTrinh, TResult> selector)
+        {
+            return _ctx.LichTrinhs.Where(x => x.IdXe == id).Select(selector).ToList();
+		}
+    }
 }

@@ -36,7 +36,7 @@ namespace BVXK.Application.CreateLichTrinh
 
             if (await _lichTrinhManager.CreateLichTrinh(lichtrinh) <= 0)
             {
-                throw new Exception("Failed to create product");
+                throw new Exception("Failed to create lich trinh");
             }
 
             return new Response

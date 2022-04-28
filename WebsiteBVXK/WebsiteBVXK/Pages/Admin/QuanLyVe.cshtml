@@ -39,29 +39,13 @@
                 <tr>
                     <td> Mã vé:</td>
                     <td>
-                        <input type="text" v-model="veViewModel.idVe">
+                        <input type="text" v-model="veViewModel.idVe"/>
                     </td>
                 </tr>
-                <tr>
-
-                    <td>Mã xe:  </td>
-                    <td>
-                        <select type="text" v-model="veViewModel.idXe">
-                            @{
-                                foreach(var xe in Model.Xes)
-                                {
-                                    <option value=@xe.idXe>@xe.idXe</option>
-                                }
-                            }
-                        </select>
-                        
-                    </td>
-                </tr>
-
                 <tr>
                     <td> Mã lịch trình:  </td>
                     <td>
-                        <select type="text" v-model="veViewModel.idLichTrinh">
+                        <select type="text" v-model="veViewModel.idLichTrinh" @@change="onchangeLichTrinh()">
                             @{
                                 foreach (var lichTrinh in Model.LichTrinhs)
                                 {
@@ -72,9 +56,24 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>Mã xe:  </td>
+                    <td>
+                        <input type="text" readonly v-model="veViewModel.idXe" />
+                        @*<select type="text" v-model="veViewModel.idXe">
+                            @{
+                                foreach(var xe in Model.Xes)
+                                {
+                                    <option value=@xe.idXe>@xe.idXe</option>
+                                }
+                            }
+                        </select>*@
+                        
+                    </td>
+                </tr>
+                <tr>
                     <td> Giá vé: </td>
                     <td>
-                        <input type="text" name="giave" v-model="veViewModel.giaVe">
+                        <input type="text" name="giave" v-model="veViewModel.giaVe"/>
                     </td>
                 </tr>
                 

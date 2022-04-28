@@ -32,7 +32,7 @@ namespace BVXK.Application.CreateXe
 
             if (await _xesManager.CreateXe(xe) <= 0)
             {
-                throw new Exception("Failed to create product");
+                throw new Exception("Failed to create xe");
             }
 
             string resLoaiXe = "", resSoGhe = "";
