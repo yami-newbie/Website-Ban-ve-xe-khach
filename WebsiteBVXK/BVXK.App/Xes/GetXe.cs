@@ -20,7 +20,6 @@ namespace BVXK.Application.GetXe
         
         public XeViewModel Do(int id) =>
             _xesManager.GetXeById(id, x => {
-                
                 return new XeViewModel
                 {
                     idXe = x.IdXe,
@@ -30,7 +29,7 @@ namespace BVXK.Application.GetXe
                     soLuongGhe = (int)x.SoLuongGhe,
                     bienSo = x.BienSo,
                 };
-                });
+            });
 
         public class XeViewModel
         {

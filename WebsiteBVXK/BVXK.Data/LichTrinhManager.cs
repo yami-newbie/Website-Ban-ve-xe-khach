@@ -43,6 +43,10 @@ namespace BVXK.Database
 			return _ctx.LichTrinhs.Select(selector).ToList();
 		}
 
+		public IEnumerable<TResult> FindLichTrinh<TResult>(string start, string des, DateTime date, Func<LichTrinh, TResult> selector)
+        {
+			return _ctx.LichTrinhs.Where(x => x.NoiXuatPhat == start && x.NoiDen == des && x.NgayDi == date).Select(selector).ToList();
+        }
 		public Task<int> UpdateLichTrinh(LichTrinh lichTrinh)
 		{
 			_ctx.LichTrinhs.Update(lichTrinh);
