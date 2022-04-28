@@ -3,7 +3,7 @@
 USE [BVXK]
 GO
 
-/****** Object:  Table [dbo].[Account]    Script Date: 26/04/2022 8:53:42 CH ******/
+/****** Object:  Table [dbo].[Account]    Script Date: 28/04/2022 6:55:15 CH ******/
 SET ANSI_NULLS ON
 GO
 
@@ -29,119 +29,7 @@ GO
 USE [BVXK]
 GO
 
-/****** Object:  Table [dbo].[DonHang]    Script Date: 26/04/2022 8:53:48 CH ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE TABLE [dbo].[DonHang](
-	[idDonHang] [int] IDENTITY(1,1) NOT NULL,
-	[idVeXe] [int] NOT NULL,
-	[idXe] [int] NOT NULL,
-	[idLichTrinh] [int] NOT NULL,
-	[tenKhachHang] [nvarchar](50) NULL,
-	[soDienThoai] [nchar](10) NULL,
-	[thoiGianDon] [smalldatetime] NULL,
-	[diemDon] [nvarchar](50) NULL,
-	[diemTra] [nvarchar](50) NULL,
-	[tongTien] [money] NULL,
-	[tinhTrang] [int] NULL,
- CONSTRAINT [PK_DonHang] PRIMARY KEY CLUSTERED 
-(
-	[idDonHang] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-
-ALTER TABLE [dbo].[DonHang]  WITH CHECK ADD  CONSTRAINT [FK_DonHang_LichTrinh] FOREIGN KEY([idLichTrinh])
-REFERENCES [dbo].[LichTrinh] ([idLichTrinh])
-GO
-
-ALTER TABLE [dbo].[DonHang] CHECK CONSTRAINT [FK_DonHang_LichTrinh]
-GO
-
-ALTER TABLE [dbo].[DonHang]  WITH CHECK ADD  CONSTRAINT [FK_DonHang_VeXe] FOREIGN KEY([idVeXe])
-REFERENCES [dbo].[VeXe] ([idVe])
-GO
-
-ALTER TABLE [dbo].[DonHang] CHECK CONSTRAINT [FK_DonHang_VeXe]
-GO
-
-ALTER TABLE [dbo].[DonHang]  WITH CHECK ADD  CONSTRAINT [FK_DonHang_Xe] FOREIGN KEY([idXe])
-REFERENCES [dbo].[Xe] ([idXe])
-GO
-
-ALTER TABLE [dbo].[DonHang] CHECK CONSTRAINT [FK_DonHang_Xe]
-GO
-
-USE [BVXK]
-GO
-
-/****** Object:  Table [dbo].[LichTrinh]    Script Date: 26/04/2022 8:53:54 CH ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE TABLE [dbo].[LichTrinh](
-	[idLichTrinh] [int] IDENTITY(1,1) NOT NULL,
-	[idXe] [int] NOT NULL,
-	[noiXuatPhat] [nvarchar](50) NULL,
-	[noiDen] [nvarchar](50) NULL,
-	[ngayDi] [smalldatetime] NULL,
-	[ngayDen] [smalldatetime] NULL,
- CONSTRAINT [PK_TTLichTrinh] PRIMARY KEY CLUSTERED 
-(
-	[idLichTrinh] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-
-ALTER TABLE [dbo].[LichTrinh]  WITH CHECK ADD  CONSTRAINT [FK_LichTrinh_Xe] FOREIGN KEY([idXe])
-REFERENCES [dbo].[Xe] ([idXe])
-GO
-
-ALTER TABLE [dbo].[LichTrinh] CHECK CONSTRAINT [FK_LichTrinh_Xe]
-GO
-
-USE [BVXK]
-GO
-
-/****** Object:  Table [dbo].[VeXe]    Script Date: 26/04/2022 8:54:05 CH ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE TABLE [dbo].[VeXe](
-	[idVe] [int] IDENTITY(1,1) NOT NULL,
-	[idXe] [int] NOT NULL,
-	[idLichTrinh] [int] NOT NULL,
-	[GiaVe] [money] NULL,
-	[tinhTrang] [int] NULL,
-	[loaiVe] [int] NULL,
- CONSTRAINT [PK_VeXe] PRIMARY KEY CLUSTERED 
-(
-	[idVe] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-
-ALTER TABLE [dbo].[VeXe]  WITH CHECK ADD  CONSTRAINT [FK_VeXe_Xe] FOREIGN KEY([idXe])
-REFERENCES [dbo].[Xe] ([idXe])
-GO
-
-ALTER TABLE [dbo].[VeXe] CHECK CONSTRAINT [FK_VeXe_Xe]
-GO
-
-USE [BVXK]
-GO
-
-/****** Object:  Table [dbo].[Xe]    Script Date: 26/04/2022 8:54:10 CH ******/
+/****** Object:  Table [dbo].[Xe]    Script Date: 28/04/2022 6:55:21 CH ******/
 SET ANSI_NULLS ON
 GO
 
@@ -165,7 +53,7 @@ GO
 USE [BVXK]
 GO
 
-/****** Object:  Table [dbo].[ThongKe]    Script Date: 27/04/2022 8:35:15 CH ******/
+/****** Object:  Table [dbo].[ThongKe]    Script Date: 28/04/2022 6:55:28 CH ******/
 SET ANSI_NULLS ON
 GO
 
@@ -183,5 +71,102 @@ CREATE TABLE [dbo].[ThongKe](
 	[idThongKe] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
+GO
+
+USE [BVXK]
+GO
+
+/****** Object:  Table [dbo].[LichTrinh]    Script Date: 28/04/2022 6:55:39 CH ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[LichTrinh](
+	[idLichTrinh] [int] IDENTITY(1,1) NOT NULL,
+	[idXe] [int] NOT NULL,
+	[noiXuatPhat] [nvarchar](50) NULL,
+	[noiDen] [nvarchar](50) NULL,
+	[ngayDi] [smalldatetime] NULL,
+	[ngayDen] [smalldatetime] NULL,
+	[hinh1] [image] NULL,
+	[hinh2] [image] NULL,
+ CONSTRAINT [PK_TTLichTrinh] PRIMARY KEY CLUSTERED 
+(
+	[idLichTrinh] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[LichTrinh]  WITH CHECK ADD  CONSTRAINT [FK_LichTrinh_Xe] FOREIGN KEY([idXe])
+REFERENCES [dbo].[Xe] ([idXe])
+GO
+
+ALTER TABLE [dbo].[LichTrinh] CHECK CONSTRAINT [FK_LichTrinh_Xe]
+GO
+
+USE [BVXK]
+GO
+
+/****** Object:  Table [dbo].[VeXe]    Script Date: 28/04/2022 6:55:48 CH ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[VeXe](
+	[idVe] [int] IDENTITY(1,1) NOT NULL,
+	[idLichTrinh] [int] NOT NULL,
+	[GiaVe] [money] NULL,
+	[tinhTrang] [int] NULL,
+	[loaiVe] [int] NULL,
+ CONSTRAINT [PK_VeXe] PRIMARY KEY CLUSTERED 
+(
+	[idVe] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[VeXe]  WITH CHECK ADD  CONSTRAINT [FK_VeXe_LichTrinh] FOREIGN KEY([idLichTrinh])
+REFERENCES [dbo].[LichTrinh] ([idLichTrinh])
+GO
+
+ALTER TABLE [dbo].[VeXe] CHECK CONSTRAINT [FK_VeXe_LichTrinh]
+GO
+
+USE [BVXK]
+GO
+
+/****** Object:  Table [dbo].[DonHang]    Script Date: 28/04/2022 6:55:55 CH ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[DonHang](
+	[idDonHang] [int] IDENTITY(1,1) NOT NULL,
+	[idVeXe] [int] NOT NULL,
+	[tenKhachHang] [nvarchar](50) NULL,
+	[soDienThoai] [nchar](10) NULL,
+	[thoiGianDon] [smalldatetime] NULL,
+	[tinhTrang] [int] NULL,
+	[diemDon] [text] NULL,
+	[diemTra] [text] NULL,
+	[soGhe] [nchar](10) NULL,
+ CONSTRAINT [PK_DonHang] PRIMARY KEY CLUSTERED 
+(
+	[idDonHang] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[DonHang]  WITH CHECK ADD  CONSTRAINT [FK_DonHang_VeXe] FOREIGN KEY([idVeXe])
+REFERENCES [dbo].[VeXe] ([idVe])
+GO
+
+ALTER TABLE [dbo].[DonHang] CHECK CONSTRAINT [FK_DonHang_VeXe]
 GO
 

@@ -29,6 +29,9 @@ namespace BVXK.Application.CreateDonHang
                 IdVeXe = request.IdVeXe,
                 TenKhachHang = request.TenKhachHang,
                 SoDienThoai = request.SoDienThoai,
+                DiemDon = request.DiemDon,
+                DiemTra = request.DiemTra,
+                SoGhe = request.SoGhe,
                 TinhTrang = request.TinhTrang == "Chưa thanh toán" ? 0 : 1,
                 ThoiGianDon = DateTime.Parse(request.NgayDon + " " + request.GioDon ),
             };
@@ -56,17 +59,22 @@ namespace BVXK.Application.CreateDonHang
                 TinhTrang = request.TinhTrang,
                 NgayDon = request.NgayDon,
                 GioDon = request.GioDon,
+                SoGhe = request.SoGhe,
             };
         }
 
         public class Request
         {
+            public int IdDonHang { get; set; }
             public int IdVeXe { get; set; }
             public string? TenKhachHang { get; set; }
             public string? SoDienThoai { get; set; }
             public string? NgayDon { get; set; }
             public string? GioDon { get; set; }
             public string? TinhTrang { get; set; }
+            public string? DiemDon { get; set; }
+            public string? DiemTra { get; set; }
+            public string? SoGhe { get; set; }
         }
 
         public class Response
@@ -83,7 +91,7 @@ namespace BVXK.Application.CreateDonHang
             public string? DiemTra { get; set; }
             public decimal? TongTien { get; set; }
             public string? TinhTrang { get; set; }
-
+            public string? SoGhe { get; set; }
         }
     }
 }

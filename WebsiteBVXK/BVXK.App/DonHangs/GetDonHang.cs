@@ -39,10 +39,11 @@ namespace BVXK.Application.GetDonHang
                 SoDienThoai = x.SoDienThoai,
                 GioDon = x.ThoiGianDon.GetValueOrDefault().ToString("hh:mm"),
                 NgayDon = x.ThoiGianDon.GetValueOrDefault().ToString("yyyy-MM-dd"),
-                DiemDon = lichtrinh.NoiXuatPhat,
-                DiemTra = lichtrinh.NoiDen,
+                DiemDon = x.DiemDon,
+                DiemTra = x.DiemTra,
                 TongTien = ticket.GiaVe,
-                TinhTrang = x.TinhTrang == 0 ? "Chưa thanh toán" : "Đã thanh toán"
+                TinhTrang = x.TinhTrang == 0 ? "Chưa thanh toán" : "Đã thanh toán",
+                SoGhe = x.SoGhe,
             };
         }
 
@@ -60,6 +61,7 @@ namespace BVXK.Application.GetDonHang
             public string? DiemTra { get; set; }
             public decimal? TongTien { get; set; }
             public string? TinhTrang { get; set; }
+            public string? SoGhe { get; set; }
         }
     }
 }

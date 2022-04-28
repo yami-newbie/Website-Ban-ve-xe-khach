@@ -27,6 +27,10 @@ namespace BVXK.Application.UpdateDonHang
 
             donHang.IdVeXe = request.IdVeXe;
             donHang.TenKhachHang = request.TenKhachHang;
+            donHang.SoGhe = request.SoGhe;
+            donHang.DiemTra = request.DiemTra;
+            donHang.DiemDon = request.DiemDon;
+            donHang.SoDienThoai = request.SoDienThoai;
             donHang.TinhTrang = request.TinhTrang == "Chưa thanh toán" ? 0 : 1;
             donHang.ThoiGianDon = DateTime.Parse(request.NgayDon + " " + request.GioDon);
 
@@ -50,20 +54,26 @@ namespace BVXK.Application.UpdateDonHang
                 TinhTrang = request.TinhTrang,
                 NgayDon = request.NgayDon,
                 GioDon = request.GioDon,
+                SoGhe = request.SoGhe,
             };
 
         }
 
         public class Request
         {
-            public int IdDonHang { get; set;}
-            public int IdVeXe { get; set;}
+            public int IdDonHang { get; set; }
+            public int IdVeXe { get; set; }
+            public int IdXe { get; set; }
             public int IdLichTrinh { get; set; }
             public string? TenKhachHang { get; set; }
             public string? SoDienThoai { get; set; }
             public string? NgayDon { get; set; }
             public string? GioDon { get; set; }
+            public string? DiemDon { get; set; }
+            public string? DiemTra { get; set; }
+            public decimal? TongTien { get; set; }
             public string? TinhTrang { get; set; }
+            public string? SoGhe { get; set; }
         }
 
         public class Response
@@ -80,6 +90,7 @@ namespace BVXK.Application.UpdateDonHang
             public string? DiemTra { get; set; }
             public decimal? TongTien { get; set; }
             public string? TinhTrang { get; set; }
+            public string? SoGhe { get; set; }
         }
     }
 }
