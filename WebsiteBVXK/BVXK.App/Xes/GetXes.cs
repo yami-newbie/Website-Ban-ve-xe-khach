@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BVXK.Application.GetXes
 {
-    
+    [Service]
     public class GetXes
     {
         private IXeManager _xesManager;

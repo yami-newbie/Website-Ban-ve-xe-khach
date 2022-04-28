@@ -54,7 +54,7 @@ namespace BVXK.Database
 
 		public IEnumerable<TResult> FindLichTrinh<TResult>(string start, string des, DateTime date, Func<LichTrinh, TResult> selector)
         {
-			return _ctx.LichTrinhs.Where(x => x.NoiXuatPhat == start && x.NoiDen == des && x.NgayDi == date).Select(selector).ToList();
+			return _ctx.LichTrinhs.Where(x => x.NoiXuatPhat == start && x.NoiDen == des && x.NgayDi.GetValueOrDefault().ToString("yyyy/MM/dd") == date.ToString("yyyy/MM/dd")).Select(selector).ToList();
         }
 		public Task<int> UpdateLichTrinh(LichTrinh lichTrinh)
 		{
