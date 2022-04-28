@@ -11,6 +11,7 @@ namespace BVXK.Domain.Infrastructure
     {
         IEnumerable<TResult> GetXes<TResult>(Func<Xe, TResult> selector);
         TResult GetXeById<TResult>(int id, Func<Xe, TResult> selector);
+        IEnumerable<TResult> GetXeBySeat<TResult>(int seat, Func<Xe, TResult> selector);
         Task<int> UpdateXe(Xe xe);
         Task<int> CreateXe(Xe xe);
         Task<int> DeleteXe(int id);

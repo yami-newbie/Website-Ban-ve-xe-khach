@@ -45,6 +45,11 @@ namespace BVXK.Database
                 .Select(selector)
                 .FirstOrDefault();
         }
+        public IEnumerable<TResult> GetXeBySeat<TResult>(int seat, Func<Xe, TResult> selector)
+        {
+            return _ctx.Xes.Where(x => x.SoLuongGhe == seat).Select(selector).ToList();
+        }
+
 
         public Task<int> DeleteXe(int id)
         {
