@@ -13,6 +13,7 @@ namespace BVXK.Domain.Infrastructure
         TResult GetDonHangById<TResult>(int id, Func<DonHang, TResult> selector);
         Task<int> CreateDonHang(DonHang donHang);
         Task<int> DeleteDonHang(int id);
+        public IEnumerable<TResult> GetDonHangByIdVe<TResult>(int id, Func<DonHang, TResult> selector);
         Task<int> UpdateDonHang(DonHang donHang);
     }
 }

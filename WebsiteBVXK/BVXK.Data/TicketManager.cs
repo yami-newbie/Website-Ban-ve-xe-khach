@@ -11,9 +11,11 @@ namespace BVXK.Database
     public class TicketManager : ITicketManager
     {
         private BVXKContext _ctx;
-        public TicketManager(BVXKContext ctx)
+        private IDonHangManager _donhangManager;
+        public TicketManager(BVXKContext ctx, IDonHangManager donhangManager)
         {
             _ctx = ctx;
+            _donhangManager = donhangManager;
         }
         public IEnumerable<TResult> GetTickets<TResult>(Func<VeXe, TResult> selector)
         {
@@ -35,9 +37,21 @@ namespace BVXK.Database
         }
         public Task<int> DeleteTicket(int id)
         {
+            var res = _donhangManager.GetDonHangByIdVe(id, x => x.IdDonHang);
+
+            res.ToList().ForEach(x =>
+            {
+                _donhangManager.DeleteDonHang(x).Wait();
+            });
+
             var veXe = _ctx.VeXes.FirstOrDefault(x => x.IdVe == id);
             _ctx.VeXes.Remove(veXe);
             return _ctx.SaveChangesAsync();
+        }
+
+        public IEnumerable<TResult> GetTicketByIdLichTrinh<TResult>(int id, Func<VeXe, TResult> selector)
+        {
+            return _ctx.VeXes.Where(x => x.IdLichTrinh == id).Select(selector).ToList();
         }
     }
 }

@@ -36,7 +36,7 @@ namespace WebsiteBVXK
             //services.AddRazorPages();
 
             services.AddDbContext<BVXKContext>(options => 
-                options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("WebsiteBVXKContext")));
+                options.UseSqlServer(Configuration.GetConnectionString("WebsiteBVXKContext")));
 
             services.AddApplicationServices();
         }

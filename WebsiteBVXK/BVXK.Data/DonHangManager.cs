@@ -32,6 +32,11 @@ namespace BVXK.Database
             return _ctx.SaveChangesAsync();
         }
 
+        public IEnumerable<TResult> GetDonHangByIdVe<TResult>(int id, Func<DonHang, TResult> selector)
+        {
+            return _ctx.DonHangs.Where(x => x.IdVeXe == id).Select(selector).ToList();
+        }
+
         public TResult GetDonHangById<TResult>(int id, Func<DonHang, TResult> selector)
         {
             return _ctx.DonHangs.Where(x => x.IdDonHang == id).Select(selector).FirstOrDefault();
