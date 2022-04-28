@@ -45,13 +45,13 @@ namespace BVXK.Application.Tickets
             switch (veXe.TinhTrang)
             {
                 case (int?)TinhTrangVe.DaBan:
-                    resLoaiVe = "Đã bán";
+                    resTinhTrang = "Đã bán";
                     break;
                 case (int?)TinhTrangVe.GiuCho:
-                    resLoaiVe = "Giữ chỗ";
+                    resTinhTrang = "Giữ chỗ";
                     break;
                 case (int?)TinhTrangVe.ChuaBan:
-                    resLoaiVe = "Chưa bán";
+                    resTinhTrang = "Chưa bán";
                     break;
             }
             return new Response
@@ -60,8 +60,8 @@ namespace BVXK.Application.Tickets
                 idXe = veXe.IdXe,
                 idLichTrinh = veXe.IdLichTrinh,
                 giaVe = veXe.GiaVe,
-                tinhTrang = veXe.TinhTrang,
-                loaiVe = veXe.LoaiVe,
+                tinhTrang = resTinhTrang,
+                loaiVe = resLoaiVe,
             };
         }
         public class Request
@@ -78,8 +78,8 @@ namespace BVXK.Application.Tickets
             public int idXe { get; set; }
             public int idLichTrinh { get; set; }
             public decimal? giaVe { get; set; }
-            public int? tinhTrang { get; set; }
-            public int? loaiVe { get; set; }
+            public string? tinhTrang { get; set; }
+            public string? loaiVe { get; set; }
         }
     }
 }

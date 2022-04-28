@@ -19,16 +19,16 @@ namespace BVXK.Application.Tickets
         public IEnumerable<TicketViewModel> Do() =>
             _ticketManager.GetTickets(x =>
             {
-                string loaiVe = "", tinhTrang = "";
+                string resLoaiVe = "", resTinhTrang = "";
                 if (x.LoaiVe != null)
                 {
                     switch (x.LoaiVe)
                     {
                         case (int?)LoaiVe.Thuong:
-                            loaiVe = "Thường";
+                            resLoaiVe = "Thường";
                             break;
                         case (int?)LoaiVe.Vip:
-                            loaiVe = "Vip";
+                            resLoaiVe = "Vip";
                             break;
                     }
                 }
@@ -37,13 +37,13 @@ namespace BVXK.Application.Tickets
                     switch (x.TinhTrang)
                     {
                         case (int?)TinhTrangVe.DaBan:
-                            tinhTrang = "Đã bán";
+                            resTinhTrang = "Đã bán";
                             break;
                         case (int?)TinhTrangVe.GiuCho:
-                            tinhTrang = "Giữ chỗ";
+                            resTinhTrang = "Giữ chỗ";
                             break;
                         case (int?)TinhTrangVe.ChuaBan:
-                            tinhTrang = "Chưa bán";
+                            resTinhTrang = "Chưa bán";
                             break;
                     }
                 }
@@ -53,8 +53,8 @@ namespace BVXK.Application.Tickets
                     idVe = x.IdVe,
                     idLichTrinh = x.IdLichTrinh,
                     giaVe = x.GiaVe,
-                    tinhTrang = x.TinhTrang,
-                    loaiVe = x.LoaiVe,
+                    tinhTrang = resTinhTrang,
+                    loaiVe = resLoaiVe
                 };
             });
         public class TicketViewModel
@@ -63,8 +63,8 @@ namespace BVXK.Application.Tickets
             public int idVe { get; set; }
             public int idLichTrinh { get; set; }
             public decimal? giaVe { get; set; }
-            public int? tinhTrang { get; set; }
-            public int? loaiVe { get; set; }
+            public string? tinhTrang { get; set; }
+            public string? loaiVe { get; set; }
         }
     }
 }
