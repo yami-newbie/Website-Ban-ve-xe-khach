@@ -26,7 +26,7 @@
 
 
 
-<div class="table-data">
+<div id = "quan-ly-ve" class="table-data">
 
     <div class="todo">
         <div class="head">
@@ -39,46 +39,72 @@
                 <tr>
                     <td> Mã vé:</td>
                     <td>
-                        <input type="text">
+                        <input type="text" v-model="veViewModel.idVe">
                     </td>
                 </tr>
                 <tr>
 
                     <td>Mã xe:  </td>
                     <td>
-                        <input type="text">
+                        <select type="text" v-model="veViewModel.idXe">
+                            @{
+                                foreach(var xe in Model.Xes)
+                                {
+                                    <option value=@xe.idXe>@xe.idXe</option>
+                                }
+                            }
+                        </select>
+                        
                     </td>
                 </tr>
 
                 <tr>
                     <td> Mã lịch trình:  </td>
                     <td>
-                        <input type="text">
+                        <select type="text" v-model="veViewModel.idLichTrinh">
+                            @{
+                                foreach (var lichTrinh in Model.LichTrinhs)
+                                {
+                                    <option value=@lichTrinh.IdLichTrinh>@lichTrinh.IdLichTrinh</option>
+                                }
+                            }
+                        </select>
                     </td>
-                    </td>
-                </tr>
-                <td> Giá vé: </td>
-                <td>
-                    <input type="text" name="giave">
-                </td>
                 </tr>
                 <tr>
+                    <td> Giá vé: </td>
+                    <td>
+                        <input type="text" name="giave" v-model="veViewModel.giaVe">
+                    </td>
+                </tr>
+                
                 <tr>
                     <td> Tình trạng vé:</td>
                     <td>
-                        <input type="text" name="tinhtrangve">
+                        <select name="tinhtrangve" id="" v-model="veViewModel.tinhTrang">
+                            <option :value=0>Đã bán</option>
+                            <option :value=1>Giữ chỗ</option>
+                            <option :value=2>Chưa bán</option>
+                        </select>
                     </td>
                 </tr>
-
-
+                <tr>
+                    <td> Loại vé:</td>
+                    <td>
+                        <select name="loaive" id="" v-model="veViewModel.loaiVe">
+                            <option :value=0>Thường</option>
+                            <option :value=1>Vip</option>
+                        </select>
+                    </td>
+                </tr>
             </table>
         </ul>
         <table class="table-buttonve">
             <tr>
                 <td>
-                    <button class="buttontsx">Thêm</button>
-                    <button class="buttontsx">Xóa</button>
-                    <button class="buttontsx">Sửa</button>
+                    <button class="buttontsx" @@click="createTicket()">Thêm</button>
+                    <button class="buttontsx" @@click="deleteTicket()">Xóa</button>
+                    <button class="buttontsx" @@click="updateTicket()">Sửa</button>
                     <button class="buttontsx">Thống kê</button>
                 </td>
             </tr>
@@ -97,29 +123,17 @@
                     <th>Mã lịch trình</th>
                     <th>Giá vé</th>
                     <th>Tình trạng vé</th>
+                    <th>Loại vé</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><span class="status pending"> V0001</span></td>
-                    <td>X0001</td>
-                    <td>LT001</td>
-                    <td>200000</td>
-                    <td>Đã đặt</td>
-                </tr>
-                <tr>
-                    <td><span class="status pending"> V0002</span></td>
-                    <td>X0002</td>
-                    <td>LT002</td>
-                    <td>200000</td>
-                    <td>Đã đặt</td>
-                </tr>
-                <tr>
-                    <td><span class="status pending"> V0003</span></td>
-                    <td>X0003</td>
-                    <td>LT003</td>
-                    <td>200000</td>
-                    <td>Đã đặt</td>
+                <tr v-for="(ticket, index) in tickets" @@click="editProduct(ticket.idVe, index)">
+                    <td><span class="status pending"> {{ticket.idVe}}</span></td>
+                    <td>{{ticket.idXe}}</td>
+                    <td>{{ticket.idLichTrinh}}</td>
+                    <td>{{ticket.giaVe}}</td>
+                    <td>{{ticket.tinhTrang}}</td>
+                    <td>{{ticket.loaiVe}}</td>
                 </tr>
             </tbody>
         </table>
@@ -127,3 +141,7 @@
     </div>
 
 </div>
+
+@section scripts{
+    <script src="~/js/tickets.js"></script>
+}

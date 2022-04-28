@@ -27,6 +27,7 @@ namespace WebsiteBVXK
             @this.AddTransient<IThongKeManager, ThongKeManager>();
             @this.AddTransient<IDonHangManager, DonHangManager>();
             @this.AddTransient<IAccountManager, AccountManager>();
+            @this.AddTransient<ITicketManager, TicketManager>();
 
             return @this;
         }
