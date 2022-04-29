@@ -21,43 +21,27 @@ namespace BVXK.Application.UpdateXe
         public async Task<Response> Do(Request request)
         {
             var xe = _xesManager.GetXeById(request.idXe, x => x);
-            
-            xe.LoaiXe = request.loaiXe;
-            xe.TenTaiXe = request.tenTaiXe;
-            xe.SoLuongGhe = request.soLuongGhe;
-            xe.SoDienThoai = request.soDienThoai;
-            
-            await _xesManager.UpdateXe(xe);
 
             string resLoaiXe = "", resSoGhe = "";
-
-            switch (xe.LoaiXe)
+            switch (request.loaiXe)
             {
-                case (int?)LoaiXe.Nam:
-                    resLoaiXe = "Nằm";
+                case (int)LoaiXe.Ngoi:
+                    resLoaiXe = "Thường";
+                    resSoGhe = "40 chỗ";
                     break;
-                case (int?)LoaiXe.Ngoi:
-                    resLoaiXe = "Ngồi";
-                    break;
-            }
-            switch (xe.SoLuongGhe)
-            {
-                case (int?)SoLuongGhe.C4:
-                    resSoGhe = "4 chỗ";
-                    break;
-                case (int?)SoLuongGhe.C7:
-                    resSoGhe = "7 chỗ";
-                    break;
-                case (int?)SoLuongGhe.C16:
-                    resSoGhe = "16 chỗ";
-                    break;
-                case (int?)SoLuongGhe.C20:
-                    resSoGhe = "20 chỗ";
-                    break;
-                case (int?)SoLuongGhe.C32:
+                case (int)LoaiXe.Nam:
+                    resLoaiXe = "Vip";
                     resSoGhe = "32 chỗ";
                     break;
             }
+
+            xe.LoaiXe = request.loaiXe;
+            xe.TenTaiXe = request.tenTaiXe;
+            xe.SoDienThoai = request.soDienThoai;
+
+            await _xesManager.UpdateXe(xe);
+
+            
             return new Response
             {
                 idXe = request.idXe,
@@ -76,7 +60,7 @@ namespace BVXK.Application.UpdateXe
             public string tenTaiXe { get; set; }
             public int loaiXe { get; set; }
             public string soDienThoai { get; set; }
-            public int soLuongGhe { get; set; }
+            public string soLuongGhe { get; set; }
             public string bienSo { get; set; }
         }
 

@@ -139,7 +139,7 @@ GO
 USE [BVXK]
 GO
 
-/****** Object:  Table [dbo].[DonHang]    Script Date: 28/04/2022 6:55:55 CH ******/
+/****** Object:  Table [dbo].[DonHang]    Script Date: 29/04/2022 12:49:23 CH ******/
 SET ANSI_NULLS ON
 GO
 
@@ -156,6 +156,10 @@ CREATE TABLE [dbo].[DonHang](
 	[diemDon] [text] NULL,
 	[diemTra] [text] NULL,
 	[soGhe] [nchar](10) NULL,
+	[email] [text] NULL,
+	[cmnd] [text] NULL,
+	[soLuong] [int] NULL,
+	[ghiChu] [text] NULL,
  CONSTRAINT [PK_DonHang] PRIMARY KEY CLUSTERED 
 (
 	[idDonHang] ASC

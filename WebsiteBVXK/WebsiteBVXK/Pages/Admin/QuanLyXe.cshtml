@@ -51,28 +51,23 @@
                 <tr>
                     <td> Loại xe:  </td>
                     <td>
-                        <select name="loaixe" id="" v-model="xeViewModel.loaiXe">
-                            <option :value=0>Ngồi</option>
-                            <option :value=1>Nằm </option>
+                        <select type="text" v-model="xeViewModel.loaiXe" @@change="onLoaiXeChange(xeViewModel.loaiXe)">
+                            <option value=0>Thường</option>
+                            <option value=1>Vip</option>
                         </select>
                     </td>
                 </tr>
-                <td> Số điện thoại: </td>
-                <td>
-                    <input type="tel" name="sodienthoai" v-model="xeViewModel.soDienThoai">
-                </td>
+                <tr>
+                    <td> Số điện thoại: </td>
+                    <td>
+                        <input type="tel" name="sodienthoai" v-model="xeViewModel.soDienThoai">
+                    </td>
                 </tr>
                 <tr>
                 <tr>
                     <td> Số lượng ghế </td>
                     <td>
-                        <select name="noiden" id="" v-model="xeViewModel.soLuongGhe">
-                            <option :value=0>4 chỗ</option>
-                            <option :value=1>7 chỗ</option>
-                            <option :value=2>16 chỗ</option>
-                            <option :value=3>20 chô</option>
-                            <option :value=4>32 chỗ</option>
-                        </select>
+                        <input type="text" v-model="xeViewModel.soLuongGhe" readonly>
                     </td>
                 </tr>
                 <td> Biển số: </td>

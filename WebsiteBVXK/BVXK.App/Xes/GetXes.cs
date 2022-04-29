@@ -26,33 +26,17 @@ namespace BVXK.Application.GetXes
                 {
                     switch (x.LoaiXe)
                     {
-                        case (int?)LoaiXe.Nam:
-                            loaixe = "Nằm";
-                            break;
                         case (int?)LoaiXe.Ngoi:
-                            loaixe = "Ngồi";
-                            break ;
+                            loaixe = "Thường";
+                            soLuongGhe = "40 chỗ";
+                            break;
+                        case (int?)LoaiXe.Nam:
+                            loaixe = "Vip";
+                            soLuongGhe = "32 chỗ";
+                            break;
                     }
                 }
-                switch(x.SoLuongGhe)
-                {
-                    case (int?)SoLuongGhe.C4:
-                        soLuongGhe = "4 chỗ";
-                        break;
-                    case (int?)SoLuongGhe.C7:
-                        soLuongGhe = "7 chỗ";
-                        break;
-                    case (int?)SoLuongGhe.C16:
-                        soLuongGhe = "16 chỗ";
-                        break;
-                    case (int?)SoLuongGhe.C20:
-                        soLuongGhe = "20 chỗ";
-                        break;
-                    case (int?)SoLuongGhe.C32:
-                        soLuongGhe = "32 chỗ";
-                        break;
-                }
-                
+
                 return new XeViewModel
                 {
                     idXe = x.IdXe,

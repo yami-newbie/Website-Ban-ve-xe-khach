@@ -14,6 +14,10 @@ namespace BVXK.Domain.Models
         public string? DiemDon { get; set; }
         public string? DiemTra { get; set; }
         public string? SoGhe { get; set; }
+        public string? Email { get; set; }
+        public string? Cmnd { get; set; }
+        public int? SoLuong { get; set; }
+        public string? GhiChu { get; set; }
 
         public virtual VeXe IdVeXeNavigation { get; set; } = null!;
     }

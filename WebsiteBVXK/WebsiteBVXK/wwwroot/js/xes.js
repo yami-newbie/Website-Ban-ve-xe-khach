@@ -9,13 +9,21 @@
             tenTaiXe: "Tên tài xế",
             loaiXe: 1,
             soDienThoai: "0123456789",
-            soLuongGhe: 0,
+            soLuongGhe: "",
             bienSo: "123456789"
         },
         xes: []
     },
     mounted() {
         this.getXes();
+        this.xeViewModel = {
+            idXe: 0,
+            tenTaiXe: "Tên tài xế",
+            loaiXe: 1,
+            soDienThoai: "0123456789",
+            soLuongGhe: "",
+            bienSo: "123456789"
+        }
     },
     methods: {
         getXes() {
@@ -109,5 +117,16 @@
             this.getXe(id);
             this.editing = true;
         },
+        onLoaiXeChange(loaixe) {
+            if (this.xeViewModel != null) {
+                if (loaixe == 0) {
+                    this.xeViewModel.soLuongGhe = "40 chỗ";
+                }
+                else {
+                    this.xeViewModel.soLuongGhe = "32 chỗ";
+                }
+            }
+            
+        }
     }
 })
