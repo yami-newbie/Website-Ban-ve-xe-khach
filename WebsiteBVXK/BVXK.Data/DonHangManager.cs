@@ -13,6 +13,7 @@ namespace BVXK.Database
         BVXKContext _ctx;
         private ICtDonHangManager _ctDonHangManager;
         public static List<int> gheDangChon { get; set; }
+        public static string ghe { get; set; }
 
 
         public DonHangManager(BVXKContext ctx, ICtDonHangManager ctDonHangManager)
@@ -23,6 +24,8 @@ namespace BVXK.Database
             {
                 gheDangChon = new List<int>();
             }
+            if (ghe == null)
+                ghe = "";
         }
 
         public Task<int> CreateDonHang(DonHang donHang)
@@ -72,6 +75,14 @@ namespace BVXK.Database
         public List<int> getGheDangChon()
         {
             return gheDangChon;
+        }
+        public string getGhe()
+        {
+            return ghe;
+        }
+        public void setGhe(string ge)
+        {
+            ghe = ge;
         }
     }
 }

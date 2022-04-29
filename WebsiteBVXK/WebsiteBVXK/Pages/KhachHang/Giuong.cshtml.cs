@@ -27,6 +27,7 @@ namespace WebsiteBVXK.Pages.KhachHang
         public List<GheModel> ghes { get; set; }
         [BindProperty]
         public string tang { get; set; }
+        public string ghe { get; set; }
         public GiuongModel(
             ITicketManager ticketManager, 
             ICtDonHangManager ctDonHangManager, 
@@ -143,7 +144,7 @@ namespace WebsiteBVXK.Pages.KhachHang
                 gheDangChon.Add(id);
                 return;
             }
-
+            _donHangManager.setGhe(GetViTri());
         }
 
         public void OnPostSelectTang(int tang)
@@ -155,6 +156,11 @@ namespace WebsiteBVXK.Pages.KhachHang
         {
             public int index { get; set; }
             public int isPick { get; set; }
+        }
+        public IActionResult OnPost()
+        {
+            _donHangManager.setGhe(GetViTri());
+            return RedirectToPage("/KhachHang/ThongTinKhachHang");
         }
     }
 }

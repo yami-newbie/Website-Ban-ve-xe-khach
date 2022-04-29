@@ -16,5 +16,7 @@ namespace BVXK.Domain.Infrastructure
         List<int> getGheDangChon();
         public IEnumerable<TResult> GetDonHangByIdVe<TResult>(int id, Func<DonHang, TResult> selector);
         Task<int> UpdateDonHang(DonHang donHang);
+        string getGhe();
+        void setGhe(string ghe);
     }
 }
