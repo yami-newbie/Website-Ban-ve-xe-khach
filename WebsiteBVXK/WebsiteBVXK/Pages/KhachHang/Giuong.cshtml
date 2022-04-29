@@ -10,9 +10,9 @@
 <div class="list-seats">
 	<div class="vexe-container">
 		<label><b>CHỌN GHẾ:</b></label>
-		<select id="loaighe">
-			<option value="tangduoi">Tầng Dưới</option>
-			<option value="tangtren">Tầng Trên</option>
+		<select id="chon-tang" asp-for="tang">
+			<option>Tầng Dưới</option>
+			<option>Tầng Trên</option>
 		</select>
 	</div>
 
@@ -31,8 +31,53 @@
 		</li>
 	</ul>
 
-	<div class="container">
-		<div class="row">
+	<div  class="container">
+		@{
+			if(Model.ghes != null)
+			{
+				var start = ((Model.tang == "Tầng Dưới" ? 1 : 2) - 1) * Model.ghes.Count / 2;
+				for (int i = 0 + start; i <= start + Model.ghes.Count / 6; i++)
+				{
+					<div class="row">
+						@if(Model.ghes[i * 3].isPick){
+							<form method="post" asp-route-id="@(i * 3)" asp-page-handler="clickGhe">
+								<button value=@(i * 3) class="seat selected"></button>
+							</form>
+						}
+						else{
+							<form method="post" asp-route-id="@(i * 3)" asp-page-handler="clickGhe">
+								<button value=@i class="seat"></button>
+							</form>
+						}
+						@if(Model.ghes[i * 3 + 1].isPick){
+							<form method="post" asp-route-id="@(i * 3 + 1)" asp-page-handler="clickGhe">
+								<button value=@(i * 3 + 1) class="seat selected"></button>
+							</form>
+						}
+						else{
+							<form method="post" asp-route-id="@(i * 3 + 1)" asp-page-handler="clickGhe">
+								<button value=@(i * 3 + 1) class="seat"></button>
+							</form>
+						}
+						@if(i < start + Model.ghes.Count / 6)
+						{
+							@if(Model.ghes[i * 3 + 2].isPick){
+							<form method="post" asp-route-id="@(i * 3 + 2)" asp-page-handler="clickGhe">
+								<button value="@(i * 3 + 2)" class="seat selected"></button>
+							</form>
+							}
+							else{
+							<form method="post" asp-route-id="@(i * 3 + 2)" asp-page-handler="clickGhe">
+								<button value="@(i * 3 + 2)" class="seat"></button>
+							</form>
+							}
+						}
+					</div>
+				}
+			}
+		}
+		
+		@*<div class="row">
 			<div class="seat"></div>
 			<div class="seat"></div>
 		</div>
@@ -55,11 +100,7 @@
 		<div class="row">
 			<div class="seat"></div>
 			<div class="seat"></div>
-		</div>
-		<div class="row">
-			<div class="seat"></div>
-			<div class="seat"></div>
-		</div>
+		</div>*@
 	</div>
 	<p class="text">
 		<ul>
@@ -86,3 +127,10 @@
 </div>
 
 
+<script>
+	var selector = document.getElementById("chon-tang");
+	selector.addEventListener('change', (e) => {
+		console.log(@(Model.tang));
+		console.log(e.target.value);
+	})
+</script>

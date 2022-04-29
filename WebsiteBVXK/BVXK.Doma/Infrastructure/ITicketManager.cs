@@ -15,5 +15,6 @@ namespace BVXK.Domain.Infrastructure
         Task<int> CreateTicket(VeXe vexe);
         public IEnumerable<TResult> GetTicketByIdLichTrinh<TResult>(int id, Func<VeXe, TResult> selector);
         Task<int> DeleteTicket(int id);
+        public VeXe GetTicketResult();
     }
 }
