@@ -25,7 +25,7 @@ namespace WebsiteBVXK.Pages
             
         }
         public async Task<IActionResult> OnPost(
-            [FromServices] SignIn signIn, 
+            [FromServices] SignIn signIn,
             [FromServices] SignUp signUp)
         {
             if(!String.IsNullOrEmpty(Input.Username) && !String.IsNullOrEmpty(Input.Password))

@@ -13,6 +13,8 @@ namespace BVXK.Database
 
 		private BVXKContext _ctx;
 		private ITicketManager _ticketManager;
+		public static List<LichTrinh>? findResult { get; set; }
+
 		public LichTrinhManager(BVXKContext ctx, ITicketManager ticketManager)
 		{
 			_ctx = ctx;
@@ -54,7 +56,8 @@ namespace BVXK.Database
 
 		public IEnumerable<TResult> FindLichTrinh<TResult>(string start, string des, DateTime date, Func<LichTrinh, TResult> selector)
         {
-			return _ctx.LichTrinhs.Where(x => x.NoiXuatPhat == start && x.NoiDen == des && x.NgayDi == date).Select(selector).ToList();
+			findResult = _ctx.LichTrinhs.Where(x => x.NoiXuatPhat == start && x.NoiDen == des && x.NgayDi.Value.Date == date.Date).ToList();
+			return findResult.Select(selector).ToList();
         }
 		public Task<int> UpdateLichTrinh(LichTrinh lichTrinh)
 		{
@@ -67,5 +70,10 @@ namespace BVXK.Database
         {
             return _ctx.LichTrinhs.Where(x => x.IdXe == id).Select(selector).ToList();
 		}
+
+        public List<LichTrinh> GetFindResults()
+        {
+			return findResult;
+        }
     }
 }

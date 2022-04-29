@@ -15,6 +15,7 @@ namespace BVXK.Domain.Infrastructure
         Task<int> UpdateLichTrinh(LichTrinh lichTrinh);
         Task<int> CreateLichTrinh(LichTrinh lichTrinh);
         Task<int> DeleteLichTrinh(int id);
+        List<LichTrinh> GetFindResults();
         public IEnumerable<TResult> GetLichTringByIdXe<TResult>(int id, Func<LichTrinh, TResult> selector);
     }
 }
