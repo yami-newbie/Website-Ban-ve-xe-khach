@@ -50,6 +50,7 @@
 						{
 							@if (i + y >= Model.ghes.Count / 2) continue;
 							var state = Model.ghes[i + y].isPick;
+
 							@if(state == 1){
 								<form method="post" asp-route-id="@(i + y)" asp-page-handler="clickGhe">
 									<button value=@(i + y) class="seat selected">@(i / 3 * 2 + 1)</button>
@@ -88,7 +89,7 @@
 						@for(int y = 0; y < 3; y++)
 						{
 							@if (start + i + y >= Model.ghes.Count) continue;
-							var state = Model.ghes[i + y].isPick;
+							var state = Model.ghes[start + i + y].isPick;
 
 							@if(state == 1){
 								<form method="post" asp-route-id="@(start + i + y)" asp-page-handler="clickGhe">
