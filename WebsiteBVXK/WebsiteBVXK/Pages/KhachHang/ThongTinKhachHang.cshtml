@@ -5,36 +5,36 @@
     ViewData["Tittle"] = "Thông Tin Khách Hàng";
 }
 
-<div class="banner">
+<form method="post" class="banner">
     <div class="noidung">
         <div class="form">
             <h2><b>Thông Tin Khách Hàng</b></h2>
-            <form action="">
+            <div>
                 <div class="input-form">
                     <span>Tên Khách Hàng<sup>*</sup></span>
-                    <input type="text" placeholder="Nhập họ và tên của bạn" required>
+                    <input asp-for="tenkhach" type="text" placeholder="Nhập họ và tên của bạn" required/>
                 </div>
                 <div class="input-form">
                     <span>Số điện thoại<sup>*</sup></span>
-                    <input type="text" placeholder="Nhập số điện thoại của bạn" required>
+                    <input type="text" asp-for="sdt" placeholder="Nhập số điện thoại của bạn" required/>
                 </div>
                 <div class="input-form">
                     <span>Email<sup>*</sup></span>
-                    <input type="text" placeholder="Nhập địa chỉ email của bạn" required>
+                    <input type="text" asp-for="email" placeholder="Nhập địa chỉ email của bạn" required/>
                 </div>
                 <div class="input-form">
                     <span>CMND/CCCD<sup>*</sup></span>
-                    <input type="text" placeholder="Nhập CMND CCCD của bạn" required>
+                    <input type="text" asp-for="cmnd" placeholder="Nhập CMND CCCD của bạn" required/>
                 </div>
-                <div class="input-form">
+                @*<div class="input-form">
                     <span>Số lượng<sup>*</sup></span>
-                    <input type="number" placeholder="" required>
-                </div>
+                    <input type="number" placeholder="" required/>
+                </div>*@
                 <div class="input-form">
                     <span>Ghi chú</span>
-                    <textarea name="ghichu" id="ghichu" cols="45" rows="5"></textarea>
+                    <textarea name="ghichu" asp-for="ghichu" id="ghichu" cols="45" rows="5"></textarea>
                 </div>
-            </form>
+            </div>
             <section>
                 <div class="notes-container">
                     <span class="title">Lưu ý</span> <br>
@@ -47,10 +47,8 @@
         </div>
     </div>
     <div class="content">
-        <button type="checkbox">
-        <a asp-page="/KhachHang/XacNhanThongTin">
+        <button type="submit">
             <span>Tiếp tục</span>
-        </a>
         </button>
     </div>
-</div>
+</form>

@@ -15,11 +15,13 @@ namespace BVXK.Application.CreateDonHang
         private IDonHangManager _donHangManager;
         private ILichTrinhManager _lichTrinhManager;
         private ITicketManager _ticketManager;
-        public CreateDonHang(IDonHangManager donHangManager, ILichTrinhManager lichTrinhManager, ITicketManager ticketManager)
+        private ICtDonHangManager _ctdonHangManager;
+        public CreateDonHang(IDonHangManager donHangManager, ILichTrinhManager lichTrinhManager, ITicketManager ticketManager, ICtDonHangManager ctdonHangManager)
         {
             _donHangManager = donHangManager;
             _lichTrinhManager = lichTrinhManager;
             _ticketManager = ticketManager;
+            _ctdonHangManager = ctdonHangManager;
         }
 
         public async Task<Response> Do(Request request)
@@ -33,11 +35,29 @@ namespace BVXK.Application.CreateDonHang
                 DiemTra = request.DiemTra,
                 TinhTrang = request.TinhTrang == "Chưa thanh toán" ? 0 : 1,
                 ThoiGianDon = DateTime.Parse(request.NgayDon + " " + request.GioDon ),
+                Email = request.Email,
+                Cmnd = request.Cmnd,
+                GhiChu = request.GhiChu,
+                SoLuong = request.SoLuong,
             };
 
             if (await _donHangManager.CreateDonHang(donHang) <= 0)
             {
                 throw new Exception("Failed to create donHang");
+            }
+
+            if (request.SoGhes.Count > 0)
+            {
+                var ghes = request.SoGhes;
+                ghes.ForEach(g =>
+                {
+                    var ct = new CtDonHang
+                    {
+                        IdDonHang = request.IdDonHang,
+                        SoGhe = g,
+                    };
+                    _ctdonHangManager.CreateCtDonHang(ct).Wait();
+                });
             }
 
             var ticket = _ticketManager.GetTicketById(donHang.IdVeXe, x => x);
@@ -76,6 +96,7 @@ namespace BVXK.Application.CreateDonHang
             public string? Cmnd { get; set; }
             public int? SoLuong { get; set; }
             public string? GhiChu { get; set; }
+            public List<int>? SoGhes { get; set; }
         }
 
         public class Response

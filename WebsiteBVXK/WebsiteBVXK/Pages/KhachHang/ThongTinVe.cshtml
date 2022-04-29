@@ -21,6 +21,9 @@
                                 <p class="card-text">Loại Xe: @lichtrinh.LoaiXe</p>
                                 <h5>@lichtrinh.GiaVe.ToString("N2") <sup>đ</sup></h5>
 
+                                <form method="post" asp-page-handler="nah">
+                                    <button name="id" value="123" type="submit">click</button>
+                                </form>
                                 <a asp-page="/KhachHang/Giuong" class="btn btn-primary">Chọn Ghế</a>
 
                                 <a data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false"
@@ -121,7 +124,13 @@
                 }
                 else
                 {
-                    <div>Không tìm thấy vé nào</div>
+                    <li>
+                        <div>Không tìm thấy vé nào</div>
+                        <form method="post" asp-page-handler="nah">
+                            <button name="id" value="123" type="submit">click</button>
+                        </form>
+                        <button><a asp-page="/KhachHang/Giuong" class="btn btn-primary">Chọn Ghế</a></button>
+                    </li>
                 }
             }
         </ul>

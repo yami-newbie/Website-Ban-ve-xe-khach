@@ -41,10 +41,10 @@ namespace WebsiteBVXK.Pages
 
             if(res.Count() > 0)
             {
-                return RedirectToPage("/KhachHang/ThongTinVe");
             }
+            return RedirectToPage("/KhachHang/ThongTinVe");
 
-            return Page();
+            //return Page();
         }
     }
 }
