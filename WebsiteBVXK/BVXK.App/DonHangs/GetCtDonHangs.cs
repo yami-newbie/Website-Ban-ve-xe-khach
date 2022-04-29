@@ -15,12 +15,22 @@ namespace BVXK.Application.GetCtDonHangs
         {
             _ctDonHangManager = ctDonHangManager;
         }
+        public IEnumerable<CtDonHangViewModel> Do() =>
+            _ctDonHangManager.GetCtDonHang(x =>
+            {
+                return new CtDonHangViewModel
+                {
+                    IdCtDonHang = x.IdCtdonHang,
+                    IdDonHang = x.IdDonHang,
+                    SoGhe = x.SoGhe
+                };
+            });
 
         public class CtDonHangViewModel
         {
             public int IdDonHang { get; set; }
             public int IdCtDonHang { get; set; }
-            public string SoGhe { get; set; }
+            public int SoGhe { get; set; }
         }
 
     }

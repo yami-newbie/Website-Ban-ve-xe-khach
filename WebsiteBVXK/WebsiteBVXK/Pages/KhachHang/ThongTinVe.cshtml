@@ -5,7 +5,7 @@
     ViewData["Tittle"] = "Thông Tin Vé Xe";
 }
 
-<div class="row" id ="ket-qua">
+<form method="post" class="row" id ="ket-qua">
     <div class="col-12 col-sm-6 col-md-4 img">
         <ul>
             @{
@@ -21,7 +21,10 @@
                                 <p class="card-text">Loại Xe: @lichtrinh.LoaiXe</p>
                                 <h5>@lichtrinh.GiaVe.ToString("N2") <sup>đ</sup></h5>
 
-                                <a asp-page="/KhachHang/Giuong" class="btn btn-primary">Chọn Ghế</a>
+                                <form class="content" method = "post" asp-page-handler="click" >
+                                    <button name = "id" value = "@lichtrinh.idVe" type="submit">Chọn Ghế</button>
+                                </form>
+                                <a asp-page="/khachhang/giuong" class="btn btn-primary">chọn ghế</a>
 
                                 <a data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false"
                                     aria-controls="collapseExample">
@@ -126,7 +129,7 @@
             }
         </ul>
     </div>
-</div>
+</form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
