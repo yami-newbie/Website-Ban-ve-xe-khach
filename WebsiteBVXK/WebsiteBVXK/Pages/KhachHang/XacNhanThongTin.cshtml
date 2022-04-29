@@ -5,7 +5,7 @@
     ViewData["Tittle"] = "Xác Nhận Thông Tin";
 }
 
-<div class="wrapper">
+<div class="wrapper" id="send-mail">
     <div class="title">
         Xác nhận thông tin đặt vé
     </div>
@@ -40,18 +40,18 @@
         </div>
         <div class="input-field">
             <label>Số ghế</label>
-            <input type="text" class="input">
-        </div>
-        <div class="input-field">
-            <label>Số lượng</label>
-            <input type="text" class="input">
+            <input type="text" class="input" value = @Model.seats>
         </div>
         <div class="input-field">
             <label>Tổng tiền</label>
             <input type="text" class="input">
         </div>
         <div class="input-field">
-            <a asp-page="/KhachHang/ThongTinChuyenKhoan"><input type="submit" value="Xác nhận" class="btn"></a>
+            @*<a asp-page="/KhachHang/ThongTinChuyenKhoan">*@<button type="submit" class="btn" @@click="send()">Confirm</button>
         </div>
     </div>
 </div>
+
+@section scripts{
+    <script src="~/js/sendEmail.js"></script>
+}

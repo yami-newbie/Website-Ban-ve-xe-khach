@@ -11,12 +11,14 @@ namespace WebsiteBVXK.Pages.KhachHang
     public class XacNhanThongTinModel : PageModel
     {
         public Customer customer { get; set; }
+        public int seats { get; set; }
         public ICustomerManager _customerManager;
         public IDonHangManager _donHangManager;
         public XacNhanThongTinModel (ICustomerManager customerManager, IDonHangManager donHangManager)
         {
             _customerManager = customerManager;
             _donHangManager = donHangManager;
+            seats = 0;
             customer = _customerManager.GetResult();
         }
     }
