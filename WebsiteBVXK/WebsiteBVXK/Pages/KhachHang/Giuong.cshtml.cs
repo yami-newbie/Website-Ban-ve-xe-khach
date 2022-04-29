@@ -61,21 +61,21 @@ namespace WebsiteBVXK.Pages.KhachHang
                 ghes.Add(new GheModel
                 {
                     index = i,
-                    isPick = false,
+                    isPick = 0,
                 });
             }
 
             foreach(int index in gheDaDat)
             {
-                ghes[index].isPick = true;
+                ghes[index].isPick = -1;
             }
 
             foreach (int index in gheDangChon)
             {
-                ghes[index].isPick = true;
+                ghes[index].isPick = 1;
             }
-
         }
+
         public string GetViTri()
         {
 
@@ -132,14 +132,14 @@ namespace WebsiteBVXK.Pages.KhachHang
 
             if (res2.Count != 0)
             {
-                ghes[id].isPick = false;
+                ghes[id].isPick = 0;
                 gheDangChon.Remove(id);
                 return;
             }
 
             if(res.Count == 0)
             {
-                ghes[id].isPick = true;
+                ghes[id].isPick = 1;
                 gheDangChon.Add(id);
                 return;
             }
@@ -154,7 +154,7 @@ namespace WebsiteBVXK.Pages.KhachHang
         public class GheModel
         {
             public int index { get; set; }
-            public bool isPick { get; set; }
+            public int isPick { get; set; }
         }
     }
 }
