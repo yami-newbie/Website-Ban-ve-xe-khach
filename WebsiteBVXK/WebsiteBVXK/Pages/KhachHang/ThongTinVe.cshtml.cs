@@ -71,6 +71,7 @@ namespace WebsiteBVXK.Pages
                     GioDi = x.NgayDi.GetValueOrDefault().ToString("hh:mm"),
                     GiaVe = (decimal)ticket.GiaVe,
                     LoaiXe = xe.LoaiXe == (int)LoaiXe.Ngoi ? "Ghế Ngồi" : "Giường Nằm",
+                    idVe = ticket.IdVe,
                     SoGhe = soghe,
                 };
                
@@ -95,6 +96,7 @@ namespace WebsiteBVXK.Pages
                 GioDi = "";
                 GioDen = "";
                 LoaiXe = "";
+                idVe = 0;
                 SoGhe = 0;
                 GiaVe = 0;
             }
@@ -105,6 +107,12 @@ namespace WebsiteBVXK.Pages
             public string LoaiXe { get; set; }
             public decimal GiaVe { get; set; }
             public int SoGhe { get; set; }
+            public int idVe { get; set; }
+        }
+        public IActionResult OnPostClick(int id, [FromServices] GetTicket getTicket)
+        {
+            //var res = getTicket.Do(id);
+            return RedirectToPage("/khachhang/giuong");
         }
     }
 }

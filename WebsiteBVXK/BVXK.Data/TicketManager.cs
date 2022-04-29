@@ -12,6 +12,7 @@ namespace BVXK.Database
     {
         private BVXKContext _ctx;
         private IDonHangManager _donhangManager;
+        public static  List<VeXe> result;
         public TicketManager(BVXKContext ctx, IDonHangManager donhangManager)
         {
             _ctx = ctx;
@@ -33,7 +34,8 @@ namespace BVXK.Database
         }
         public TResult GetTicketById<TResult>(int id, Func<VeXe, TResult> selector)
         {
-            return _ctx.VeXes.Where(x => x.IdVe == id).Select(selector).FirstOrDefault();
+            result = _ctx.VeXes.Where(x => x.IdVe == id).ToList();
+            return result.Select(selector).FirstOrDefault();
         }
         public Task<int> DeleteTicket(int id)
         {
@@ -52,6 +54,10 @@ namespace BVXK.Database
         public IEnumerable<TResult> GetTicketByIdLichTrinh<TResult>(int id, Func<VeXe, TResult> selector)
         {
             return _ctx.VeXes.Where(x => x.IdLichTrinh == id).Select(selector).ToList();
+        }
+        public VeXe GetTicketResult()
+        {
+            return result.FirstOrDefault();
         }
     }
 }
