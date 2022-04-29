@@ -17,20 +17,21 @@ namespace BVXK.Domain.Models
         }
 
         public virtual DbSet<Account> Accounts { get; set; } = null!;
+        public virtual DbSet<CtDonHang> CtDonHangs { get; set; } = null!;
         public virtual DbSet<DonHang> DonHangs { get; set; } = null!;
         public virtual DbSet<LichTrinh> LichTrinhs { get; set; } = null!;
         public virtual DbSet<ThongKe> ThongKes { get; set; } = null!;
         public virtual DbSet<VeXe> VeXes { get; set; } = null!;
         public virtual DbSet<Xe> Xes { get; set; } = null!;
-        //Scaffold-DbContext "Data Source=DESKTOP-R3JFTAQ;Initial Catalog=BVXK;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -f -OutputDir Models
-        //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //        {
-        //            if (!optionsBuilder.IsConfigured)
-        //            {
-        //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        //                optionsBuilder.UseSqlServer("Data Source=DESKTOP-R3JFTAQ;Initial Catalog=BVXK;Integrated Security=True");
-        //            }
-        //        }
+//        Scaffold-DbContext "Data Source=DESKTOP-R3JFTAQ;Initial Catalog=BVXK;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -f -OutputDir Models
+//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//        {
+//            if (!optionsBuilder.IsConfigured)
+//            {
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+//                optionsBuilder.UseSqlServer("Data Source=DESKTOP-R3JFTAQ;Initial Catalog=BVXK;Integrated Security=True");
+//            }
+//        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -70,6 +71,25 @@ namespace BVXK.Domain.Models
                     .HasColumnName("username");
             });
 
+            modelBuilder.Entity<CtDonHang>(entity =>
+            {
+                entity.HasKey(e => e.IdCtdonHang);
+
+                entity.ToTable("CT_DonHang");
+
+                entity.Property(e => e.IdCtdonHang).HasColumnName("idCTDonHang");
+
+                entity.Property(e => e.IdDonHang).HasColumnName("idDonHang");
+
+                entity.Property(e => e.SoGhe).HasColumnName("soGhe");
+
+                entity.HasOne(d => d.IdDonHangNavigation)
+                    .WithMany(p => p.CtDonHangs)
+                    .HasForeignKey(d => d.IdDonHang)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CT_DonHang_DonHang");
+            });
+
             modelBuilder.Entity<DonHang>(entity =>
             {
                 entity.HasKey(e => e.IdDonHang);
@@ -103,11 +123,6 @@ namespace BVXK.Domain.Models
                 entity.Property(e => e.SoDienThoai)
                     .HasMaxLength(10)
                     .HasColumnName("soDienThoai")
-                    .IsFixedLength();
-
-                entity.Property(e => e.SoGhe)
-                    .HasMaxLength(10)
-                    .HasColumnName("soGhe")
                     .IsFixedLength();
 
                 entity.Property(e => e.SoLuong).HasColumnName("soLuong");

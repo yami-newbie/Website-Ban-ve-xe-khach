@@ -13,11 +13,13 @@ namespace BVXK.Application.Tickets
     public class GetTickets
     {
         private ITicketManager _ticketManager;
+        private IXeManager _xeManager;
         private ILichTrinhManager _lichTrinhManager;
-        public GetTickets(ITicketManager ticketManager, ILichTrinhManager lichTrinhManager)
+        public GetTickets(ITicketManager ticketManager, ILichTrinhManager lichTrinhManager, IXeManager xeManager)
         {
             _ticketManager = ticketManager;
             _lichTrinhManager = lichTrinhManager;
+            _xeManager = xeManager;
         }
         public IEnumerable<TicketViewModel> Do()
         {
@@ -28,15 +30,18 @@ namespace BVXK.Application.Tickets
 
         private TicketViewModel getData(VeXe x)
         {
+            var lichtrinh = _lichTrinhManager.GetLichTrinhById(x.IdLichTrinh, y => y);
+            var xe = _xeManager.GetXeById(lichtrinh.IdXe, y => y);
+
             string resLoaiVe = "", resTinhTrang = "";
-            if (x.LoaiVe != null)
+            if (xe.LoaiXe != null)
             {
-                switch (x.LoaiVe)
+                switch (xe.LoaiXe)
                 {
-                    case (int?)LoaiVe.Thuong:
+                    case (int?)LoaiXe.Ngoi:
                         resLoaiVe = "Thường";
                         break;
-                    case (int?)LoaiVe.Vip:
+                    case (int?)LoaiXe.Nam:
                         resLoaiVe = "Vip";
                         break;
                 }
@@ -56,8 +61,6 @@ namespace BVXK.Application.Tickets
                         break;
                 }
             }
-
-            var lichtrinh = x.IdLichTrinhNavigation; //_lichTrinhManager.GetLichTrinhById(x.IdLichTrinh, y => y);
 
             return new TicketViewModel
             {

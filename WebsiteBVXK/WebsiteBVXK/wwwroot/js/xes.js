@@ -5,25 +5,17 @@
         loading: false,
         objectIndex: 0,
         xeViewModel: {
-            idXe: 0,
-            tenTaiXe: "Tên tài xế",
-            loaiXe: 1,
-            soDienThoai: "0123456789",
-            soLuongGhe: "",
-            bienSo: "123456789"
+            idXe: null,
+            tenTaiXe: null,
+            loaiXe: null,
+            soDienThoai: null,
+            soLuongGhe: null,
+            bienSo: null
         },
         xes: []
     },
     mounted() {
         this.getXes();
-        this.xeViewModel = {
-            idXe: 0,
-            tenTaiXe: "Tên tài xế",
-            loaiXe: 1,
-            soDienThoai: "0123456789",
-            soLuongGhe: "",
-            bienSo: "123456789"
-        }
     },
     methods: {
         getXes() {
@@ -126,7 +118,6 @@
                     this.xeViewModel.soLuongGhe = "32 chỗ";
                 }
             }
-            
         }
     }
 })

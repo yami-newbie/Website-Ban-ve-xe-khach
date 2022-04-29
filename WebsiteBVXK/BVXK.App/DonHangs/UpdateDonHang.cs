@@ -27,7 +27,6 @@ namespace BVXK.Application.UpdateDonHang
 
             donHang.IdVeXe = request.IdVeXe;
             donHang.TenKhachHang = request.TenKhachHang;
-            donHang.SoGhe = request.SoGhe;
             donHang.DiemTra = request.DiemTra;
             donHang.DiemDon = request.DiemDon;
             donHang.SoDienThoai = request.SoDienThoai;

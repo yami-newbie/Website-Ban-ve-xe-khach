@@ -43,7 +43,6 @@ namespace BVXK.Application.GetDonHang
                 DiemTra = x.DiemTra,
                 TongTien = ticket.GiaVe,
                 TinhTrang = x.TinhTrang == 0 ? "Chưa thanh toán" : "Đã thanh toán",
-                SoGhe = x.SoGhe,
             };
         }
 
@@ -61,7 +60,6 @@ namespace BVXK.Application.GetDonHang
             public string? DiemTra { get; set; }
             public decimal? TongTien { get; set; }
             public string? TinhTrang { get; set; }
-            public string? SoGhe { get; set; }
         }
     }
 }

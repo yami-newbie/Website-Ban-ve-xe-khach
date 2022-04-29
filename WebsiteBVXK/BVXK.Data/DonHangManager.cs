@@ -11,10 +11,12 @@ namespace BVXK.Database
     public class DonHangManager : IDonHangManager
     {
         BVXKContext _ctx;
+        private ICtDonHangManager _ctDonHangManager;
 
-        public DonHangManager(BVXKContext ctx)
+        public DonHangManager(BVXKContext ctx, ICtDonHangManager ctDonHangManager)
         {
             _ctx = ctx;
+            _ctDonHangManager = ctDonHangManager;
         }
 
         public Task<int> CreateDonHang(DonHang donHang)
@@ -27,6 +29,13 @@ namespace BVXK.Database
         public Task<int> DeleteDonHang(int id)
         {
             var donHang = _ctx.DonHangs.FirstOrDefault(x => x.IdDonHang == id);
+
+            if (donHang == null) return _ctx.SaveChangesAsync();
+
+            var cts = _ctDonHangManager.GetCtDonHangByIdDonHang(id, x => x);
+
+            cts.ToList().ForEach(x => _ctDonHangManager.DeleteCtDonHang(x.IdCtdonHang));
+
             _ctx.DonHangs.Remove(donHang);
 
             return _ctx.SaveChangesAsync();
