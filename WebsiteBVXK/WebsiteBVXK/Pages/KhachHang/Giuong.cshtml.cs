@@ -43,7 +43,7 @@ namespace WebsiteBVXK.Pages.KhachHang
             tang = "Tầng Dưới";
             ghes = new List<GheModel>();
             gheDaDat = new List<int>();
-            gheDangChon = new List<int>();
+            gheDangChon = _donHangManager.getGheDangChon();
 
             selected = _ticketManager.GetTicketResult();
             var idXe = _lichTrinhManager.GetLichTrinhById(selected.IdLichTrinh, x => x.IdXe);
@@ -61,17 +61,66 @@ namespace WebsiteBVXK.Pages.KhachHang
                 ghes.Add(new GheModel
                 {
                     index = i,
-                    isPick = false,
+                    isPick = 0,
                 });
             }
 
             foreach(int index in gheDaDat)
             {
-                ghes[index].isPick = true;
+                ghes[index].isPick = -1;
             }
 
+            foreach (int index in gheDangChon)
+            {
+                ghes[index].isPick = 1;
+            }
         }
 
+        public string GetViTri()
+        {
+
+            if (gheDangChon.Count <= 0)
+                return "";
+
+            string res = "";
+
+            foreach (int i in gheDangChon)
+            {
+                var _i = i;
+                if (i >= soLuongGhe / 2)
+                {
+                    _i -= soLuongGhe / 2;
+                }
+
+                switch (_i % 3)
+                {
+                    case 0:
+                        res += "A";
+                        break;
+                    case 1:
+                        res += "B";
+                        break;
+                    default:
+                        res += "C";
+                        break;
+                }
+
+                var y = _i / 3;
+
+                if (i < soLuongGhe / 2)
+                {
+                    res += (y * 2 + 1).ToString();
+                }
+                else
+                {
+                    res += (y * 2 + 2).ToString();
+                }
+
+                res += ", ";
+            }
+
+            return res.Substring(0, res.Length - 2);
+        }
         public void OnPostClickGhe(int id)
         {
             if (!ghes.Any())
@@ -79,21 +128,22 @@ namespace WebsiteBVXK.Pages.KhachHang
 
             var res = gheDaDat.Where(x => x == id).ToList();
 
+            var res2 = gheDangChon.Where(x => x == id).ToList();
+
+            if (res2.Count != 0)
+            {
+                ghes[id].isPick = 0;
+                gheDangChon.Remove(id);
+                return;
+            }
+
             if(res.Count == 0)
             {
-                ghes[id].isPick = true;
+                ghes[id].isPick = 1;
                 gheDangChon.Add(id);
                 return;
             }
 
-            var res2 = gheDangChon.Where(x => x == id).ToList();
-
-            if (res.Count != 0)
-            {
-                ghes[id].isPick = false;
-                gheDangChon.Remove(id);
-                return;
-            }
         }
 
         public void OnPostSelectTang(int tang)
@@ -104,7 +154,7 @@ namespace WebsiteBVXK.Pages.KhachHang
         public class GheModel
         {
             public int index { get; set; }
-            public bool isPick { get; set; }
+            public int isPick { get; set; }
         }
     }
 }
