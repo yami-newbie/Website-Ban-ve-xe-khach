@@ -27,7 +27,6 @@ namespace BVXK.Application.CreateXe
                 LoaiXe = request.loaiXe,
                 SoDienThoai = request.soDienThoai,
                 BienSo = request.bienSo,
-                SoLuongGhe = request.soLuongGhe,
             };
 
             if (await _xesManager.CreateXe(xe) <= 0)
@@ -65,7 +64,7 @@ namespace BVXK.Application.CreateXe
             public string tenTaiXe { get; set; }
             public int loaiXe { get; set; }
             public string soDienThoai { get; set; }
-            public int soLuongGhe { get; set; }
+            public string soLuongGhe { get; set; }
             public string bienSo { get; set; }
         }
 

@@ -19,6 +19,11 @@ namespace WebsiteBVXK.Pages
         private ITicketManager _ticketManager;
         private IXeManager _xeManager;
 
+        public void OnPostNah([FromServices] GetTickets getTickets, int id)
+        {
+            return;
+        }
+
         public ThongTinVeModel(ILichTrinhManager lichTrinhManager, ITicketManager ticketManager, IXeManager xeManager)
         {
             _lichTrinhManager = lichTrinhManager;
@@ -40,21 +45,12 @@ namespace WebsiteBVXK.Pages
 
                 int soghe = 0;
 
-                switch (xe.SoLuongGhe)
+                switch (xe.LoaiXe)
                 {
-                    case 0:
-                        soghe = 4;
+                    case (int?)LoaiXe.Ngoi:
+                        soghe = 40;
                         break;
-                    case 1:
-                        soghe = 7;
-                        break;
-                    case 2:
-                        soghe = 16;
-                        break;
-                    case 3:
-                        soghe = 20;
-                        break;
-                    case 4:
+                    default:
                         soghe = 32;
                         break;
                 }
@@ -65,7 +61,7 @@ namespace WebsiteBVXK.Pages
                     GioDen = x.NgayDen.GetValueOrDefault().ToString("hh:mm"),
                     GioDi = x.NgayDi.GetValueOrDefault().ToString("hh:mm"),
                     GiaVe = (decimal)ticket.GiaVe,
-                    LoaiXe = xe.LoaiXe == (int)LoaiXe.Ngoi ? "Ghế Ngồi" : "Giường Nằm",
+                    LoaiXe = xe.LoaiXe == (int)LoaiXe.Ngoi ? "Xe Thường" : "Giường Vip",
                     idVe = ticket.IdVe,
                     SoGhe = soghe,
                 };
