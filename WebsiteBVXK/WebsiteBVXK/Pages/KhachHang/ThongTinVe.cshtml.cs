@@ -106,7 +106,7 @@ namespace WebsiteBVXK.Pages
         }
         public IActionResult OnPostClick(int id, [FromServices] GetTicket getTicket)
         {
-            //var res = getTicket.Do(id);
+            var res = getTicket.Do(id);
             return RedirectToPage("/khachhang/giuong");
         }
     }

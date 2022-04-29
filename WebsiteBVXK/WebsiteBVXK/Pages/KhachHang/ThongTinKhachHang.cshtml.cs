@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,5 +9,9 @@ namespace WebsiteBVXK.Pages.KhachHang
 {
     public class ThongTinKhachHangModel : PageModel
     {
+        public IActionResult OnPost()
+        {
+            return RedirectToPage("/KhachHang/XacNhanThongTin");
+        }
     }
 }

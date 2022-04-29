@@ -1,4 +1,4 @@
---create database BVXK
+create database BVXK
 
 USE [BVXK]
 GO
