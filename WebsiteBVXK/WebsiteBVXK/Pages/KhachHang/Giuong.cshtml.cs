@@ -13,7 +13,6 @@ namespace WebsiteBVXK.Pages.KhachHang
     {
         public IEnumerable<GetXes.XeViewModel> Xes { get; set; }
         public IEnumerable<GetDonHangs.DonHangViewModel> DonHangs { get; set; }
-        public IEnumerable<Get> CtDonHang { get; set; }
         public void OnGet([FromServices] GetXes getXes)
         {
             Xes = getXes.Do();
