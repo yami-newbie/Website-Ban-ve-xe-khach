@@ -42,7 +42,7 @@ function sendEmail(_body) {
         Port: 587,
         Username: "nhaxe1545@gmail.com",
         Password: "Nhaxe123456",
-        To: 'hoanganh18346@gmail.com',
+		To: 'khanhtoannguyen12@gmail.com',
         From: "nhaxe1545@gmail.com",
 		Subject: "Test email",
 		Body: _body

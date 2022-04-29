@@ -5,26 +5,26 @@
     ViewData["Tittle"] = "Xác Nhận Thông Tin";
 }
 
-<div class="wrapper">
+<div class="wrapper" id="send-mail">
     <div class="title">
         Xác nhận thông tin đặt vé
     </div>
     <div class="form">
         <div class="input-field">
             <label>Hành khách</label>
-            <input type="text" class="input">
+            <input type="text" class="input" value = @Model.customer.name>
         </div>
         <div class="input-field">
             <label>Số điện thoại</label>
-            <input type="text" class="input">
+            <input type="text" class="input" value = @Model.customer.phone>
         </div>
         <div class="input-field">
             <label>Email</label>
-            <input type="text" class="input">
+            <input type="text" class="input" value = @Model.customer.email>
         </div>
         <div class="input-field">
             <label>CMND/CCCD</label>
-            <input type="text" class="input">
+            <input type="text" class="input" value = @Model.customer.id>
         </div>
         <div class="input-field">
             <label>Chuyến</label>
@@ -40,18 +40,18 @@
         </div>
         <div class="input-field">
             <label>Số ghế</label>
-            <input type="text" class="input">
-        </div>
-        <div class="input-field">
-            <label>Số lượng</label>
-            <input type="text" class="input">
+            <input type="text" class="input" value = @Model.seat>
         </div>
         <div class="input-field">
             <label>Tổng tiền</label>
             <input type="text" class="input">
         </div>
         <div class="input-field">
-            <a asp-page="/KhachHang/ThongTinChuyenKhoan"><input type="submit" value="Xác nhận" class="btn"></a>
+            @*<a asp-page="/KhachHang/ThongTinChuyenKhoan">*@<button type="submit" class="btn" @@click="send()">Confirm</button>
         </div>
     </div>
 </div>
+
+@section scripts{
+    <script src="~/js/sendEmail.js"></script>
+}

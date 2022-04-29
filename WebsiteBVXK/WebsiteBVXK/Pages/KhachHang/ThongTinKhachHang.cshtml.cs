@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using BVXK.Application;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BVXK.Domain.Models;
 
 namespace WebsiteBVXK.Pages.KhachHang
 {
@@ -20,9 +23,11 @@ namespace WebsiteBVXK.Pages.KhachHang
         [BindProperty]
         public string ghichu { get; set; }
          
-        public void OnPost()
+        public IActionResult OnPost([FromServices] CustomerDetail customerDetail)
         {
-            return;
+            Customer customer = new Customer(tenkhach, sdt, email, cmnd);
+            customerDetail.Do(customer);
+            return RedirectToPage("/KhachHang/XacNhanThongTin");
         }
     }
 }
