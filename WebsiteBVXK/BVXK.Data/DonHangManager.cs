@@ -84,5 +84,10 @@ namespace BVXK.Database
         {
             ghe = ge;
         }
+
+        public void setGheDangChon(List<int> list)
+        {
+            gheDangChon = list;
+        }
     }
 }

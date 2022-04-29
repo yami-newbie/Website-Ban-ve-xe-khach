@@ -1,4 +1,4 @@
-﻿@page "{handler?}"
+﻿@page
 @model WebsiteBVXK.Pages.KhachHang.GiuongModel
 @{
 	Layout = "_Layout";
@@ -129,7 +129,7 @@
 				</a>
 			</button>
 		</div>
-		<form class="btn2" method= "post">
+		<form method= "post" asp-route-id="next">
 			<button class="btn2" type="submit">
 				Tiếp tục
 			</button>

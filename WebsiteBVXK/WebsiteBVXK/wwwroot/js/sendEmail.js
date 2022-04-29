@@ -1,4 +1,30 @@
 ﻿
+
+const getDate = () => {
+	const today = new Date();
+	const yyyy = today.getFullYear();
+	let mm = today.getMonth() + 1; // Months start at 0!
+	let dd = today.getDate();
+
+	if (dd < 10) dd = '0' + dd;
+	if (mm < 10) mm = '0' + mm;
+
+	return dd + '/' + mm + '/' + yyyy;
+}
+const getTime = () => {
+	var d = new Date();
+	var hr = d.getHours();
+	var min = d.getMinutes();
+	if (min < 10) {
+		min = "0" + min;
+	}
+	var ampm = "am";
+	if (hr > 12) {
+		hr -= 12;
+		ampm = "pm";
+	}
+	return hr + ":" + min + ampm;
+}
 var app = new Vue({
 	el: "#send-mail",
 	data: {
@@ -23,8 +49,8 @@ var app = new Vue({
 				body(
 					content.name,
 					content.price,
-					content.time,
-					content.date,
+					getDate(),
+					getTime(),
 					content.phoneNumber,
 					content.trip,
 					content.timePickUp,
@@ -36,15 +62,15 @@ var app = new Vue({
     }
 })
 
-function sendEmail(_body) {
+function sendEmail(_body, to, sub) {
     Email.send({
         Host: "smtp.gmail.com",
         Port: 587,
         Username: "nhaxe1545@gmail.com",
         Password: "Nhaxe123456",
-		To: 'khanhtoannguyen12@gmail.com',
+		To: to,
         From: "nhaxe1545@gmail.com",
-		Subject: "Test email",
+		Subject: sub,
 		Body: _body
     }).then(
         message => alert(message)

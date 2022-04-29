@@ -79,6 +79,7 @@ namespace WebsiteBVXK.Pages.KhachHang
 
         public string GetViTri()
         {
+            gheDangChon = _donHangManager.getGheDangChon();
 
             if (gheDangChon.Count <= 0)
                 return "";
@@ -127,6 +128,7 @@ namespace WebsiteBVXK.Pages.KhachHang
             if (!ghes.Any())
                 return;
 
+
             var res = gheDaDat.Where(x => x == id).ToList();
 
             var res2 = gheDangChon.Where(x => x == id).ToList();
@@ -135,6 +137,7 @@ namespace WebsiteBVXK.Pages.KhachHang
             {
                 ghes[id].isPick = 0;
                 gheDangChon.Remove(id);
+                _donHangManager.setGheDangChon(gheDangChon);
                 return;
             }
 
@@ -142,14 +145,9 @@ namespace WebsiteBVXK.Pages.KhachHang
             {
                 ghes[id].isPick = 1;
                 gheDangChon.Add(id);
+                _donHangManager.setGheDangChon(gheDangChon);
                 return;
             }
-            _donHangManager.setGhe(GetViTri());
-        }
-
-        public void OnPostSelectTang(int tang)
-        {
-            return;
         }
 
         public class GheModel
