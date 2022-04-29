@@ -29,7 +29,7 @@ GO
 USE [BVXK]
 GO
 
-/****** Object:  Table [dbo].[Xe]    Script Date: 28/04/2022 6:55:21 CH ******/
+/****** Object:  Table [dbo].[Xe]    Script Date: 29/04/2022 2:22:13 CH ******/
 SET ANSI_NULLS ON
 GO
 
@@ -139,7 +139,7 @@ GO
 USE [BVXK]
 GO
 
-/****** Object:  Table [dbo].[DonHang]    Script Date: 28/04/2022 6:55:55 CH ******/
+/****** Object:  Table [dbo].[DonHang]    Script Date: 29/04/2022 2:22:41 CH ******/
 SET ANSI_NULLS ON
 GO
 
@@ -155,7 +155,10 @@ CREATE TABLE [dbo].[DonHang](
 	[tinhTrang] [int] NULL,
 	[diemDon] [text] NULL,
 	[diemTra] [text] NULL,
-	[soGhe] [nchar](10) NULL,
+	[email] [text] NULL,
+	[cmnd] [text] NULL,
+	[soLuong] [int] NULL,
+	[ghiChu] [text] NULL,
  CONSTRAINT [PK_DonHang] PRIMARY KEY CLUSTERED 
 (
 	[idDonHang] ASC
@@ -168,5 +171,33 @@ REFERENCES [dbo].[VeXe] ([idVe])
 GO
 
 ALTER TABLE [dbo].[DonHang] CHECK CONSTRAINT [FK_DonHang_VeXe]
+GO
+
+USE [BVXK]
+GO
+
+/****** Object:  Table [dbo].[CT_DonHang]    Script Date: 29/04/2022 2:22:50 CH ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[CT_DonHang](
+	[idCTDonHang] [int] IDENTITY(1,1) NOT NULL,
+	[idDonHang] [int] NOT NULL,
+	[soGhe] [int] NOT NULL,
+ CONSTRAINT [PK_CT_DonHang] PRIMARY KEY CLUSTERED 
+(
+	[idCTDonHang] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[CT_DonHang]  WITH CHECK ADD  CONSTRAINT [FK_CT_DonHang_DonHang] FOREIGN KEY([idDonHang])
+REFERENCES [dbo].[DonHang] ([idDonHang])
+GO
+
+ALTER TABLE [dbo].[CT_DonHang] CHECK CONSTRAINT [FK_CT_DonHang_DonHang]
 GO
 

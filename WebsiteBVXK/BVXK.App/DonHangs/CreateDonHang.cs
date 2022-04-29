@@ -31,7 +31,6 @@ namespace BVXK.Application.CreateDonHang
                 SoDienThoai = request.SoDienThoai,
                 DiemDon = request.DiemDon,
                 DiemTra = request.DiemTra,
-                SoGhe = request.SoGhe,
                 TinhTrang = request.TinhTrang == "Chưa thanh toán" ? 0 : 1,
                 ThoiGianDon = DateTime.Parse(request.NgayDon + " " + request.GioDon ),
             };
@@ -55,11 +54,10 @@ namespace BVXK.Application.CreateDonHang
                 SoDienThoai = request.SoDienThoai,
                 DiemDon = lichtrinh.NoiXuatPhat,
                 DiemTra = lichtrinh.NoiDen,
-                TongTien = ticket.GiaVe,
+                TongTien = ticket.GiaVe * request.SoLuong,
                 TinhTrang = request.TinhTrang,
                 NgayDon = request.NgayDon,
                 GioDon = request.GioDon,
-                SoGhe = request.SoGhe,
             };
         }
 
@@ -74,7 +72,10 @@ namespace BVXK.Application.CreateDonHang
             public string? TinhTrang { get; set; }
             public string? DiemDon { get; set; }
             public string? DiemTra { get; set; }
-            public string? SoGhe { get; set; }
+            public string? Email { get; set; }
+            public string? Cmnd { get; set; }
+            public int? SoLuong { get; set; }
+            public string? GhiChu { get; set; }
         }
 
         public class Response
@@ -91,7 +92,6 @@ namespace BVXK.Application.CreateDonHang
             public string? DiemTra { get; set; }
             public decimal? TongTien { get; set; }
             public string? TinhTrang { get; set; }
-            public string? SoGhe { get; set; }
         }
     }
 }

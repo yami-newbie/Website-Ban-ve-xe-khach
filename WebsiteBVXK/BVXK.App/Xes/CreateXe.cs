@@ -39,28 +39,12 @@ namespace BVXK.Application.CreateXe
 
             switch (xe.LoaiXe)
             {
-                case (int?)LoaiXe.Nam:
-                    resLoaiXe = "Nằm";
-                    break;
                 case (int?)LoaiXe.Ngoi:
-                    resLoaiXe = "Ngồi";
+                    resLoaiXe = "Thường";
+                    resSoGhe = "40 chỗ";
                     break;
-            }
-            switch (xe.SoLuongGhe)
-            {
-                case (int?)SoLuongGhe.C4:
-                    resSoGhe = "4 chỗ";
-                    break;
-                case (int?)SoLuongGhe.C7:
-                    resSoGhe = "7 chỗ";
-                    break;
-                case (int?)SoLuongGhe.C16:
-                    resSoGhe = "16 chỗ";
-                    break;
-                case (int?)SoLuongGhe.C20:
-                    resSoGhe = "20 chỗ";
-                    break;
-                case (int?)SoLuongGhe.C32:
+                case (int?)LoaiXe.Nam:
+                    resLoaiXe = "Vip";
                     resSoGhe = "32 chỗ";
                     break;
             }

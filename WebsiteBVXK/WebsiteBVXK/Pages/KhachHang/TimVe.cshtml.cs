@@ -1,5 +1,6 @@
 ﻿using BVXK.Application.FindLichTrinh;
 using BVXK.Application.TinhThanh;
+using BVXK.Domain.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
@@ -13,23 +14,37 @@ namespace WebsiteBVXK.Pages
     public class TimVeModel : PageModel
     {
         public List<string> tinhtp = TinhThanh.tinhs.ToList();
+        private ILichTrinhManager _lichTrinhManager;
 
-        public TimVeModel()
+        public TimVeModel(ILichTrinhManager lichTrinhManager)
         {
-            start = "Hà Nội";
-            des = "Hồ Chí Minh";
-            date = DateTime.Now;
+            _lichTrinhManager = lichTrinhManager;
+            timVe = new TimVe();
+
+            timVe.start = "Hà Nội";
+            timVe.des = "Hồ Chí Minh";
+            timVe.date = DateTime.Now;
+        }
+        [BindProperty]
+        public TimVe timVe { get; set; }
+
+        public class TimVe
+        {
+            public string start { get; set; }
+            public string des { get; set; }
+            public DateTime date { get; set; }
         }
 
-        [BindProperty]
-        public string start { get; set; }
-        [BindProperty]
-        public string des { get; set; }
-        [BindProperty]
-        public DateTime date { get; set; }
-        public void OnPost([FromServices] FindLichTrinh findLichTrinh)
+        public IActionResult OnPost([FromServices] FindLichTrinh findLichTrinh)
         {
-            findLichTrinh.Do(start, des, date);
+            var res = findLichTrinh.Do(timVe.start, timVe.des, timVe.date);
+
+            if(res.Count() > 0)
+            {
+                return RedirectToPage("/KhachHang/ThongTinVe");
+            }
+
+            return Page();
         }
     }
 }

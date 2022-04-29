@@ -13,10 +13,12 @@ namespace BVXK.Application.Tickets
     {
         private ITicketManager _ticketManager;
         private ILichTrinhManager _lichTrinhManager;
-        public UpdateTicket(ITicketManager ticketManager, ILichTrinhManager lichTrinhManager)
+        private IXeManager _xeManager;
+        public UpdateTicket(ITicketManager ticketManager, ILichTrinhManager lichTrinhManager, IXeManager xeManager)
         {
             _ticketManager = ticketManager;
             _lichTrinhManager = lichTrinhManager;
+            _xeManager = xeManager;
         }
         public async Task<Response> Do(Request request)
         {
@@ -25,21 +27,26 @@ namespace BVXK.Application.Tickets
             veXe.IdLichTrinh = request.idLichTrinh;
             veXe.GiaVe = request.giaVe;
             veXe.TinhTrang = request.tinhTrang;
-            veXe.LoaiVe = request.loaiVe;
 
             await _ticketManager.UpdateTicket(veXe);
 
-            string resLoaiVe = "", resTinhTrang = "";
+            var lichtrinh = _lichTrinhManager.GetLichTrinhById(veXe.IdLichTrinh, y => y);
+            var xe = _xeManager.GetXeById(lichtrinh.IdXe, y => y);
 
-            switch (veXe.LoaiVe)
+            string resLoaiVe = "", resTinhTrang = "";
+            if (xe.LoaiXe != null)
             {
-                case (int?)LoaiVe.Thuong:
-                    resLoaiVe = "Thường";
-                    break;
-                case (int?)LoaiVe.Vip:
-                    resLoaiVe = "Vip";
-                    break;
+                switch (xe.LoaiXe)
+                {
+                    case (int?)LoaiXe.Ngoi:
+                        resLoaiVe = "Thường";
+                        break;
+                    case (int?)LoaiXe.Nam:
+                        resLoaiVe = "Vip";
+                        break;
+                }
             }
+
             switch (veXe.TinhTrang)
             {
                 case (int?)TinhTrangVe.DaBan:
@@ -52,8 +59,6 @@ namespace BVXK.Application.Tickets
                     resTinhTrang = "Chưa bán";
                     break;
             }
-
-            var lichtrinh = _lichTrinhManager.GetLichTrinhById(request.idLichTrinh, y => y);
 
             return new Response
             {

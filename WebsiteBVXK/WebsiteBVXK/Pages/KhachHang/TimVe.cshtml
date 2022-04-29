@@ -5,45 +5,45 @@
     ViewData["Tittle"] = "Tìm Vé Xe Khách";
 }
 
-<div class="banner" id = "tim-ve">
+<form method="post" class="banner" id = "tim-ve">
     <div class="noi-dung">
         <div class="form">
             <h2><b>Tìm Kiếm Vé Xe</b></h2>
-            <form action="">
+            <div>
                 <div class="input-form">
                     <span>Chọn Điểm Đi</span>
-                    <select name="thanhthi" id="thanhthi" v-model="findViewModel.start">
+                    <select asp-for="timVe.start">
                         @{
                             for(int tinh = 0; tinh < Model.tinhtp.Count; tinh++)
                             {
-                                <option value=@Model.tinhtp[tinh]>@Model.tinhtp[tinh]</option>
+                                <option>@Model.tinhtp[tinh]</option>
                             }
                         }
                     </select>
                 </div>
                 <div class="input-form">
                     <span>Chọn Điểm Đến</span>
-                    <select name="thanhthi" id="thanhthi" v-model="findViewModel.des">
+                    <select asp-for="timVe.des" >
                         @{
                             for(int tinh = 0; tinh < Model.tinhtp.Count; tinh++)
                             {
-                                <option value=@Model.tinhtp[tinh]>@Model.tinhtp[tinh]</option>
+                                <option>@Model.tinhtp[tinh]</option>
                             }
                         }
                     </select>
                 </div>
                 <div class="input-form">
                     <span>Thời Gian Đi</span>
-                    <input type="date"  v-model="findViewModel.date"/>
+                    <input type="date" asp-for="timVe.date" />
                 </div>
-            </form>
+            </div>
         </div>
     </div>
-    <form class="content" method="post">
-        <button type="button" @@click="findLichTrinh()">Find@*<a asp-page="/KhachHang/ThongTinVe">Tìm kiếm</a>*@</button>
-    </form>
-</div>
+    <div class="content" >
+        <button type="submit">Tim kiem</button>
+    </div>@*<a asp-page="/KhachHang/ThongTinVe">Tìm kiếm</a>*@
+</form>
 
-@section scripts{
+@*@section scripts{
     <script src="~/js/Find.js"></script>
-}
+}*@

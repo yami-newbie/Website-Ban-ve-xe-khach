@@ -57,29 +57,12 @@
                         <td>Mã lịch trình:</td>
                         <td>
                             <input type="text" readonly v-model="donhangModel.idLichTrinh" />
-
-                            @*<select type="text" v-model="donhangModel.idLichTrinh">
-                                @{
-                                    foreach(var lichtrinh in Model.LichTrinhs)
-                                    {
-                                        <option value=@lichtrinh.IdLichTrinh>@lichtrinh.IdLichTrinh</option>
-                                    }
-                                }
-                            </select>*@
                         </td>
                     </tr>
                     <tr>
                         <td>Mã xe:  </td>
                         <td>
                             <input type="text" readonly v-model="donhangModel.idXe" />
-                            @*<select type="text" v-model="donhangModel.idXe">
-                                @{
-                                    foreach(var xe in Model.Xes)
-                                    {
-                                        <option value=@xe.idXe>@xe.idXe</option>
-                                    }
-                                }
-                            </select>*@
                         </td>
                     </tr>
                 </tbody>
@@ -122,27 +105,13 @@
                     <tr>
                         <td> Điểm đón: </td>
                         <td>
-                            <select name="diemdon" id="" v-model="donhangModel.diemDon">
-                                @{
-                                    for(int tinh = 0; tinh < Model.tinhtp.Count; tinh++)
-                                    {
-                                        <option value=@Model.tinhtp[tinh]>@Model.tinhtp[tinh]</option>
-                                    }
-                                }
-                            </select>
+                            <input type="text"  v-model="donhangModel.diemDon" />
                         </td>
                     </tr>
                     <tr>
                         <td> Điểm trả: </td>
                         <td>
-                            <select name="diemtra" id="" v-model="donhangModel.diemTra">
-                                @{
-                                    for(int tinh = 0; tinh < Model.tinhtp.Count; tinh++)
-                                    {
-                                        <option value=@Model.tinhtp[tinh]>@Model.tinhtp[tinh]</option>
-                                    }
-                                }
-                            </select>
+                            <input type="text"  v-model="donhangModel.diemTra" />
                         </td>
                     </tr>
                     <tr>
