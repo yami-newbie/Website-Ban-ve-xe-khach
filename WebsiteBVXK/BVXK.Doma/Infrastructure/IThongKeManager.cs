@@ -12,5 +12,6 @@ namespace BVXK.Domain.Infrastructure
         IEnumerable<TResult> GetThongKes<TResult>(Func<ThongKe, TResult> selector);
         IEnumerable<TResult> GetThongKesBetweenDays<TResult>(DateTime from, DateTime to, Func<ThongKe, TResult> selector);
         Task<int> CreateThongKe(ThongKe thongKe);
+
     }
 }
