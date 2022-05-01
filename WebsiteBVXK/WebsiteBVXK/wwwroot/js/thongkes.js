@@ -8,6 +8,7 @@
             LoaiVe: 0,
             GiaVe: 0,
         },
+        tongDoanhThu: "",
         from: "",
         to: "",
     },
@@ -20,6 +21,8 @@
                 .then(res => {
                     console.log(res);
                     this.thongkes = res.data;
+                    console.log("then")
+                    this.calTongDoanhThu(res.data);
                 })
                 .catch(err => {
                     console.log(err)
@@ -31,11 +34,19 @@
                     .then(res => {
                         console.log(res);
                         this.thongkes = res.data;
+                        console.log("then")
+                        this.calTongDoanhThu(res.data);
                     })
                     .catch(err => {
                         console.log(err)
                     })
             }
+        },
+        calTongDoanhThu(list) {
+            var res = 0;
+            list.map(x => res += x.giaVe);
+            this.tongDoanhThu = res.toString() + " đ";
+            console.log("tong doanh thu:", this.tongDoanhThu);
         }
     }
 })
