@@ -18,7 +18,10 @@
             diemDon: null,
             diemTra: null,
             tongTien: null,
-            tinhTrang: null
+            tinhTrang: null,
+            chuyenDi: null,
+            soGhes: null,
+            email: null,
         }
     },
     mounted() {
@@ -73,6 +76,9 @@
                         diemTra: donhang.diemTra,
                         tongTien: donhang.tongTien,
                         tinhTrang: donhang.tinhTrang,
+                        chuyenDi: donhang.chuyenDi,
+                        soGhes: donhang.soGhes,
+                        email: donhang.email,
                     }
                 })
                 .catch(err => {
@@ -83,6 +89,9 @@
                 });
         },
         deleteDonHang() {
+            if (this.donhangModel.tinhTrang == "Đã thanh toán") {
+                return;
+            }
             this.loading = true;
             axios.delete("/DonHang/" + this.donhangModel.IdDonHang)
                 .then(res => {
@@ -97,6 +106,8 @@
                 });
         },
         updateDonHang() {
+            if (this.donhangModel.idDonHang == null)
+                return;
             this.loading = true;
             axios.put("/DonHang", this.donhangModel)
                 .then(res => {
@@ -125,6 +136,44 @@
                 .catch(err => {
                     console.log(err);
                 })
+        },
+        confirmSend(){
+            sendEmail(
+                body(this.donhangModel.tenKhachHang,
+                    this.donhangModel.tongTien,
+                    getTime(),
+                    getDate(),
+                    this.donhangModel.soDienThoai,
+                    this.donhangModel.chuyenDi,
+                    this.donhangModel.gioDon,
+                    this.donhangModel.ngayDon,
+                    this.donhangModel.diemDon,
+                    this.donhangModel.diemTra,
+                    this.donhangModel.soGhes),
+                this.donhangModel.email,
+                "Xác nhận thanh toán vé xe"
+            );
+        },
+        thanhToanDon() {
+            if (this.donhangModel.tinhTrang == 1 || this.donhangModel.idDonHang == null)
+                return;
+            this.loading = true;
+            axios.put("/DonHang/ThanhToan/" + this.donhangModel.idDonHang)
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data == 1) {
+                        console.log("done");
+                        this.donhangModel.tinhTrang = "Đã thanh toán";
+                        this.confirmSend();
+                        this.getDonHangs();
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+                .then(() => {
+                    this.loading = false;
+                });
         },
         getTickets() {
             this.loading = true;

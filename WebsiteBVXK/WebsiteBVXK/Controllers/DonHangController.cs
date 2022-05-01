@@ -2,6 +2,7 @@
 using BVXK.Application.DeleteDonHang;
 using BVXK.Application.GetDonHang;
 using BVXK.Application.GetDonHangs;
+using BVXK.Application.ThanhToanDonHang;
 using BVXK.Application.UpdateDonHang;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,21 @@ namespace WebsiteBVXK.Controllers
             try
             {
                 return Ok((await updateDonHang.Do(request)));
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
+
+        [HttpPut("ThanhToan/{id}")]
+        public async Task<IActionResult> ThanhToanDonHang(
+            int id,
+            [FromServices] ThanhToanDonHang thanhToanDonHang)
+        {
+            try
+            {
+                return Ok((await thanhToanDonHang.Do(id)));
             }
             catch (Exception err)
             {

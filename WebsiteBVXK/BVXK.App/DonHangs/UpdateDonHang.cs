@@ -73,6 +73,9 @@ namespace BVXK.Application.UpdateDonHang
             public decimal? TongTien { get; set; }
             public string? TinhTrang { get; set; }
             public string? SoGhe { get; set; }
+            public string? Email { get; set; }
+            public string? ChuyenDi { get; set; }
+            public string? SoGhes { get; set; }
         }
 
         public class Response

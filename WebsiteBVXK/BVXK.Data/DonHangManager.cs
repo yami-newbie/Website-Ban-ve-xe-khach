@@ -89,5 +89,10 @@ namespace BVXK.Database
         {
             gheDangChon = list;
         }
+
+        public List<int> GetListGheDuocChonByIdDonHang(int id)
+        {
+            return _ctDonHangManager.GetCtDonHangByIdDonHang(id, x => x.SoGhe).ToList();
+        }
     }
 }

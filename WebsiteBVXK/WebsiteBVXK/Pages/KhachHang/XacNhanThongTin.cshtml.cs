@@ -74,7 +74,7 @@ namespace WebsiteBVXK.Pages.KhachHang
                 TenKhachHang = customer.name,
                 Email = customer.email,
                 SoDienThoai = customer.phone,
-                TinhTrang = "Đã thanh toán",
+                TinhTrang = "Chưa thanh toán",
                 DiemDon = noiDon,
                 DiemTra = noiTra,
                 SoLuong = seats.Count,
@@ -109,7 +109,7 @@ namespace WebsiteBVXK.Pages.KhachHang
         public IActionResult OnPost()
         {
             _donHangManager.CreateDonHang(donHang).Wait();
-            _thongKeManager.CreateThongKe(thongKe).Wait();
+            //_thongKeManager.CreateThongKe(thongKe).Wait();
             if (request.SoGhes.Count > 0)
             {
                 var ghes = request.SoGhes;
