@@ -32,6 +32,7 @@ namespace WebsiteBVXK.Pages.KhachHang
         public IXeManager _xeManager;
         public ILichTrinhManager _lichTrinhManager;
         public IThongKeManager _thongKeManager;
+        public ICtDonHangManager _ctdonHangManager;
 
         public XacNhanThongTinModel(
             ICustomerManager customerManager, 
@@ -39,11 +40,13 @@ namespace WebsiteBVXK.Pages.KhachHang
             ILichTrinhManager lichTrinhManager, 
             IXeManager xeManager,
             ITicketManager ticketManager,
-            IThongKeManager thongKeManager)
+            IThongKeManager thongKeManager,
+            ICtDonHangManager ctDonHangManager)
         {
             _customerManager = customerManager;
             _donHangManager = donHangManager;
             _thongKeManager = thongKeManager;
+            _ctdonHangManager = ctDonHangManager;
             seats = donHangManager.getGheDangChon();
             seat = donHangManager.getGhe();
             customer = _customerManager.GetResult();
@@ -103,10 +106,26 @@ namespace WebsiteBVXK.Pages.KhachHang
             };
         }
 
-        public async Task<IActionResult> OnPost()
+        public IActionResult OnPost()
         {
-            await _donHangManager.CreateDonHang(donHang);
-            await _thongKeManager.CreateThongKe(thongKe);
+            _donHangManager.CreateDonHang(donHang).Wait();
+            _thongKeManager.CreateThongKe(thongKe).Wait();
+            if (request.SoGhes.Count > 0)
+            {
+                var ghes = request.SoGhes;
+                ghes.ForEach(g => 
+                {
+                    var ct = new CtDonHang
+                    {
+                        IdDonHang = donHang.IdDonHang,
+                        SoGhe = g,
+                    };
+                    _ctdonHangManager.CreateCtDonHang(ct).Wait();
+                });
+            }
+
+            _donHangManager.setGheDangChon(null);
+            _donHangManager.setGhe("");
             return RedirectToPage("/KhachHang/ThongTinChuyenKhoan");
         }
     }

@@ -62,7 +62,9 @@
 								</form>
 							} else
 							{
-								<button class="seat sold">@(i / 3 * 2 + 1)</button>
+								<div>
+									<button value=@(i + y) class="seat sold">@(i / 3 * 2 + 1)</button>
+								</div>
 							}
 						}
 					</div>
@@ -102,7 +104,9 @@
 								</form>
 							} else
 							{
-								<button class="seat">@(i / 3 * 2 + 2)</button>
+								<div>
+									<button value=@(start + i + y) class="seat sold">@(i / 3 * 2 + 2)</button>
+								</div>
 							}
 						}
 					</div>
