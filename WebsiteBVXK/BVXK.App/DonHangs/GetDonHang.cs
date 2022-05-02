@@ -46,7 +46,7 @@ namespace BVXK.Application.GetDonHang
                 DiemDon = x.DiemDon,
                 ChuyenDi = lichtrinh.NoiXuatPhat + " - " + lichtrinh.NoiDen,
                 DiemTra = x.DiemTra,
-                TongTien = ticket.GiaVe,
+                TongTien = ticket.GiaVe * x.SoLuong,
                 Email = x.Email,
                 SoGhes = GetViTri(soGhe, _donHangManager.GetListGheDuocChonByIdDonHang(id)),
                 TinhTrang = x.TinhTrang == 0 ? "Chưa thanh toán" : "Đã thanh toán",

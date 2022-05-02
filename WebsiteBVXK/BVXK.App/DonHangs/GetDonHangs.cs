@@ -45,7 +45,7 @@ namespace BVXK.Application.GetDonHangs
                 NgayDon = x.ThoiGianDon.GetValueOrDefault().ToString("yyyy-MM-dd"),
                 DiemDon = x.DiemDon,
                 DiemTra = x.DiemTra,
-                TongTien = ticket.GiaVe,
+                TongTien = ticket.GiaVe * x.SoLuong,
                 TinhTrang = x.TinhTrang == 0 ? "Chưa thanh toán" : "Đã thanh toán",
             };
         }
