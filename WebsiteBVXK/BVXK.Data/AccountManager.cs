@@ -11,9 +11,9 @@ namespace BVXK.Database
     public class AccountManager : IAccountManager
     {
         BVXKContext _ctx;
-
+        private static bool isLogin = false;
         public AccountManager(BVXKContext ctx)
-        {
+        { 
             _ctx = ctx;
         }
 
@@ -35,6 +35,16 @@ namespace BVXK.Database
             _ctx.Accounts.Add(account);
 
             return _ctx.SaveChangesAsync();
+        }
+
+        public bool GetIsLogin()
+        {
+            return isLogin;
+        }
+
+        public void SetIsLogin(bool _isLogin)
+        {
+            isLogin = _isLogin;
         }
     }
 }

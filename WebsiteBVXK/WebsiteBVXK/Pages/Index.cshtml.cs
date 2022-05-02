@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BVXK.Domain.Infrastructure;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -16,17 +17,22 @@ namespace WebsiteBVXK.Pages
 
         private readonly ILogger<IndexModel> _logger;
         private readonly IConfiguration _config;
+        IAccountManager _accountManager;
 
-
-        public IndexModel(ILogger<IndexModel> logger, IConfiguration config)
+        public IndexModel(ILogger<IndexModel> logger, IConfiguration config, IAccountManager accountManager)
         {
             _logger = logger;
             _config = config;
+            _accountManager = accountManager;
         }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
-
+            if (_accountManager.GetIsLogin())
+            {
+                return RedirectToPage("/Admin/TrangQuanLy");
+            }
+            return Page();
         }
 
         public void OnPost()
@@ -38,6 +44,13 @@ namespace WebsiteBVXK.Pages
             SendEmail send = new SendEmail();
 
             send.Send("hoanganh18346@gmail.com", "Hi", "test mail");
+        }
+
+        public void OnGetLogout()
+        {
+            _accountManager.SetIsLogin(false);
+
+            //return RedirectToPage("Index");
         }
     }
 }

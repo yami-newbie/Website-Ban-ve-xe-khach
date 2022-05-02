@@ -1,3 +1,4 @@
+using BVXK.Domain.Infrastructure;
 using BVXK.Domain.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

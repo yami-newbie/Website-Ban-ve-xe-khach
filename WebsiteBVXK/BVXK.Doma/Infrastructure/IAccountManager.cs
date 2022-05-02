@@ -11,7 +11,8 @@ namespace BVXK.Domain.Infrastructure
     {
         Task<int> SignUp(Account account);
         bool SignIn(string username, string password);
-
+        bool GetIsLogin();
+        void SetIsLogin(bool isLogin);
         TResult GetAccountByUsername<TResult>(string username, Func<Account, TResult> selector);
 
     }

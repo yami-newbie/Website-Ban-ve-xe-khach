@@ -5,11 +5,11 @@ VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebsiteBVXK", "WebsiteBVXK\WebsiteBVXK.csproj", "{D432C30C-B827-44EB-AB4E-B2CDDCCE5010}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BVXK.Application", "BVXK.App\BVXK.Application.csproj", "{984B6EB7-1566-42C7-BFCE-D7FE4DADC94E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BVXK.Application", "BVXK.App\BVXK.Application.csproj", "{984B6EB7-1566-42C7-BFCE-D7FE4DADC94E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BVXK.Database", "BVXK.Data\BVXK.Database.csproj", "{7A7535AD-6C31-4989-9BEF-24400C6B5622}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BVXK.Database", "BVXK.Data\BVXK.Database.csproj", "{7A7535AD-6C31-4989-9BEF-24400C6B5622}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BVXK.Domain", "BVXK.Doma\BVXK.Domain.csproj", "{A87C8D30-98D9-4E81-963A-1CFB273712E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BVXK.Domain", "BVXK.Doma\BVXK.Domain.csproj", "{A87C8D30-98D9-4E81-963A-1CFB273712E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

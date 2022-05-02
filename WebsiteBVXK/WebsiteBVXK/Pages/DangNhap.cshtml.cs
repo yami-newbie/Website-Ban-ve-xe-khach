@@ -13,6 +13,12 @@ namespace WebsiteBVXK.Pages
 {
     public class DangNhapModel : PageModel
     {
+        private IAccountManager _accountManager;
+
+        public DangNhapModel(IAccountManager accountManager)
+        {
+            _accountManager = accountManager;
+        }
 
         [BindProperty]
         public LoginViewModel Input { get; set; }
@@ -20,9 +26,13 @@ namespace WebsiteBVXK.Pages
         [BindProperty]
         public bool isError { get; set; }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
-            
+            if (_accountManager.GetIsLogin())
+            {
+                return RedirectToPage("/Admin/TrangQuanLy");
+            }
+            return Page();
         }
         public async Task<IActionResult> OnPost(
             [FromServices] SignIn signIn,
@@ -34,6 +44,7 @@ namespace WebsiteBVXK.Pages
 
                 if (result)
                 {
+                    _accountManager.SetIsLogin(true);
                     return RedirectToPage("/Admin/TrangQuanLy");
                 }
                 else
