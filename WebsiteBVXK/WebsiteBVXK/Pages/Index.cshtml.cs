@@ -35,17 +35,6 @@ namespace WebsiteBVXK.Pages
             return Page();
         }
 
-        public void OnPost()
-        {
-
-            //string username = _config.GetValue<string>("mailTrapUser:Username");
-            //string password = _config.GetValue<string>("mailTrapUser:Password");
-
-            SendEmail send = new SendEmail();
-
-            send.Send("hoanganh18346@gmail.com", "Hi", "test mail");
-        }
-
         public void OnGetLogout()
         {
             _accountManager.SetIsLogin(false);
