@@ -47,7 +47,7 @@
             <input type="text" class="input"@* v-model="mailModel.price"*@ value="@Model.tongtien"/>
         </div>
         <form class="input-field" method="post">
-            @*<a asp-page="/KhachHang/ThongTinChuyenKhoan">*@<button type="submit" class="btn" onclick="confirmSend()" @* @@click="send()"*@>Confirm</button>
+            @*<a asp-page="/KhachHang/ThongTinChuyenKhoan">*@<button type="submit" class="btn" @* @@click="send()"*@>Confirm</button>
         </form>
     </div>
 </div>
@@ -57,23 +57,4 @@
     <script src="~/js/emailTemp.js"></script>
     
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-        const confirmSend = async () => {
-            await sendEmail(
-                body("@(Model.customer.name)",
-                    "@(Model.tongtien)",
-                    getTime(),
-                    getDate(),
-                    "@(Model.customer.phone)",
-                    "@(Model.chuyen)",
-                    "@(Model.gioDi)",
-                    "@(Model.gioDi)",
-                    "@(Model.noiDon)",
-                    "@(Model.noiTra)",
-                    "@(Model.seat)"),
-                "@Model.customer.email",
-                "Xác nhận thanh toán vé xe"
-            );
-        }
-    </script>
 }
