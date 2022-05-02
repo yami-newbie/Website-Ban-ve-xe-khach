@@ -60,9 +60,9 @@
                         <td>
                             <select name="noixuatphat" id="" v-model="lichtrinhModel.NoiXuatPhat">
                                 @{
-                                    for(int tinh = 0; tinh < Model.tinhtp.Count; tinh++)
+                                    for(int tinh = 0; tinh < Model.diemDi.Count; tinh++)
                                     {
-                                        <option value=@Model.tinhtp[tinh]>@Model.tinhtp[tinh]</option>
+                                        <option value=@Model.diemDi[tinh]>@Model.diemDi[tinh]</option>
                                     }
                                 }
                             </select>
@@ -73,9 +73,9 @@
                         <td>
                             <select name="noixuatphat" id="" v-model="lichtrinhModel.NoiDen">
                                 @{
-                                    for(int tinh = 0; tinh < Model.tinhtp.Count; tinh++)
+                                    for(int tinh = 0; tinh < Model.diemDen.Count; tinh++)
                                     {
-                                        <option value=@Model.tinhtp[tinh]> @Model.tinhtp[tinh]</option>
+                                        <option value=@Model.diemDen[tinh]> @Model.diemDen[tinh]</option>
                                     }
                                 }
                             </select>

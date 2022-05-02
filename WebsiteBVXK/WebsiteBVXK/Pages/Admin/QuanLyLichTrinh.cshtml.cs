@@ -11,7 +11,8 @@ namespace WebsiteBVXK.Pages
 {
     public class QuanLyLichTrinhModel : PageModel
     {
-        public List<string> tinhtp = TinhThanh.tinhs.ToList();
+        public List<string> diemDi = TinhThanh.diemDi.ToList();
+        public List<string> diemDen = TinhThanh.diemDen.ToList();
         public IEnumerable<GetXes.XeViewModel> Xes { get; set; }
         public void OnGet([FromServices] GetXes getXes)
         {

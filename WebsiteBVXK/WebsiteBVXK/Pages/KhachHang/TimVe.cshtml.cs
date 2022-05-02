@@ -13,7 +13,8 @@ namespace WebsiteBVXK.Pages
 {
     public class TimVeModel : PageModel
     {
-        public List<string> tinhtp = TinhThanh.tinhs.ToList();
+        public List<string> diemDi = TinhThanh.diemDi.ToList();
+        public List<string> diemDen = TinhThanh.diemDen.ToList();
         private ILichTrinhManager _lichTrinhManager;
 
         public TimVeModel(ILichTrinhManager lichTrinhManager)

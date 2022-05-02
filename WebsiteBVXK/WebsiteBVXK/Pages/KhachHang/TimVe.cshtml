@@ -14,9 +14,9 @@
                     <span>Chọn Điểm Đi</span>
                     <select asp-for="timVe.start">
                         @{
-                            for(int tinh = 0; tinh < Model.tinhtp.Count; tinh++)
+                            for(int tinh = 0; tinh < Model.diemDi.Count; tinh++)
                             {
-                                <option>@Model.tinhtp[tinh]</option>
+                                <option>@Model.diemDi[tinh]</option>
                             }
                         }
                     </select>
@@ -25,9 +25,9 @@
                     <span>Chọn Điểm Đến</span>
                     <select asp-for="timVe.des" >
                         @{
-                            for(int tinh = 0; tinh < Model.tinhtp.Count; tinh++)
+                            for(int tinh = 0; tinh < Model.diemDen.Count; tinh++)
                             {
-                                <option>@Model.tinhtp[tinh]</option>
+                                <option>@Model.diemDen[tinh]</option>
                             }
                         }
                     </select>

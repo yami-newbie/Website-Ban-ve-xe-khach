@@ -13,7 +13,7 @@ namespace WebsiteBVXK.Pages.Admin
 {
     public class QuanLyDonHangModel : PageModel
     {
-        public List<string> tinhtp = TinhThanh.tinhs.ToList();
+        public List<string> tinhtp = TinhThanh.diemDi.ToList();
         public IEnumerable<GetXes.XeViewModel> Xes { get; set; }
         public IEnumerable<GetLichTrinhs.LichTrinhViewModel> LichTrinhs { get; set; }
         public IEnumerable<GetTickets.TicketViewModel> Tickets { get; set; }
