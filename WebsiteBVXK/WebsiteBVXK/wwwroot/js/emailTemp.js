@@ -172,7 +172,6 @@ const body = (name, price, time, date, phoneNumber, trip, timePickUp, datePickUp
 <p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 24px;"><span style="font-size:16px;">Xin chào <strong>${name}</strong>,</span></p>
 <p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 21px;"> </p>
 <p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 24px;"><span style="font-size:16px;">Cảm ơn vì đã thanh toán số tiền <strong><span style="">${price} đồng</span></strong> lúc ${time} ngày ${date} </span></p>
-<p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 24px;"><span style="font-size:16px;"><span style="background-color:transparent;">bởi <strong>STK</strong></span><strong style="font-family:inherit;font-family:inherit;background-color:transparent;"><span style=""> ****7316</span></strong></span></p>
 <p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 24px;"><span style="font-size:16px;">Quý khách đã mua vé thành thành công trên hệ thống của nhà xe Khánh Truyền</span></p>
 <p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 24px;"><span style="font-size:16px;">Dưới đây là thông tin chuyến xe của quý khách</span></p>
 </div>

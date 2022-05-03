@@ -33,7 +33,9 @@ namespace BVXK.Application.Tickets
             {
                 throw new Exception("Failed to create product");
             }
+
             string resLoaiVe = "", resTinhTrang = "";
+
             switch (veXe.LoaiVe)
             {
                 case (int?)LoaiVe.Thuong:
@@ -43,21 +45,18 @@ namespace BVXK.Application.Tickets
                     resLoaiVe = "Vip";
                     break;
             }
+
             switch (veXe.TinhTrang)
             {
                 case (int?)TinhTrangVe.DaBan:
-                    resTinhTrang = "Đã bán";
+                    resTinhTrang = "Còn";
                     break;
                 case (int?)TinhTrangVe.GiuCho:
-                    resTinhTrang = "Giữ chỗ";
-                    break;
-                case (int?)TinhTrangVe.ChuaBan:
-                    resTinhTrang = "Chưa bán";
+                    resTinhTrang = "Đã hết";
                     break;
             }
 
             var lichtrinh = _lichTrinhManager.GetLichTrinhById(veXe.IdLichTrinh, y => y);
-
 
             return new Response
             {

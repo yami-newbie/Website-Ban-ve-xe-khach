@@ -16,12 +16,14 @@ namespace BVXK.Application.CreateDonHang
         private ILichTrinhManager _lichTrinhManager;
         private ITicketManager _ticketManager;
         private ICtDonHangManager _ctdonHangManager;
-        public CreateDonHang(IDonHangManager donHangManager, ILichTrinhManager lichTrinhManager, ITicketManager ticketManager, ICtDonHangManager ctdonHangManager)
+        private IXeManager _xeManager;
+        public CreateDonHang(IDonHangManager donHangManager, ILichTrinhManager lichTrinhManager, ITicketManager ticketManager, ICtDonHangManager ctdonHangManager, IXeManager xeManager)
         {
             _donHangManager = donHangManager;
             _lichTrinhManager = lichTrinhManager;
             _ticketManager = ticketManager;
             _ctdonHangManager = ctdonHangManager;
+            _xeManager = xeManager;
         }
 
         public async Task<Response> Do(Request request)
@@ -63,6 +65,33 @@ namespace BVXK.Application.CreateDonHang
             var ticket = _ticketManager.GetTicketById(donHang.IdVeXe, x => x);
 
             var lichtrinh = _lichTrinhManager.GetLichTrinhById(ticket.IdLichTrinh, y => y);
+
+            var loaixe = _xeManager.GetXeById(lichtrinh.IdXe, x => x.LoaiXe);
+
+            var soghe = 0;
+
+            if(loaixe == (int)LoaiXe.Ngoi)
+            {
+                soghe = 40;
+            }
+            else
+            {
+                soghe = 32;
+            }
+
+            var sovedadat = _ctdonHangManager.GetCtDonHangByIdDonHang(donHang.IdDonHang, x => x );
+
+            if(sovedadat.Count() + request.SoGhes.Count == soghe)
+            {
+                _ticketManager.UpdateTicket(new VeXe
+                {
+                    IdVe = ticket.IdVe,
+                    IdLichTrinh = ticket.IdLichTrinh,
+                    GiaVe = ticket.GiaVe,
+                    TinhTrang = 1,
+                    LoaiVe = ticket.LoaiVe,
+                }).Wait();
+            }
 
             return new Response
             {

@@ -86,7 +86,7 @@
                         </select>
                     </td>
                 </tr>
-                <tr>
+                @*<tr>
                     <td> Loại vé:</td>
                     <td>
                         <select name="loaive"  v-model="veViewModel.loaiVe">
@@ -94,7 +94,7 @@
                             <option value=1>Vip</option>
                         </select>
                     </td>
-                </tr>
+                </tr>*@
             </table>
         </ul>
         <table class="table-buttonve">
@@ -120,7 +120,7 @@
                     <th>Mã lịch trình</th>
                     <th>Giá vé</th>
                     <th>Tình trạng vé</th>
-                    <th>Loại vé</th>
+                    @*<th>Loại vé</th>*@
                 </tr>
             </thead>
             <tbody>
@@ -130,7 +130,7 @@
                     <td>{{ticket.idLichTrinh}}</td>
                     <td>{{ticket.giaVe}}</td>
                     <td>{{ticket.tinhTrang}}</td>
-                    <td>{{ticket.loaiVe}}</td>
+                    @*<td>{{ticket.loaiVe}}</td>*@
                 </tr>
             </tbody>
         </table>

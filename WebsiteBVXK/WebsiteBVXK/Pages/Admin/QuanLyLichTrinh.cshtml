@@ -84,23 +84,23 @@
                     <tr>
                         <td> Ngày đi: </td>
                         <td> 
-                            <input type="date" name="ngaydi" v-model="lichtrinhModel.NgayDi" />
+                            <input type="date" id="ngay-di" name="ngaydi" v-model="lichtrinhModel.NgayDi" />
                         </td>
                     </tr>
                     <tr>
                         <td> Thời gian đi: </td>
-                        <td> <input type="time" name="thoigiandi" v-model="lichtrinhModel.GioDi"/> </td>
+                        <td> <input type="time" id="gio-di" name="thoigiandi" v-model="lichtrinhModel.GioDi"/> </td>
                     </tr>
                     <tr>
                         <td> Ngày đến: </td>
                         <td> 
-                            <input type="date" name="ngayden" v-model="lichtrinhModel.NgayDen" />
+                            <input type="date" id="ngay-den" name="ngayden" v-model="lichtrinhModel.NgayDen" />
                         </td>
                     </tr>
                     <tr>
                         <td>Thời gian đến: </td>
                         <td>
-                            <input type="time" name="thoigianden" v-model="lichtrinhModel.GioDen"/>
+                            <input type="time" id="gio-den" name="thoigianden" v-model="lichtrinhModel.GioDen"/>
                         </td>
                     </tr>
                 </tbody>
@@ -150,6 +150,14 @@
         </table>
     </div>
 </div>
+
+<script>
+    var today = new Date().toISOString().split("T")[0];
+
+    document.getElementById("ngay-di").min = today;
+    document.getElementById("ngay-den").min = today;
+
+</script>
 
 @section scripts{
     <script src="~/js/lichtrinhs.js"></script>

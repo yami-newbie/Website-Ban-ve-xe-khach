@@ -124,6 +124,32 @@ namespace WebsiteBVXK.Pages.KhachHang
                 });
             }
 
+            var ticket = _ticketManager.GetTicketById(donHang.IdVeXe, x => x);
+
+            var lichtrinh = _lichTrinhManager.GetLichTrinhById(ticket.IdLichTrinh, y => y);
+
+            var loaixe = _xeManager.GetXeById(lichtrinh.IdXe, x => x.LoaiXe);
+
+            var soghe = 0;
+
+            if (loaixe == (int)LoaiXe.Ngoi)
+            {
+                soghe = 40;
+            }
+            else
+            {
+                soghe = 32;
+            }
+
+            var sovedadat = _ctdonHangManager.GetCtDonHangByIdDonHang(donHang.IdDonHang, x => x);
+
+            ticket.TinhTrang = 1;
+
+            if (sovedadat.Count() == soghe)
+            {
+                _ticketManager.UpdateTicket(ticket).Wait();
+            }
+
             _donHangManager.setGheDangChon(null);
             _donHangManager.setGhe("");
             return RedirectToPage("/KhachHang/ThongTinChuyenKhoan");

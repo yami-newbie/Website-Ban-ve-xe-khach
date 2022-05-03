@@ -50,13 +50,10 @@ namespace BVXK.Application.Tickets
             switch (veXe.TinhTrang)
             {
                 case (int?)TinhTrangVe.DaBan:
-                    resTinhTrang = "Đã bán";
+                    resTinhTrang = "Còn";
                     break;
                 case (int?)TinhTrangVe.GiuCho:
-                    resTinhTrang = "Giữ chỗ";
-                    break;
-                case (int?)TinhTrangVe.ChuaBan:
-                    resTinhTrang = "Chưa bán";
+                    resTinhTrang = "Đã hết";
                     break;
             }
 
