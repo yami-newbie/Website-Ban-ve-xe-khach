@@ -40,6 +40,7 @@ namespace BVXK.Application.GetThongKes
                     LoaiVe = loaive,
                     GiaVe = (decimal)x.GiaVe,
                     SoLuong = (int)x.SoLuong,
+                    IdDonHang = (int)x.IdDonHang,
                 };
             });
 
@@ -48,7 +49,8 @@ namespace BVXK.Application.GetThongKes
             public int IdVe { get; set; }
             public int SoLuong { get; set; }
             public string? NgayDat { get; set; }
-            public string LoaiVe { get; set;}
+            public int IdDonHang { get; set; }
+            public string LoaiVe { get; set; }
             public decimal GiaVe { get; set; }
         }
     }

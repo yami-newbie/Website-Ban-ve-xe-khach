@@ -91,9 +91,6 @@ var app = new Vue({
                 });
         },
         deleteDonHang() {
-            if (this.donhangModel.tinhTrang == "Đã thanh toán") {
-                return;
-            }
             this.loading = true;
             axios.delete("/DonHang/" + this.donhangModel.idDonHang)
                 .then(res => {

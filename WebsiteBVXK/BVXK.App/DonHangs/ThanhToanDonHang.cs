@@ -47,6 +47,7 @@ namespace BVXK.Application.ThanhToanDonHang
                 LoaiVe = xe.LoaiXe,
                 GiaVe = ticket.GiaVe,
                 SoLuong = donHang.SoLuong,
+                IdDonHang = donHang.IdDonHang,
             };
 
             await _thongKeManager.CreateThongKe(thongKe);

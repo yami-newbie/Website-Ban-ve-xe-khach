@@ -11,5 +11,6 @@ namespace BVXK.Domain.Models
         public int? LoaiVe { get; set; }
         public int? SoLuong { get; set; }
         public decimal? GiaVe { get; set; }
+        public int? IdDonHang { get; set; }
     }
 }

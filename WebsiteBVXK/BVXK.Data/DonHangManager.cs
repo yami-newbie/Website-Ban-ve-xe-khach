@@ -12,20 +12,22 @@ namespace BVXK.Database
     {
         BVXKContext _ctx;
         private ICtDonHangManager _ctDonHangManager;
+        private IThongKeManager _thongKeManager;
         public static List<int> gheDangChon { get; set; }
         public static string ghe { get; set; }
 
 
-        public DonHangManager(BVXKContext ctx, ICtDonHangManager ctDonHangManager)
+        public DonHangManager(BVXKContext ctx, ICtDonHangManager ctDonHangManager, IThongKeManager thongKeManager)
         {
             _ctx = ctx;
             _ctDonHangManager = ctDonHangManager;
-            if(gheDangChon == null)
+            if (gheDangChon == null)
             {
                 gheDangChon = new List<int>();
             }
             if (ghe == null)
                 ghe = "";
+            _thongKeManager = thongKeManager;
         }
 
         public Task<int> CreateDonHang(DonHang donHang)
@@ -37,6 +39,8 @@ namespace BVXK.Database
 
         public Task<int> DeleteDonHang(int id)
         {
+            _thongKeManager.DeleteThongKeByIdDonHang(id);
+
             var donHang = _ctx.DonHangs.FirstOrDefault(x => x.IdDonHang == id);
 
             if (donHang == null) return _ctx.SaveChangesAsync();

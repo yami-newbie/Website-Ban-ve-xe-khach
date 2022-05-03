@@ -1,4 +1,4 @@
-create database BVXK
+--create database BVXK
 
 USE [BVXK]
 GO
@@ -66,6 +66,7 @@ CREATE TABLE [dbo].[ThongKe](
 	[ngayDat] [smalldatetime] NULL,
 	[loaiVe] [int] NULL,
 	[soLuong] [int] NULL,
+	[idDonHang] [int] NULL,
 	[giaVe] [money] NULL,
  CONSTRAINT [PK_ThongKe] PRIMARY KEY CLUSTERED 
 (

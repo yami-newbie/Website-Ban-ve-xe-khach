@@ -24,6 +24,15 @@ namespace BVXK.Database
             return _ctx.SaveChangesAsync();
         }
 
+        public Task<int> DeleteThongKeByIdDonHang(int idDonHang)
+        {
+            var thongke = _ctx.ThongKes.FirstOrDefault(x => x.IdDonHang == idDonHang);
+
+            _ctx.Remove(thongke);
+
+            return _ctx.SaveChangesAsync();
+        }
+
         public IEnumerable<TResult> GetThongKes<TResult>(Func<ThongKe, TResult> selector)
         {
             return _ctx.ThongKes.Select(selector).ToList();

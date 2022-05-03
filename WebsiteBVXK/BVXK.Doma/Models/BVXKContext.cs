@@ -23,7 +23,7 @@ namespace BVXK.Domain.Models
         public virtual DbSet<ThongKe> ThongKes { get; set; } = null!;
         public virtual DbSet<VeXe> VeXes { get; set; } = null!;
         public virtual DbSet<Xe> Xes { get; set; } = null!;
-        //Scaffold-DbContext "Data Source=DESKTOP-R3JFTAQ;Initial Catalog=BVXK;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -f -OutputDir Models
+        // "Data Source=DESKTOP-R3JFTAQ;Initial Catalog=BVXK;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -f -OutputDir Models
         //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //        {
         //            if (!optionsBuilder.IsConfigured)
@@ -197,6 +197,8 @@ namespace BVXK.Domain.Models
                 entity.Property(e => e.GiaVe)
                     .HasColumnType("money")
                     .HasColumnName("giaVe");
+
+                entity.Property(e => e.IdDonHang).HasColumnName("idDonHang");
 
                 entity.Property(e => e.IdVe).HasColumnName("idVe");
 

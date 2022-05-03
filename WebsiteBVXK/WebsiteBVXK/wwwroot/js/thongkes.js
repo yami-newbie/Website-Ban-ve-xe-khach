@@ -13,6 +13,7 @@ var app = new Vue({
             LoaiVe: 0,
             GiaVe: 0,
             SoLuong: 0,
+            IdDonHang: 0,
         },
         tongDoanhThu: "",
         from: "",
