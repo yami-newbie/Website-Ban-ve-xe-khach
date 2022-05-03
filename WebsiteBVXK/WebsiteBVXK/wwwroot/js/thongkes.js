@@ -1,4 +1,8 @@
-﻿var app = new Vue({
+﻿
+
+document.getElementById("den-ngay").max = new Date().toISOString().split("T")[0];
+
+var app = new Vue({
     el: "#thong-ke-doanh-thu",
     data: {
         thongkes: [],

@@ -158,6 +158,8 @@ namespace WebsiteBVXK.Pages.KhachHang
         public IActionResult OnPost()
         {
             _donHangManager.setGhe(GetViTri());
+            if(gheDangChon.Count == 0)
+                return Page();
             return RedirectToPage("/KhachHang/ThongTinKhachHang");
         }
     }

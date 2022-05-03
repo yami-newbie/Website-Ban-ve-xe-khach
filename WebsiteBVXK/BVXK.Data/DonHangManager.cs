@@ -43,7 +43,7 @@ namespace BVXK.Database
 
             var cts = _ctDonHangManager.GetCtDonHangByIdDonHang(id, x => x);
 
-            cts.ToList().ForEach(x => _ctDonHangManager.DeleteCtDonHang(x.IdCtdonHang));
+            cts.ToList().ForEach(x => _ctDonHangManager.DeleteCtDonHang(x.IdCtdonHang).Wait());
 
             _ctx.DonHangs.Remove(donHang);
 

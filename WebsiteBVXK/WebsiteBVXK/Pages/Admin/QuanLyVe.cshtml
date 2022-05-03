@@ -39,7 +39,7 @@
                 <tr>
                     <td> Mã vé:</td>
                     <td>
-                        <input type="text" v-model="veViewModel.idVe"/>
+                        <input readonly type="text" v-model="veViewModel.idVe"/>
                     </td>
                 </tr>
                 <tr>
@@ -81,9 +81,8 @@
                     <td> Tình trạng vé:</td>
                     <td>
                         <select name="tinhtrangve" id="" v-model="veViewModel.tinhTrang">
-                            <option :value=0>Đã bán</option>
-                            <option :value=1>Giữ chỗ</option>
-                            <option :value=2>Chưa bán</option>
+                            <option :value=0>Còn</option>
+                            <option :value=1>Đã hết</option>
                         </select>
                     </td>
                 </tr>
@@ -104,7 +103,6 @@
                     <button class="buttontsx" @@click="createTicket()">Thêm</button>
                     <button class="buttontsx" @@click="deleteTicket()">Xóa</button>
                     <button class="buttontsx" @@click="updateTicket()">Sửa</button>
-                    <button class="buttontsx">Thống kê</button>
                 </td>
             </tr>
         </table>
@@ -112,7 +110,7 @@
 
     <div class="order">
         <div class="head">
-            <h3>Danh sách lịch trình</h3>
+            <h3>Danh sách vé</h3>
         </div>
         <table>
             <thead>

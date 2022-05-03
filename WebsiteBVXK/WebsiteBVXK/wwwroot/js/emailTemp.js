@@ -10,6 +10,7 @@ const getDate = () => {
 
 	return dd + '/' + mm + '/' + yyyy;
 }
+
 const getTime = () => {
 	var d = new Date();
 	var hr = d.getHours();

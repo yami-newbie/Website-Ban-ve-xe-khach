@@ -1,4 +1,6 @@
-﻿var app = new Vue({
+﻿
+
+var app = new Vue({
     el: "#quan-ly-don-hang",
     data: {
         objectIndex: 0,
@@ -93,7 +95,7 @@
                 return;
             }
             this.loading = true;
-            axios.delete("/DonHang/" + this.donhangModel.IdDonHang)
+            axios.delete("/DonHang/" + this.donhangModel.idDonHang)
                 .then(res => {
                     console.log(res.data);
                     this.donhangs.splice(this.objectIndex, 1);

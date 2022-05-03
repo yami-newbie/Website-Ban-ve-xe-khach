@@ -34,7 +34,7 @@
                 </div>
                 <div class="input-form">
                     <span>Thời Gian Đi</span>
-                    <input type="date" asp-for="timVe.date" />
+                    <input id="ngay-di" type="date" asp-for="timVe.date" />
                 </div>
             </div>
         </div>
@@ -44,6 +44,6 @@
     </div>@*<a asp-page="/KhachHang/ThongTinVe">Tìm kiếm</a>*@
 </form>
 
-@*@section scripts{
-    <script src="~/js/Find.js"></script>
-}*@
+<script>
+    document.getElementById("ngay-di").min = new Date().toISOString().split("T")[0];
+</script>
