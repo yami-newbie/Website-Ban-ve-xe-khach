@@ -12,42 +12,42 @@
     <div class="form">
         <div class="input-field">
             <label>Hành khách</label>
-            <input type="text" class="input" @*v-model="mailModel.name"*@ value = "@(Model.customer.name)"/>
+            <input type="text" class="input" readonly value = "@(Model.customer.name)"/>
         </div>
         <div class="input-field">
             <label>Số điện thoại</label>
-            <input type="text" class="input" @*v-model="mailModel.phoneNumber"*@ value = "@(Model.customer.phone)"/>
+            <input type="text" class="input" readonly value = "@(Model.customer.phone)"/>
         </div>
         <div class="input-field">
             <label>Email</label>
-            <input type="text" class="input" @*v-model="mailModel.name"*@ value = "@(Model.customer.email)"/>
+            <input type="text" class="input" readonly value = "@(Model.customer.email)"/>
         </div>
         <div class="input-field">
             <label>CMND/CCCD</label>
-            <input type="text" class="input" @*v-model="mailModel.name"*@ value = "@(Model.customer.id)"/>
+            <input type="text" class="input" readonly value = "@(Model.customer.id)"/>
         </div>
         <div class="input-field">
             <label>Chuyến</label>
-            <input type="text" class="input" @*v-model="mailModel.trip"*@ value="@Model.chuyen"/>
+            <input type="text" class="input" readonly value="@Model.chuyen"/>
         </div>
         <div class="input-field">
             <label>Ngày khởi hành</label>
-            <input type="text" class="input" @*v-model="mailModel.name"*@ value="@Model.ngayDi"/>
+            <input type="text" class="input" readonly value="@Model.ngayDi"/>
         </div>
         <div class="input-field">
             <label>Loại xe</label>
-            <input type="text" class="input" @*v-model="mailModel.name"*@ value="@Model.loaiXe"/>
+            <input type="text" class="input" readonly value="@Model.loaiXe"/>
         </div>
         <div class="input-field">
             <label>Số ghế</label>
-            <input type="text" class="input" @*v-model="mailModel.name"*@ value = "@(Model.seat)"/>
+            <input type="text" class="input" readonly value = "@(Model.seat)"/>
         </div>
         <div class="input-field">
             <label>Tổng tiền</label>
-            <input type="text" class="input"@* v-model="mailModel.price"*@ value="@Model.tongtien"/>
+            <input type="text" class="input"  readonly value="@Model.tongtien"/>
         </div>
         <form class="input-field" method="post">
-            @*<a asp-page="/KhachHang/ThongTinChuyenKhoan">*@<button type="submit" class="btn" @* @@click="send()"*@>Confirm</button>
+            <button type="submit" class="btn">Confirm</button>
         </form>
     </div>
 </div>
