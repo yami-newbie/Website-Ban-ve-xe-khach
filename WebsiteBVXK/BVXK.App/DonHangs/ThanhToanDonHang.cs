@@ -45,7 +45,8 @@ namespace BVXK.Application.ThanhToanDonHang
                 IdVe = donHang.IdVeXe,
                 NgayDat = DateTime.Now,
                 LoaiVe = xe.LoaiXe,
-                GiaVe = ticket.GiaVe * donHang.SoLuong,
+                GiaVe = ticket.GiaVe,
+                SoLuong = donHang.SoLuong,
             };
 
             await _thongKeManager.CreateThongKe(thongKe);

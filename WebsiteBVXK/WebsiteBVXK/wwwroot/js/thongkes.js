@@ -12,6 +12,7 @@ var app = new Vue({
             NgayDat: "",
             LoaiVe: 0,
             GiaVe: 0,
+            SoLuong: 0,
         },
         tongDoanhThu: "",
         from: "",

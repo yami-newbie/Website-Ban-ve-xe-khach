@@ -44,6 +44,7 @@ namespace BVXK.Application.GetThongKeBetween
                     NgayDat = x.NgayDat.GetValueOrDefault().ToString("yyyy-MM-dd"),
                     LoaiVe = loaive,
                     GiaVe = (decimal)x.GiaVe,
+                    SoLuong = (int)x.SoLuong,
                 };
             });
         }
@@ -51,6 +52,7 @@ namespace BVXK.Application.GetThongKeBetween
         public class ThongKeViewModel
         {
             public int IdVe { get; set; }
+            public int SoLuong { get; set; }
             public string? NgayDat { get; set; }
             public string LoaiVe { get; set;}
             public decimal GiaVe { get; set; }

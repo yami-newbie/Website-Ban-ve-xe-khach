@@ -39,12 +39,14 @@ namespace BVXK.Application.GetThongKes
                     NgayDat = x.NgayDat.GetValueOrDefault().ToString("yyyy-MM-dd"),
                     LoaiVe = loaive,
                     GiaVe = (decimal)x.GiaVe,
+                    SoLuong = (int)x.SoLuong,
                 };
             });
 
         public class ThongKeViewModel
         {
             public int IdVe { get; set; }
+            public int SoLuong { get; set; }
             public string? NgayDat { get; set; }
             public string LoaiVe { get; set;}
             public decimal GiaVe { get; set; }

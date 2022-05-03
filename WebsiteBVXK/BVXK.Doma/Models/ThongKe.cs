@@ -9,6 +9,7 @@ namespace BVXK.Domain.Models
         public int? IdVe { get; set; }
         public DateTime? NgayDat { get; set; }
         public int? LoaiVe { get; set; }
+        public int? SoLuong { get; set; }
         public decimal? GiaVe { get; set; }
     }
 }

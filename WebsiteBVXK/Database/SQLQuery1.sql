@@ -65,6 +65,7 @@ CREATE TABLE [dbo].[ThongKe](
 	[idVe] [int] NULL,
 	[ngayDat] [smalldatetime] NULL,
 	[loaiVe] [int] NULL,
+	[soLuong] [int] NULL,
 	[giaVe] [money] NULL,
  CONSTRAINT [PK_ThongKe] PRIMARY KEY CLUSTERED 
 (
@@ -153,8 +154,8 @@ CREATE TABLE [dbo].[DonHang](
 	[soDienThoai] [nchar](10) NULL,
 	[thoiGianDon] [smalldatetime] NULL,
 	[tinhTrang] [int] NULL,
-	[diemDon] [text] NULL,
-	[diemTra] [text] NULL,
+	[diemDon] [nvarchar](50) NULL,
+	[diemTra] [nvarchar](50) NULL,
 	[email] [text] NULL,
 	[cmnd] [text] NULL,
 	[soLuong] [int] NULL,
