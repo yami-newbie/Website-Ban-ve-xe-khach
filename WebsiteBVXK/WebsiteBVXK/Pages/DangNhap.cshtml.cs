@@ -18,6 +18,7 @@ namespace WebsiteBVXK.Pages
         public DangNhapModel(IAccountManager accountManager)
         {
             _accountManager = accountManager;
+            isError = false;
         }
 
         [BindProperty]
@@ -49,6 +50,7 @@ namespace WebsiteBVXK.Pages
                 }
                 else
                 {
+                    isError = true;
                     await signUp.Do(new SignUp.Request
                     {
                         Username = "admin",

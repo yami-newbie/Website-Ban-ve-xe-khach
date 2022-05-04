@@ -28,6 +28,9 @@ namespace BVXK.Database
         {
             var thongke = _ctx.ThongKes.FirstOrDefault(x => x.IdDonHang == idDonHang);
 
+            if(thongke == null)
+                return _ctx.SaveChangesAsync();
+
             _ctx.Remove(thongke);
 
             return _ctx.SaveChangesAsync();

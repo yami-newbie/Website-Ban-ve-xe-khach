@@ -19,11 +19,6 @@ namespace WebsiteBVXK.Pages
         private ITicketManager _ticketManager;
         private IXeManager _xeManager;
 
-        public void OnPostNah([FromServices] GetTickets getTickets, int id)
-        {
-            return;
-        }
-
         public ThongTinVeModel(ILichTrinhManager lichTrinhManager, ITicketManager ticketManager, IXeManager xeManager)
         {
             _lichTrinhManager = lichTrinhManager;

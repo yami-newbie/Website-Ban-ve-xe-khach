@@ -15,6 +15,8 @@ namespace WebsiteBVXK.Pages.KhachHang
     {
         public Customer customer { get; set; }
         public List<int> seats { get; set; }
+        [BindProperty]
+        public bool state { get; set; }
         public string seat { get; set; }
         public int tongtien { get; set; }
         public string loaiXe { get; set; }
@@ -26,6 +28,7 @@ namespace WebsiteBVXK.Pages.KhachHang
         public CreateDonHang.Request request { get; set; }
         public DonHang donHang { get; set; }
         public ThongKe thongKe { get; set; }
+
         public ICustomerManager _customerManager;
         public IDonHangManager _donHangManager;
         public ITicketManager _ticketManager;
@@ -110,9 +113,24 @@ namespace WebsiteBVXK.Pages.KhachHang
         {
             _donHangManager.CreateDonHang(donHang).Wait();
             //_thongKeManager.CreateThongKe(thongKe).Wait();
+
+            
+
+
             if (request.SoGhes.Count > 0)
             {
                 var ghes = request.SoGhes;
+
+                var listdadat = _ctdonHangManager.GetCtDonHangByIdDonHang(donHang.IdDonHang, x => x.SoGhe);
+
+                foreach (var item in ghes)
+                {
+                    if (listdadat.Contains(item))
+                    {
+                        return Page();
+                    }
+                }
+
                 ghes.ForEach(g => 
                 {
                     var ct = new CtDonHang

@@ -39,7 +39,7 @@ namespace BVXK.Database
 
         public Task<int> DeleteDonHang(int id)
         {
-            _thongKeManager.DeleteThongKeByIdDonHang(id);
+            _thongKeManager.DeleteThongKeByIdDonHang(id).Wait();
 
             var donHang = _ctx.DonHangs.FirstOrDefault(x => x.IdDonHang == id);
 

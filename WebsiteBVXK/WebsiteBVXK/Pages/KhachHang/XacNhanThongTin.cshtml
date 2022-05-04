@@ -46,6 +46,14 @@
             <label>Tổng tiền</label>
             <input type="text" class="input"  readonly value="@Model.tongtien"/>
         </div>
+        @{
+            if (Model.state)
+            {
+                <div>
+                    Ghế đã có người đặt!
+                </div>
+            }
+        }
         <form class="input-field" method="post">
             <button type="submit" class="btn">Confirm</button>
         </form>

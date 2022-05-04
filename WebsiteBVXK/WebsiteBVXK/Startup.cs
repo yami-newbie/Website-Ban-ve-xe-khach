@@ -34,6 +34,14 @@ namespace WebsiteBVXK
             {
                 otps.EnableEndpointRouting = false;
             });
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             //services.AddRazorPages();
 
             services.AddDbContext<BVXKContext>(options => 
@@ -59,6 +67,7 @@ namespace WebsiteBVXK
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
+            app.UseSession();
 
             //app.UseEndpoints(endpoints =>
             //{
