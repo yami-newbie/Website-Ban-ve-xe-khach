@@ -1,0 +1,105 @@
+﻿
+.bg {
+    animation: slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #55acee 50%, whitesmoke 50%);
+    bottom: 0;
+    left: -50%;
+    opacity: .5;
+    position: fixed;
+    right: -50%;
+    top: 0;
+    z-index: -1;
+}
+
+.bg2 {
+    animation-direction: alternate-reverse;
+    animation-duration: 4s;
+}
+
+.bg3 {
+    animation-duration: 5s;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(-25%);
+    }
+
+    100% {
+        transform: translateX(25%);
+    }
+}
+
+#content main .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#content main .thongtin {
+    padding: 20px;
+}
+
+    #content main .thongtin h2 {
+        color: black;
+        font-weight: 500;
+        font-size: 2em;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        border-bottom: 4px solid #2552e4;
+        display: inline-block;
+        letter-spacing: 1px;
+        text-align: center;
+    }
+
+    #content main .thongtin .card-body {
+        padding: 20px;
+        border-radius: 5px;
+        color: transparent;
+        list-style-type: none;
+        display: flex;
+        justify-content: space-between;
+        border: 2px solid black;
+        border-radius: 30px;
+        margin-bottom: 30px;
+        width: 650px;
+    }
+
+    #content main .thongtin .card-body, .details h1, .details p, .details h5 {
+        color: darkblue;
+        font-size: 20px;
+    }
+
+        #content main .thongtin .card-body .contentbt button {
+            width: 110px;
+            height: 40px;
+            padding: 1px 0;
+            text-align: center;
+            border-radius: 30px;
+            font-weight: bold;
+            border: 2px solid black;
+            background: transparent;
+            color: darkblue;
+            font-size: 20px;
+            margin-top: 30px;
+        }
+
+            #content main .thongtin .card-body .contentbt button span {
+                height: 100%;
+                width: 0;
+                border-radius: 25px;
+                position: static;
+                left: 0;
+                bottom: 0;
+                z-index: -1;
+                transition: 0.5s;
+            }
+
+            #content main .thongtin .card-body .contentbt button:hover span {
+                width: 100%;
+            }
+
+    #content main .thongtin .card .card-body .contentbt button:hover {
+        border: 2px solid blue;
+    }

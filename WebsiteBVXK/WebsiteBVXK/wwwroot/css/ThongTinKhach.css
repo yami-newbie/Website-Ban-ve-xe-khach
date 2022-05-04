@@ -1,0 +1,153 @@
+﻿
+.bg {
+    animation: slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #55acee 50%, whitesmoke 50%);
+    bottom: 0;
+    left: -50%;
+    opacity: .5;
+    position: fixed;
+    right: -50%;
+    top: 0;
+    z-index: -1;
+} 
+
+.bg2 {
+    animation-direction: alternate-reverse;
+    animation-duration: 4s;
+}
+/*những file nào sửa đây
+    layout,dangnhap,holint,index
+    khachhang
+    khachhang admin
+    :v cai nao cung sua mot ti
+    (;
+*/
+.bg3 {
+    animation-duration: 5s;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(-25%);
+    }
+
+    100% {
+        transform: translateX(25%);
+    }
+}
+
+#content main .noidung {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    text-align: center;
+    margin-left: 300px;
+}
+
+    #content main .noidung .form h2 {
+        color: black;
+        font-weight: 500;
+        font-size: 2em;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        border-bottom: 4px solid #2552e4;
+        display: inline-block;
+        letter-spacing: 1px;
+    }
+
+    #content main .noidung .form .input-form {
+        margin-bottom: 10px;
+    }
+
+        #content main .noidung .form .input-form input {
+            width: 100%;
+            padding: 10px 0px;
+            outline: none;
+            border: 1px solid blue;
+            font-size: 16px;
+            letter-spacing: 1px;
+            color: black;
+            background: transparent;
+            border-radius: 30px;
+        }
+
+        #content main .noidung .form .input-form span {
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: inline-block;
+            color: black;
+            letter-spacing: 1px;
+        }
+
+    #content main .noidung .form .note textarea {
+        width: 100%;
+        padding: 10px 20px;
+        outline: none;
+        border: 1px solid blue;
+        font-size: 16px;
+        letter-spacing: 1px;
+        color: black;
+        background: transparent;
+        border-radius: 30px;
+    }
+
+    #content main .noidung .form .note span {
+        font-size: 16px;
+        margin-bottom: 5px;
+        display: inline-block;
+        color: black;
+        letter-spacing: 1px;
+    }
+
+    #content main .noidung .form .notes-container {
+        border: 4px solid black;
+        background-color: #8ac1e5;
+        color: black;
+        font-weight: bold;
+        font-style: italic;
+        border-radius: 10px;
+        outline: 0px;
+        vertical-align: baseline;
+        font-family: arial, sans-serif;
+        font-size: 15px;
+        line-height: 20px;
+    }
+
+    #content main .noidung .form .btn3 {
+        width: 200px;
+        height: 50px;
+        padding: 1px 0;
+        margin: 2px 1px;
+        text-align: center;
+        border-radius: 30px;
+        font-weight: bold;
+        border: 2px solid black;
+        background: transparent;
+        color: darkblue;
+        font-size: 20px;
+    }
+
+        #content main .noidung .form .btn3 span {
+            height: 100%;
+            width: 0;
+            border-radius: 25px;
+            position: static;
+            left: 0;
+            bottom: 0;
+            z-index: -1;
+            transition: 0.5s;
+        }
+
+        #content main .noidung .form .btn3:hover span {
+            width: 100%;
+        }
+
+        #content main .noidung .form .btn3:hover {
+            border: 2px solid darkblue;
+        }
+
+        #content main .noidung .form .btn3 a {
+            color: darkblue;
+            text-decoration: none;
+        }

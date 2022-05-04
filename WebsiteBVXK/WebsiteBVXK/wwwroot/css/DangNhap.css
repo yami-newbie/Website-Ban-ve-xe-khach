@@ -1,0 +1,118 @@
+﻿
+.bg {
+    animation: slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #55acee 50%, whitesmoke 50%);
+    bottom: 0;
+    left: -50%;
+    opacity: .5;
+    position: fixed;
+    right: -50%;
+    top: 0;
+    z-index: -1;
+}
+
+.bg2 {
+    animation-direction: alternate-reverse;
+    animation-duration: 4s;
+}
+
+.bg3 {
+    animation-duration: 5s;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(-25%);
+    }
+
+    100% {
+        transform: translateX(25%);
+    }
+}
+
+#content main .noi-dung {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+    #content main .noi-dung .form h2 {
+        color: black;
+        font-weight: 500;
+        font-size: 1.5em;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        border-bottom: 4px solid #2552e4;
+        display: inline-block;
+        letter-spacing: 1px;
+    }
+
+    #content main .noi-dung .form .input-form {
+        margin-bottom: 20px;
+    }
+
+        #content main .noi-dung .form .input-form span {
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: inline-block;
+            color: black;
+            letter-spacing: 1px;
+        }
+
+        #content main .noi-dung .form .input-form input {
+            width: 100%;
+            padding: 10px 20px;
+            outline: none;
+            border: 1px solid #2552e4;
+            font-size: 16px;
+            letter-spacing: 1px;
+            color: black;
+            background: transparent;
+            border-radius: 30px;
+        }
+
+    #content main .noi-dung .form .nho-dang-nhap {
+        margin-bottom: 10px;
+        color: black;
+        font-size: 14px;
+    }
+
+    #content main .noi-dung .form .buttondn {
+        width: 200px;
+        height: 50px;
+        padding: 1px 0;
+        margin: 2px 1px;
+        text-align: center;
+        border-radius: 30px;
+        font-weight: bold;
+        border: 2px solid black;
+        background: transparent;
+        color: darkblue;
+        font-size: 20px;
+    }
+
+        #content main .noi-dung .form .buttondn span {
+            height: 100%;
+            width: 0;
+            border-radius: 25px;
+            position: static;
+            left: 0;
+            bottom: 0;
+            z-index: -1;
+            transition: 0.5s;
+        }
+
+        #content main .noi-dung .form .buttondn:hover span {
+            width: 100%;
+        }
+
+        #content main .noi-dung .form .buttondn:hover {
+            border: 2px solid blue;
+        }
+
+        #content main .noi-dung .form .buttondn a {
+            color: darkblue;
+            text-decoration: none;
+        }
