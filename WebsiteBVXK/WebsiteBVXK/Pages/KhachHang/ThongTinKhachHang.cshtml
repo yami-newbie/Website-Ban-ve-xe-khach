@@ -31,25 +31,25 @@
                     <span>CMND/CCCD<sup>*</sup></span>
                     <input type="text" asp-for="cmnd" placeholder="Nhập CMND CCCD của bạn" required/>
                 </div>*@
-                <div class="input-form">
+                <div class="note">
                     <span>Ghi chú</span>
-                    <textarea name="ghichu" asp-for="ghichu" id="ghichu" cols="45" rows="5"></textarea>
+                    <textarea name="ghichu" asp-for="ghichu" id="ghichu" cols="45" rows="4"></textarea>
                 </div>
             </div>
-            <section>
-                <div class="notes-container">
-                    <span class="title">Lưu ý</span> <br>
-                    (*) Quý khách vui lòng mang email có chứa mã vé đến văn phòng để đổi vé lên xe trước giờ xuất bến ít nhất
-                    <span class="high-light">60 phút</span>
-                    để chúng tôi trung chuyển.
-                    <p class="txt">(*) Thông tin hành khách phải chính xác, nếu không sẽ không thể lên xe hoặc hủy/đổi vé.</p>
-                </div>
-            </section>
+            <div class="notes-container">
+                <span class="title">Lưu ý</span> <br>
+                (*) Quý khách vui lòng mang email có chứa mã vé đến văn phòng để đổi vé lên xe trước giờ xuất bến ít nhất
+                <span class="high-light">60 phút</span>
+                để chúng tôi trung chuyển.
+                <p class="txt">(*) Thông tin hành khách phải chính xác, nếu không sẽ không thể lên xe hoặc hủy/đổi vé.</p>
+            </div>
+            <div>
+                <button class="btn3">   
+			        <a asp-page="/KhachHang/XacNhanThongTin">
+                    <span>Tiếp tục</span>
+			        </a>
+                </button>
+            </div>
         </div>
-    </div>
-    <div class="content">
-        <button type="submit">            
-            <span>Tiếp tục</span>
-        </button>
     </div>
 </form>

@@ -11,7 +11,8 @@
 <div class="bg bg2"></div>
 <div class="bg bg3"></div>
 <div method="post" class="row" id ="ket-qua">
-    <div class="col-12 col-sm-6 col-md-4 img">
+    <div class="thongtin">
+        <h2><b>Chọn chuyến xe phù hợp</b></h2>
         <ul>
             @{
                 if (Model.Titles != null && Model.Titles.Count > 0)
@@ -19,108 +20,36 @@
                     foreach(var lichtrinh in Model.Titles)
                     {
                         <li class="card">
-                            <img src="/img/4.jpeg" class="card-img-top">
                             <div class="card-body">
-                                <h1 class="card-title">@lichtrinh.DiemDi<span>&#10230</span>@lichtrinh.DiemDen</h1>
-                                <p class="card-text">@lichtrinh.GioDi<span>&#10230</span>@lichtrinh.GioDen</p>
-                                <p class="card-text">Loại Xe: @lichtrinh.LoaiXe</p>
-                                <h5>@lichtrinh.GiaVe.ToString("N2") <sup>đ</sup></h5>
-
-                                <form class="content" method = "post" asp-page-handler="click" >
-                                    <button name = "id" value = "@lichtrinh.idVe" type="submit">Chọn Ghế</button>
-                                </form>
-
-                                <a data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false"
-                                    aria-controls="collapseExample">
-                                    Thông Tin Chi Tiết
-                                </a>
-                                <div class="collapse" id="collapseExample1">
-                                    <!--Scrollspy-->
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <nav id="myScrollspy">
-                                                <ul class="nav nav-pills flex-column">
-                                                    <li class="nav-item"><a class="nav-link" href="#content-tienich">Tiện Ích</a></li>
-                                                    <li class="nav-item"><a class="nav-link" href="#content-chinhsach">Chính Sách</a></li>
-                                                </ul>
-                                            </nav>
-                                        </div>
-                                        <div class="col-8">
-                                            <div data-spy="scroll" data-target="#myScrollspy" data-offset="10"
-                                                    style="height:200px;overflow-y: scroll;padding:5px; border: 1px solid #ccc;">
-                                                <h5 id="content-tienich">Tiện Ích</h5>
-                                                <h6 style="color: red; font-size: 14px;">An toàn mùa Covid-19</h6>
-                                                <p style="color: black; font-size: 12px;">
-                                                    Là chương trình bảo vệ an toàn cho hành khách sử dụng dịch vụ của Nhà Xe Khánh Truyền trong mùa
-                                                    dịch Covid.
-                                                    Nhà Xe Khánh Truyền đồng hành các nhà xe đối tác triển khai biện pháp bảo vệ an toàn cho hành
-                                                    khách, như sau:
-                                                    (1) Kiểm tra thân nhiệt hành khách trước khi lên xe;
-                                                    (2) Trang bị nước rửa tay;
-                                                    (3) Có đảm bảo khuyến cáo tất cả hành khách đeo khẩu trang khi lên xe;
-                                                    (4) Có thực hiện khử trùng xe;
-                                                    (5) Tài xế và nhân viên đã được tiêm vắc xin
-                                                </p>
-                                                <hr>
-                                                <h6 style="color: red; font-size: 14px;">Xem vị trí xe trực tuyến</h6>
-                                                <p style="color: black; font-size: 12px;">
-                                                    Cho phép hành khách nhìn thấy được lộ trình và thời gian di chuyển của chiếc xe khách mình đã đặt
-                                                    vé.
-                                                </p>
-                                                <hr>
-                                                <h6 style="color: red; font-size: 14px;">Dây đai an toàn</h6>
-                                                <p style="color: black; font-size: 12px;">
-                                                    Trên xe có trang bị dây đai an toàn cho hành khách khi ngồi trên xe
-                                                </p>
-                                                <hr>
-                                                <h6 style="color: red; font-size: 14px;">Khử trùng xe</h6>
-                                                <p style="color: black; font-size: 12px;">
-                                                    Nhà xe có thực hiện phun khử trùng Nano Bạc lên xe nhằm bảo vệ an toàn cho hành khách mùa Covid
-                                                </p>
-                                                <hr>
-                                                <h6 style="color: red; font-size: 14px;">Nước rửa tay</h6>
-                                                <p style="color: black; font-size: 12px;">
-                                                    Nhà xe có trang bị nước rửa tay diệt khuẩn trước khi lên xe và trong xe
-                                                </p>
-                                                <hr>
-                                                <h6 style="color: red; font-size: 14px;">Đo thân nhiệt</h6>
-                                                <p style="color: black; font-size: 12px;">
-                                                    Hành khách sẽ được đo thân nhiệt trước khi lên xe để xác định không nghi nhiễm/ lan truyền vi rút
-                                                    Covid cho hành khách khác.
-                                                </p>
-                                                <hr>
-                                                <h6 style="color: red; font-size: 14px;">Khuyến cáo đeo khẩu trang</h6>
-                                                <p style="color: black; font-size: 12px;">
-                                                    Có đảm bảo khuyến cáo tất cả hành khách đeo khẩu trang khi lên xe
-                                                </p>
-                                                <hr>
-                                                <h6 style="color: red; font-size: 14px;">Nước uống</h6>
-                                                <p style="color: black; font-size: 12px;">
-                                                    Nhà xe có phục vụ nước cho hành khách
-                                                </p>
-                                                <hr>
-                                                <h5 id="content-chinhsach">Chính Sách</h5>
-                                                <h6 style="color: red; font-size: 14px;">An toàn Covid-19</h6>
-                                                <ul style="color: black; font-size: 12px;">
-                                                    <li>
-                                                        Xuất trình Khai báo Y tế trước khi lên xe và tuân thủ quy tắc 5K của Bộ Y tế khi di chuyển
-                                                    </li>
-                                                    <li>Yêu cầu đeo khẩu trang khi lên xe</li>
-                                                    <li>Không đi từ vùng đỏ</li>
-                                                </ul>
-                                                <hr>
-                                                <h6 style="color: red; font-size: 14px;">Yêu cầu khi lên xe</h6>
-                                                <ul style="color: black; font-size: 12px;">
-                                                    <li>Đổi vé giấy trước khi lên xe</li>
-                                                    <li>Không mang đồ ăn, thức ăn có mùi lên xe</li>
-                                                    <li>Không hút thuốc, uống rượu, sử dụng chất kích thích trên xe</li>
-                                                    <li>Không mang các vật dễ cháy nổ lên xe</li>
-                                                    <li>Không vứt rác trên xe</li>
-                                                    <li>Không làm ồn, gây mất trật tự trên xe</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="details">
+                                    <h1 class="card-title">
+                                        <i class='bx bxs-log-in-circle bx-tada' ></i>
+                                        @lichtrinh.DiemDi
+                                        <span>&#10230</span>
+                                        @lichtrinh.DiemDen
+                                    </h1>
+                                    <p class="card-text">
+                                        <i class='bx bxs-time bx-tada' ></i>
+                                        @lichtrinh.GioDi
+                                        <span>&#10230</span>
+                                        @lichtrinh.GioDen
+                                    </p>
+                                    <p class="card-text">
+                                        <i class='bx bxs-bus bx-tada' ></i>
+                                        Loại Xe: @lichtrinh.LoaiXe
+                                    </p>
+                                    <h5>
+                                        <i class='bx bx-money-withdraw bx-tada' ></i>
+                                        Giá vé: @lichtrinh.GiaVe.ToString("N2") 
+                                        <sup>đ</sup>
+                                    </h5>
+                                </div>
+                                <div class="contentbt">
+                                    <form class="contentbt" method = "post" asp-page-handler="click" >
+                                        <button name = "id" value = "@lichtrinh.idVe" type="submit">
+                                            <span>Chọn Ghế</span>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </li>
@@ -130,10 +59,7 @@
                 {
                     <li>
                         <div>Không tìm thấy vé nào</div>
-                        <form method="post" asp-page-handler="nah">
-                            <button name="id" value="123" type="submit">click</button>
-                        </form>
-                        <button><a asp-page="/KhachHang/Giuong" class="btn btn-primary">Chọn Ghế</a></button>
+                        <button><a asp-page="/KhachHang/TimVe" class="btn btn-primary">Quay lại</a></button>
                     </li>
                 }
             }
