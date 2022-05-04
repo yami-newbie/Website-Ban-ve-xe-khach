@@ -38,14 +38,15 @@ namespace WebsiteBVXK
 
             services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.IdleTimeout = TimeSpan.FromMinutes(5);
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
+                options.Cookie.Name = "donhang";
             });
             //services.AddRazorPages();
 
             services.AddDbContext<BVXKContext>(options => 
-                options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("WebsiteBVXKContext")));
+                options.UseSqlServer(Configuration.GetConnectionString("WebsiteBVXKContext")));
 
             services.AddApplicationServices();
         }

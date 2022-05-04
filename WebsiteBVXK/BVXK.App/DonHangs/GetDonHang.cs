@@ -14,11 +14,13 @@ namespace BVXK.Application.GetDonHang
         private IDonHangManager _donHangManager;
         private ILichTrinhManager _lichTrinhManager;
         private ITicketManager _ticketManager;
-        public GetDonHang(IDonHangManager donHangManager, ILichTrinhManager lichTrinhManager, ITicketManager ticketManager)
+        private IXeManager _xeManager;
+        public GetDonHang(IDonHangManager donHangManager, ILichTrinhManager lichTrinhManager, ITicketManager ticketManager, IXeManager xeManager)
         {
             _donHangManager = donHangManager;
             _lichTrinhManager = lichTrinhManager;
             _ticketManager = ticketManager;
+            _xeManager = xeManager;
         }
 
         public DonHangViewModel Do(int id)
@@ -29,7 +31,7 @@ namespace BVXK.Application.GetDonHang
 
             var lichtrinh = _lichTrinhManager.GetLichTrinhById(ticket.IdLichTrinh, y => y);
 
-            var xe = lichtrinh.IdXeNavigation;
+            var xe = _xeManager.GetXeById(lichtrinh.IdXe, _x => _x);
 
             var soGhe = xe.LoaiXe == (int)LoaiXe.Ngoi ? 40 : 32;
 

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using BVXK.Domain.Infrastructure;
 using BVXK.Domain.Models;
 using BVXK.Domain.Enums;
+using WebsiteBVXK.Infrastructure;
 
 namespace WebsiteBVXK.Pages.KhachHang
 {
@@ -20,6 +21,7 @@ namespace WebsiteBVXK.Pages.KhachHang
         private IDonHangManager _donHangManager;
         private ICtDonHangManager _ctDonHangManager;
         private ILichTrinhManager _lichTrinhManager;
+        private ISessionManager _sessionManager;
         public int soLuongGhe { get; set; }
         public List<int> gheDaDat { get; set; }
         public List<int> gheDangChon { get; set; }
@@ -29,24 +31,25 @@ namespace WebsiteBVXK.Pages.KhachHang
         public string tang { get; set; }
         public string ghe { get; set; }
         public GiuongModel(
-            ITicketManager ticketManager, 
-            ICtDonHangManager ctDonHangManager, 
-            IDonHangManager donHangManager, 
-            IXeManager xeManager, 
-            ILichTrinhManager lichTrinhManager)
+            ITicketManager ticketManager,
+            ICtDonHangManager ctDonHangManager,
+            IDonHangManager donHangManager,
+            IXeManager xeManager,
+            ILichTrinhManager lichTrinhManager, ISessionManager sessionManager)
         {
             _ticketManager = ticketManager;
             _ctDonHangManager = ctDonHangManager;
             _donHangManager = donHangManager;
             _xeManager = xeManager;
             _lichTrinhManager = lichTrinhManager;
-            
+            _sessionManager = sessionManager;
+
             tang = "Tầng Dưới";
             ghes = new List<GheModel>();
             gheDaDat = new List<int>();
-            gheDangChon = _donHangManager.getGheDangChon();
+            gheDangChon = _sessionManager.GetGheChon();
 
-            selected = _ticketManager.GetTicketResult();
+            selected = _sessionManager.GetVeResult();
             var idXe = _lichTrinhManager.GetLichTrinhById(selected.IdLichTrinh, x => x.IdXe);
             var loaiXe = (int)_xeManager.GetXeById(idXe, x => x.LoaiXe);
             soLuongGhe = loaiXe == (int)LoaiXe.Ngoi ? 40 : 32;
@@ -57,7 +60,7 @@ namespace WebsiteBVXK.Pages.KhachHang
                 gheDaDat.AddRange(_ctDonHangManager.GetCtDonHangByIdDonHang(donHang, x => x.SoGhe));
             });
 
-            for(int i = 0; i < soLuongGhe; i++)
+            for (int i = 0; i < soLuongGhe; i++)
             {
                 ghes.Add(new GheModel
                 {
@@ -66,20 +69,26 @@ namespace WebsiteBVXK.Pages.KhachHang
                 });
             }
 
-            foreach(int index in gheDaDat)
+            foreach (int index in gheDaDat)
             {
                 ghes[index].isPick = -1;
             }
-
-            foreach (int index in gheDangChon)
+            if(gheDangChon != null)
             {
-                ghes[index].isPick = 1;
+                foreach (int index in gheDangChon)
+                {
+                    ghes[index].isPick = 1;
+                }
             }
+            
         }
 
         public string GetViTri()
         {
-            gheDangChon = _donHangManager.getGheDangChon();
+            gheDangChon = _sessionManager.GetGheChon();
+
+            if(gheDangChon == null)
+                return null;
 
             if (gheDangChon.Count <= 0)
                 return "";
@@ -137,7 +146,8 @@ namespace WebsiteBVXK.Pages.KhachHang
             {
                 ghes[id].isPick = 0;
                 gheDangChon.Remove(id);
-                _donHangManager.setGheDangChon(gheDangChon);
+                _sessionManager.RemoveGheChon(id);
+                //_donHangManager.setGheDangChon(gheDangChon);
                 return;
             }
 
@@ -145,7 +155,8 @@ namespace WebsiteBVXK.Pages.KhachHang
             {
                 ghes[id].isPick = 1;
                 gheDangChon.Add(id);
-                _donHangManager.setGheDangChon(gheDangChon);
+                _sessionManager.AddGheChon(id);
+                //_donHangManager.setGheDangChon(gheDangChon);
                 return;
             }
         }

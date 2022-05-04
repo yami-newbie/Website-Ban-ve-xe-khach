@@ -15,16 +15,17 @@ namespace WebsiteBVXK.Pages
     {
         public List<string> diemDi = TinhThanh.diemDi.ToList();
         public List<string> diemDen = TinhThanh.diemDen.ToList();
+        private ISessionManager _sessionManager;
         private ILichTrinhManager _lichTrinhManager;
-
-        public TimVeModel(ILichTrinhManager lichTrinhManager)
+        public TimVeModel(ISessionManager sessionManager, ILichTrinhManager lichTrinhManager)
         {
-            _lichTrinhManager = lichTrinhManager;
             timVe = new TimVe();
 
             timVe.start = "Hà Nội";
             timVe.des = "Hồ Chí Minh";
             timVe.date = DateTime.Now;
+            _sessionManager = sessionManager;
+            _lichTrinhManager = lichTrinhManager;
         }
         [BindProperty]
         public TimVe timVe { get; set; }
@@ -38,10 +39,11 @@ namespace WebsiteBVXK.Pages
 
         public IActionResult OnPost([FromServices] FindLichTrinh findLichTrinh)
         {
-            var res = findLichTrinh.Do(timVe.start, timVe.des, timVe.date);
+            var res = _lichTrinhManager.FindLichTrinh(timVe.start, timVe.des, timVe.date, x => x); //findLichTrinh.Do(timVe.start, timVe.des, timVe.date);
 
             if(res.Count() > 0)
             {
+                _sessionManager.AddLichResult(res.ToList());
             }
             return RedirectToPage("/KhachHang/ThongTinVe");
 

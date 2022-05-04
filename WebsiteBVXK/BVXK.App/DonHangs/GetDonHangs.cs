@@ -29,9 +29,9 @@ namespace BVXK.Application.GetDonHangs
         }
         private DonHangViewModel getData(DonHang x)
         {
-            var ticket = x.IdVeXeNavigation; //_ticketManager.GetTicketById(x.IdVeXe, x => x);
+            var ticket = _ticketManager.GetTicketById(x.IdVeXe, x => x);
 
-            var lichtrinh = ticket.IdLichTrinhNavigation; //_lichTrinhManager.GetLichTrinhById(ticket.IdLichTrinh, y => y);
+            var lichtrinh = _lichTrinhManager.GetLichTrinhById(ticket.IdLichTrinh, y => y);
 
             return new DonHangViewModel
             {

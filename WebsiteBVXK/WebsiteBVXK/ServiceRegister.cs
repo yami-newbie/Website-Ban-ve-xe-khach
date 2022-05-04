@@ -4,6 +4,7 @@ using BVXK.Domain.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using System.Reflection;
+using WebsiteBVXK.Infrastructure;
 
 namespace WebsiteBVXK
 {
@@ -30,6 +31,7 @@ namespace WebsiteBVXK
             @this.AddTransient<IAccountManager, AccountManager>();
             @this.AddTransient<ITicketManager, TicketManager>();
             @this.AddTransient<ICustomerManager, CustomerManager>();
+            @this.AddTransient<ISessionManager, SessionManager>();
 
             return @this;
         }

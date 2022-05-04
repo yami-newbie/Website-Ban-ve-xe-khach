@@ -44,7 +44,7 @@ namespace BVXK.Database
         public IEnumerable<TResult> GetThongKesBetweenDays<TResult>(DateTime from, DateTime to, Func<ThongKe, TResult> selector)
         {
             return _ctx.ThongKes.Where(
-                x => x.NgayDat > from && x.NgayDat < to)
+                x => x.NgayDat.Value.Date >= from.Date && x.NgayDat.Value.Date <= to.Date)
                 .Select(selector).ToList();
         }
     }

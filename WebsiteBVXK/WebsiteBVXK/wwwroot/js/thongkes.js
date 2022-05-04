@@ -46,8 +46,6 @@ var app = new Vue({
                     console.log(res);
                     this.thongkes = res.data;
                     console.log("then")
-                    this.calTongDoanhThu(res.data);
-                    this.calTongSoVe(res.data);
                 })
                 .catch(err => {
                     console.log(err)
@@ -61,6 +59,7 @@ var app = new Vue({
                         this.thongkes = res.data;
                         console.log("then")
                         this.calTongDoanhThu(res.data);
+                        this.calTongSoVe(res.data);
                     })
                     .catch(err => {
                         console.log(err)

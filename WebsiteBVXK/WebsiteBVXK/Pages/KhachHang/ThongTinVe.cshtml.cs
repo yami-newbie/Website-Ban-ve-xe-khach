@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebsiteBVXK.Infrastructure;
 
 namespace WebsiteBVXK.Pages
 {
@@ -18,8 +19,8 @@ namespace WebsiteBVXK.Pages
         private ILichTrinhManager _lichTrinhManager;
         private ITicketManager _ticketManager;
         private IXeManager _xeManager;
-
-        public ThongTinVeModel(ILichTrinhManager lichTrinhManager, ITicketManager ticketManager, IXeManager xeManager)
+        private ISessionManager _sessionManager;
+        public ThongTinVeModel(ILichTrinhManager lichTrinhManager, ITicketManager ticketManager, IXeManager xeManager, ISessionManager sessionManager)
         {
             _lichTrinhManager = lichTrinhManager;
             _ticketManager = ticketManager;
@@ -27,11 +28,12 @@ namespace WebsiteBVXK.Pages
 
             var res = _lichTrinhManager.GetFindResults();
 
-            Titles = res.Select(x => {
+            Titles = res.Select(x =>
+            {
 
                 var ticket = _ticketManager.GetTicketByIdLichTrinh(x.IdLichTrinh, _x => _x).FirstOrDefault();
 
-                if(ticket == null)
+                if (ticket == null)
                 {
                     return null;
                 }
@@ -60,17 +62,18 @@ namespace WebsiteBVXK.Pages
                     idVe = ticket.IdVe,
                     SoGhe = soghe,
                 };
-               
+
             }).ToList();
 
-            for(int i = 0; i < Titles.Count; i++)
+            for (int i = 0; i < Titles.Count; i++)
             {
                 var title = Titles[i];
-                if(title == null)
+                if (title == null)
                 {
                     Titles.RemoveAt(i);
                 }
             }
+            _sessionManager = sessionManager;
         }
 
         public class ThongTinVeViewModel
@@ -97,7 +100,10 @@ namespace WebsiteBVXK.Pages
         }
         public IActionResult OnPostClick(int id, [FromServices] GetTicket getTicket)
         {
-            var res = getTicket.Do(id);
+            var res = _ticketManager.GetTicketById(id, x => x);
+
+            _sessionManager.AddVeResult(res);
+
             return RedirectToPage("/khachhang/giuong");
         }
     }

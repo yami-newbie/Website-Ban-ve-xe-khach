@@ -13,6 +13,7 @@ namespace WebsiteBVXK.Pages.KhachHang
 {
     public class XacNhanThongTinModel : PageModel
     {
+        private ISessionManager _sessionManager;
         public Customer customer { get; set; }
         public List<int> seats { get; set; }
         [BindProperty]
@@ -38,30 +39,40 @@ namespace WebsiteBVXK.Pages.KhachHang
         public ICtDonHangManager _ctdonHangManager;
 
         public XacNhanThongTinModel(
-            ICustomerManager customerManager, 
-            IDonHangManager donHangManager, 
-            ILichTrinhManager lichTrinhManager, 
+            ICustomerManager customerManager,
+            IDonHangManager donHangManager,
+            ILichTrinhManager lichTrinhManager,
             IXeManager xeManager,
             ITicketManager ticketManager,
             IThongKeManager thongKeManager,
-            ICtDonHangManager ctDonHangManager)
+            ICtDonHangManager ctDonHangManager, ISessionManager sessionManager)
         {
             _customerManager = customerManager;
             _donHangManager = donHangManager;
             _thongKeManager = thongKeManager;
             _ctdonHangManager = ctDonHangManager;
-            seats = donHangManager.getGheDangChon();
-            seat = donHangManager.getGhe();
-            customer = _customerManager.GetResult();
+            _sessionManager = sessionManager;
+
+
+            customer = _sessionManager.GetCustomerInformation();
             _lichTrinhManager = lichTrinhManager;
             _ticketManager = ticketManager;
             _xeManager = xeManager;
-            
-            var ticket = _ticketManager.GetTicketResult();
-            var lichtrinh = ticket.IdLichTrinhNavigation;
 
-            loaiXe = lichtrinh
-                .IdXeNavigation.LoaiXe == (int)LoaiXe.Ngoi ? "Xe thường" : "Xe vip";
+            seats = _sessionManager.GetGheChon();
+
+            var ticket = _sessionManager.GetVeResult();
+
+            var lichtrinh = _lichTrinhManager.GetLichTrinhById(ticket.IdLichTrinh, x => x);
+
+            var xe = _xeManager.GetXeById(lichtrinh.IdLichTrinh, x => x);
+            loaiXe = xe.LoaiXe == (int)LoaiXe.Ngoi ? "Xe thường" : "Xe vip";
+
+            var soluong = xe.LoaiXe == (int)LoaiXe.Ngoi ? 40 : 32;
+
+            seat = GetViTri(soluong);
+
+
             chuyen = lichtrinh.NoiXuatPhat + " -- "
                 + lichtrinh.NoiDen;
             ngayDi = lichtrinh.NgayDi.GetValueOrDefault().ToString("yyyy/MM/dd");
@@ -113,20 +124,28 @@ namespace WebsiteBVXK.Pages.KhachHang
         {
             _donHangManager.CreateDonHang(donHang).Wait();
             //_thongKeManager.CreateThongKe(thongKe).Wait();
-
-            
-
+            var ticket = _sessionManager.GetVeResult();
 
             if (request.SoGhes.Count > 0)
             {
+
                 var ghes = request.SoGhes;
 
-                var listdadat = _ctdonHangManager.GetCtDonHangByIdDonHang(donHang.IdDonHang, x => x.SoGhe);
+                var listDonHang = _donHangManager.GetDonHangByIdVe(ticket.IdVe, x => x);// _ctdonHangManager.GetCtDonHangByIdDonHang(donHang.IdDonHang, x => x.SoGhe);
+
+                var listdadat = new List<int>();
+
+                listDonHang.ToList().ForEach(_donhang =>
+                {
+                    listdadat.AddRange(_ctdonHangManager.GetCtDonHangByIdDonHang(_donhang.IdDonHang, x => x.SoGhe));
+                });
 
                 foreach (var item in ghes)
                 {
                     if (listdadat.Contains(item))
                     {
+                        state = true;
+                        _donHangManager.DeleteDonHang(donHang.IdDonHang).Wait();
                         return Page();
                     }
                 }
@@ -141,8 +160,6 @@ namespace WebsiteBVXK.Pages.KhachHang
                     _ctdonHangManager.CreateCtDonHang(ct).Wait();
                 });
             }
-
-            var ticket = _ticketManager.GetTicketById(donHang.IdVeXe, x => x);
 
             var lichtrinh = _lichTrinhManager.GetLichTrinhById(ticket.IdLichTrinh, y => y);
 
@@ -171,6 +188,56 @@ namespace WebsiteBVXK.Pages.KhachHang
             _donHangManager.setGheDangChon(null);
             _donHangManager.setGhe("");
             return RedirectToPage("/KhachHang/ThongTinChuyenKhoan");
+        }
+
+        public string GetViTri(int soLuongGhe)
+        {
+            var gheDangChon = _sessionManager.GetGheChon();
+
+            if (gheDangChon == null)
+                return null;
+
+            if (gheDangChon.Count <= 0)
+                return "";
+
+            string res = "";
+
+            foreach (int i in gheDangChon)
+            {
+                var _i = i;
+                if (i >= soLuongGhe / 2)
+                {
+                    _i -= soLuongGhe / 2;
+                }
+
+                switch (_i % 3)
+                {
+                    case 0:
+                        res += "A";
+                        break;
+                    case 1:
+                        res += "B";
+                        break;
+                    default:
+                        res += "C";
+                        break;
+                }
+
+                var y = _i / 3;
+
+                if (i < soLuongGhe / 2)
+                {
+                    res += (y * 2 + 1).ToString();
+                }
+                else
+                {
+                    res += (y * 2 + 2).ToString();
+                }
+
+                res += ", ";
+            }
+
+            return res.Substring(0, res.Length - 2);
         }
     }
 }

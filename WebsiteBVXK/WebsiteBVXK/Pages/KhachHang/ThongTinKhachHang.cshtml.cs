@@ -7,11 +7,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BVXK.Domain.Models;
+using BVXK.Domain.Infrastructure;
 
 namespace WebsiteBVXK.Pages.KhachHang
 {
     public class ThongTinKhachHangModel : PageModel
     {
+        private ISessionManager _sessionManager;
+
+        public ThongTinKhachHangModel(ISessionManager sessionManager)
+        {
+            _sessionManager = sessionManager;
+        }
+
         [BindProperty]
         public string tenkhach { get; set; }
         [BindProperty]
@@ -26,7 +34,8 @@ namespace WebsiteBVXK.Pages.KhachHang
         public IActionResult OnPost([FromServices] CustomerDetail customerDetail)
         {
             Customer customer = new Customer(tenkhach, sdt, email, cmnd);
-            customerDetail.Do(customer);
+            _sessionManager.AddCustomerInformation(customer);
+
             return RedirectToPage("/KhachHang/XacNhanThongTin");
         }
     }
