@@ -32,6 +32,7 @@ var app = new Vue({
             IdDonHang: 0,
         },
         tongDoanhThu: "",
+        tongSoVe: "",
         from: "",
         to: "",
     },
@@ -46,6 +47,7 @@ var app = new Vue({
                     this.thongkes = res.data;
                     console.log("then")
                     this.calTongDoanhThu(res.data);
+                    this.calTongSoVe(res.data);
                 })
                 .catch(err => {
                     console.log(err)
@@ -67,9 +69,15 @@ var app = new Vue({
         },
         calTongDoanhThu(list) {
             var res = 0;
-            list.map(x => res += x.giaVe);
+            list.map(x => res += x.giaVe * x.soLuong);
             this.tongDoanhThu = res.toString() + " đ";
             console.log("tong doanh thu:", this.tongDoanhThu);
+        },
+        calTongSoVe(list) {
+            var res = 0;
+            list.map(x => res += x.soLuong);
+            this.tongSoVe = res.toString();
+            console.log("tong doanh thu:", this.tongSoVe);
         }
     }
 })
