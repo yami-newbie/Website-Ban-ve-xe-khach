@@ -39,6 +39,10 @@
 
 #content main .thongtin {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    /* text-align: center; */
+    align-items: center;
 }
 
     #content main .thongtin h2 {
